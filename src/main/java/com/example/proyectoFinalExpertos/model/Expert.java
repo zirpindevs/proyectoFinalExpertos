@@ -41,11 +41,8 @@ public class Expert {
 
     @ManyToMany
     @JoinTable(
-            // nombre de la nueva tabla auxiliar
             name = "expert_tag",
-            // nombre de la primera nueva columna de la tabla de la entidad actual (Employee)
             joinColumns = {@JoinColumn(name="expert_id", referencedColumnName = "id")},
-            // nombre de la segunda nueva columna de la tabla de la entidad relacionada (Project)
             inverseJoinColumns = {@JoinColumn(name="tag_id", referencedColumnName = "id")}
     )
     private List<Tag> tags = new ArrayList<>();

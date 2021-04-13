@@ -26,10 +26,10 @@
 
 
 <!--        Entidades-->
-        <mapping class="com.example.proyecto5hibernate.model.User" />
-        <mapping class="com.example.proyecto5hibernate.model.Task" />
-        <mapping class="com.example.proyecto5hibernate.model.Tag" />
-        <mapping class="com.example.proyecto5hibernate.model.BillingInfo" />
+        <mapping class="com.example.proyectoFinalExpertos.model.User" />
+        <mapping class="com.example.proyectoFinalExpertos.model.Expert" />
+        <mapping class="com.example.proyectoFinalExpertos.model.Tag" />
+        <mapping class="com.example.proyectoFinalExpertos.model.ExpertConditions" />
 
     </session-factory>
 </hibernate-configuration>

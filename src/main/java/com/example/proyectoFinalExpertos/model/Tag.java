@@ -14,7 +14,6 @@ public class Tag {
 
     private String name;
 
-    // Bidireccional
     @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
     private List<Expert> experts = new ArrayList<>();
 

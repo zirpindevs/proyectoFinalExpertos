@@ -23,14 +23,6 @@ public class TagDAOImp implements TagDAO {
     @Autowired
     private Session session;
 
-    @Autowired
-
-
-    @Override
-    public List<Tag> findAllFromSession() {
-        return session.createQuery("from Tag g").list();
-    }
-
     @Override
     public Tag createTag(Tag tag) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -76,9 +68,13 @@ public class TagDAOImp implements TagDAO {
     public List<Tag> findAll(){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
+        System.out.println("*************************************************************");
+        System.out.println(session);
+        System.out.println("*************************************************************");
 
         return session.createQuery("from Tag", Tag.class ).list();
     }
+
     @Override
     public Tag findById(Long id){
 

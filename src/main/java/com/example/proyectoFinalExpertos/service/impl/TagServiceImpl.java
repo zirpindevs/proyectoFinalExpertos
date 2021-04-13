@@ -19,22 +19,6 @@ public class TagServiceImpl implements TagService {
         this.tagDAO = tagDAO;
     }
 
-
-
-/*    @Override
-    public List<Tag> findAllFromSession() {
-        List<Tag> results = this.tagDAO.findAllFromSession();
-        System.out.println("***********");
-        return results;
-    }*/
-/*
-    @Override
-    public List<Tag> findAllFromRepository() {
-        List<Tag> results = this.tagDAO.findAllFromRepository();
-        System.out.println("***********");
-        return results;
-    }
-
     @Override
     public Tag createTag(Tag tag) {
         log.info("REST request to create a tag");
@@ -77,5 +61,5 @@ public class TagServiceImpl implements TagService {
         if(name.isEmpty())
             return null;
         return this.tagDAO.findByAllByName(name);
-    }*/
+    }
 }

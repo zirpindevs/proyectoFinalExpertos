@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface TagDAO {
 
-    List<Tag> findAllFromSession();
-
     List<Tag> findAll();
     Tag findById(Long id);
     List<Tag> findByAllByName(String name);
