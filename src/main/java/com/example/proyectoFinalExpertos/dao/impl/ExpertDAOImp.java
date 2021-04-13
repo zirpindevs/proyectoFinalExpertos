@@ -3,6 +3,7 @@ package com.example.proyectoFinalExpertos.dao.impl;
 import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.ExpertConditions;
+import com.example.proyectoFinalExpertos.model.User;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,7 @@ public class ExpertDAOImp implements ExpertDAO {
 
     @Override
     public List<Expert> findAllFromSession() {
-        return session.createQuery("from User e").list();
+        return session.createQuery("from Expert e").list();
     }
 
     @Override
@@ -77,9 +78,10 @@ public class ExpertDAOImp implements ExpertDAO {
     public List<Expert> findAll(){
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        return session.createQuery("from User", Expert.class ).list();
+        return session.createQuery("from Expert", Expert.class ).list();
 
     }
+
     @Override
     public Expert findById(Long id){
 

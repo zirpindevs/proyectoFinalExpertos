@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.controller;
 
 import com.example.proyectoFinalExpertos.model.Expert;
+import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.service.ExpertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class ExpertController {
 
-    private final Logger log = LoggerFactory.getLogger(com.example.proyectoFinalExpertos.controller.UserController.class);
+    private final Logger log = LoggerFactory.getLogger(com.example.proyectoFinalExpertos.controller.ExpertController.class);
 
     private final ExpertService expertService;
 
@@ -29,11 +30,11 @@ public class ExpertController {
      * CREATE EXPERT
      *
      * @param expert
-     * @return ResponseEntity<User>
+     * @return ResponseEntity<Expert>
      * @throws URISyntaxException
      */
     @PostMapping("/experts")
-    public ResponseEntity<Expert> createUser(@RequestBody Expert expert) throws URISyntaxException {
+    public ResponseEntity<Expert> createExpert(@RequestBody Expert expert) throws URISyntaxException {
         log.debug("REST request to create an expert: {} ", expert);
 
         if (expert.getId() != null)
@@ -51,10 +52,10 @@ public class ExpertController {
      *
      * @param id
      * @param modifiedExpert
-     * @return ResponseEntity<User>
+     * @return ResponseEntity<Expert>
      */
     @PutMapping("/experts/{id}")
-    public ResponseEntity<Expert> updateUser(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
+    public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
 
         Expert updateExpert = this.expertService.updateExpert(id, modifiedExpert);
@@ -67,17 +68,26 @@ public class ExpertController {
         return ResponseEntity.ok().body(updateExpert);
     }
 
+    /**
+     * FIND ALL EXPERTS
+     * @return List<Expert>
+     */
+    @GetMapping("/experts")
+    public List<Expert> findExpert(){
+        log.debug("REST request to find all experts");
 
+        return this.expertService.findAll();
+    }
 
     /**
      * Find EXPERT BY ID
      *
      * @param id
-     * @return ResponseEntity<User>
+     * @return ResponseEntity<Expert>
      * @throws URISyntaxException
      */
     @GetMapping("/experts/{id}")
-    public ResponseEntity<Expert> findUserId(@PathVariable Long id) throws URISyntaxException {
+    public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
 
         Expert findExpert = this.expertService.findOne(id);
         if (findExpert == null)
@@ -90,7 +100,7 @@ public class ExpertController {
     /**
      * FIND EXPERT BY NAME
      * @param name
-     * @return List<User>
+     * @return List<Expert>
      * @throws URISyntaxException
      */
     @GetMapping("/experts/name/{name}")
