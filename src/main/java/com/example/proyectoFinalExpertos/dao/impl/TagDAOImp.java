@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.time.Instant;
 import java.util.List;
 
 @Repository
@@ -36,6 +37,10 @@ public class TagDAOImp implements TagDAO {
             case YELLOW -> tag.setColor(TagColor.YELLOW);
             default -> tag.setColor(TagColor.RED);
         }*/
+
+
+
+        tag.setCreatedDate(Instant.now());
 
         session.save(tag);
 
@@ -74,6 +79,9 @@ public class TagDAOImp implements TagDAO {
     @Override
     public Tag findById(Long id){
 
+        System.out.println("********************************************");
+        System.out.println(id);
+        System.out.println("*********************************************");
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
