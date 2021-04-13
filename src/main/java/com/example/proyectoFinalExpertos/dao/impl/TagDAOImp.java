@@ -30,16 +30,6 @@ public class TagDAOImp implements TagDAO {
 
         session.beginTransaction();
 
-/*        switch (tag.getColor()){
-            case RED -> tag.setColor(TagColor.RED);
-            case BLUE -> tag.setColor(TagColor.BLUE);
-            case GREEN -> tag.setColor(TagColor.GREEN);
-            case YELLOW -> tag.setColor(TagColor.YELLOW);
-            default -> tag.setColor(TagColor.RED);
-        }*/
-
-
-
         tag.setCreatedDate(Instant.now());
 
         session.save(tag);

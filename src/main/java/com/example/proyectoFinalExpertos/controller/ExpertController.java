@@ -1,4 +1,103 @@
 package com.example.proyectoFinalExpertos.controller;
 
+import com.example.proyectoFinalExpertos.model.Expert;
+import com.example.proyectoFinalExpertos.service.ExpertService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api")
 public class ExpertController {
+
+    private final Logger log = LoggerFactory.getLogger(com.example.proyectoFinalExpertos.controller.UserController.class);
+
+    private final ExpertService expertService;
+
+    public ExpertController(ExpertService expertService) {
+        this.expertService = expertService;
+    }
+
+
+    /**
+     * CREATE EXPERT
+     *
+     * @param expert
+     * @return ResponseEntity<User>
+     * @throws URISyntaxException
+     */
+    @PostMapping("/experts")
+    public ResponseEntity<Expert> createUser(@RequestBody Expert expert) throws URISyntaxException {
+        log.debug("REST request to create an expert: {} ", expert);
+
+        if (expert.getId() != null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        Expert createExpert = this.expertService.createExpert(expert);
+
+        return ResponseEntity
+                .created(new URI("/api/experts/" + createExpert.getName()))
+                .body(createExpert);
+    }
+
+    /**
+     * UPDATE EXPERT
+     *
+     * @param id
+     * @param modifiedExpert
+     * @return ResponseEntity<User>
+     */
+    @PutMapping("/experts/{id}")
+    public ResponseEntity<Expert> updateUser(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
+        log.debug("REST request to update one expert: {} ", modifiedExpert);
+
+        Expert updateExpert = this.expertService.updateExpert(id, modifiedExpert);
+
+        if (updateExpert.getId() == null) {
+            log.warn("update expert without id");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return ResponseEntity.ok().body(updateExpert);
+    }
+
+
+
+    /**
+     * Find EXPERT BY ID
+     *
+     * @param id
+     * @return ResponseEntity<User>
+     * @throws URISyntaxException
+     */
+    @GetMapping("/experts/{id}")
+    public ResponseEntity<Expert> findUserId(@PathVariable Long id) throws URISyntaxException {
+
+        Expert findExpert = this.expertService.findOne(id);
+        if (findExpert == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return ResponseEntity.ok().body(findExpert);
+
+    }
+
+    /**
+     * FIND EXPERT BY NAME
+     * @param name
+     * @return List<User>
+     * @throws URISyntaxException
+     */
+    @GetMapping("/experts/name/{name}")
+    public List<Expert> findExpertName(@PathVariable String name) throws URISyntaxException {
+
+        return this.expertService.findAllByName(name);
+
+    }
+
 }
