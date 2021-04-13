@@ -68,10 +68,6 @@ public class TagDAOImp implements TagDAO {
     public List<Tag> findAll(){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        System.out.println("*************************************************************");
-        System.out.println(session);
-        System.out.println("*************************************************************");
-
         return session.createQuery("from Tag", Tag.class ).list();
     }
 

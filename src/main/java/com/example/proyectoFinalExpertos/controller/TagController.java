@@ -35,7 +35,7 @@ public class TagController {
      * @param tag
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
-     *//*
+     */
     @PostMapping("/tags")
     public ResponseEntity<Tag> createTag(@RequestBody Tag tag) throws URISyntaxException {
         log.debug("REST request to create a tag: {} ", tag);
@@ -49,13 +49,13 @@ public class TagController {
                 .created(new URI("/api/tags/" + createTag.getName()))
                 .body(createTag);
     }
-    /*
-     *//**
+
+     /**
      * UPDATE TAG
      * @param id
      * @param modifiedTag
      * @return ResponseEntity<Tag>
-     *//*
+     */
     @PutMapping("/tags/{id}")
     public ResponseEntity<Tag> updateTag(@PathVariable Long id, @RequestBody Tag modifiedTag){
         log.debug("REST request to update one tag: {} ",modifiedTag);
@@ -71,10 +71,9 @@ public class TagController {
         return ResponseEntity.ok().body(updateTag);
     }
 
-    *//**
+    /**
      * FIND ALL TAGS
      * @return List<Tag>
-     *//*
      */
     @GetMapping("/tags")
     public List<Tag> findTags(){
@@ -82,13 +81,12 @@ public class TagController {
 
         return this.tagService.findAll();
     }
-/*
-    *//**
+    /**
      * FIND ONE TAG BY ID
      * @param id
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
-     *//*
+     */
     @GetMapping("/tags/{id}")
     public ResponseEntity<Tag> findTagId(@PathVariable Long id) throws URISyntaxException {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -106,15 +104,15 @@ public class TagController {
         return ResponseEntity.ok().body(findTag);
     }
 
-    *//**
+    /**
      * FIND ALL TAGS BY NAME
      * @param name
      * @return List<Tag>
      * @throws URISyntaxException
-     *//*
+     */
     @GetMapping("/tags/name/{name}")
     public List<Tag> findTagName(@PathVariable String name) throws URISyntaxException {
 
         return this.tagService.findByAllByName(name);
-    }*/
+    }
 }
