@@ -2,7 +2,6 @@ package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.TagDAO;
 import com.example.proyectoFinalExpertos.model.Tag;
-import com.example.proyectoFinalExpertos.model.TagColor;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,13 +37,13 @@ public class TagDAOImp implements TagDAO {
 
         session.beginTransaction();
 
-        switch (tag.getColor()){
+/*        switch (tag.getColor()){
             case RED -> tag.setColor(TagColor.RED);
             case BLUE -> tag.setColor(TagColor.BLUE);
             case GREEN -> tag.setColor(TagColor.GREEN);
             case YELLOW -> tag.setColor(TagColor.YELLOW);
             default -> tag.setColor(TagColor.RED);
-        }
+        }*/
 
         session.save(tag);
 
@@ -62,7 +61,9 @@ public class TagDAOImp implements TagDAO {
         session.beginTransaction();
 
         findedTag.setName(modifiedTag.getName());
+/*
         findedTag.setColor(modifiedTag.getColor());
+*/
 
         session.update(findedTag);
         session.getTransaction().commit();

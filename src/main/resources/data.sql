@@ -1,3 +1,8 @@
+insert into experts (name, surname, nif, etiquetas, cursos, condiciones, estado, disponibilidad) values ('name1', 'surname 1', '10000A', "java","master1", 30, "pendiente", "inmediata");
+insert into experts (name, surname, nif, etiquetas, cursos, condiciones, estado, disponibilidad) values ('name2', 'surname 2', '20000A', "php","master2", 40, "validado", "media");
+insert into experts (name, surname, nif, etiquetas, cursos, condiciones, estado, disponibilidad) values ('name3', 'surname 3', '30000A', "python","master3", 50, "pendiente", "inmediata");
+
+
 insert into users (name, surname, dni, is_active) values ('name1', 'surname 1', '10000A', true);
 insert into users (name, surname, dni, is_active) values ('name2', 'surname 2', '30000A', true);
 insert into users (name, surname, dni, is_active) values ('name 3', 'surname 3', '20000A', true);

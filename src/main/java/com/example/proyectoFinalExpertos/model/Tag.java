@@ -12,10 +12,6 @@ public class Tag {
 
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    private TagColor color;
-
-
     public Tag() {
     }
 
@@ -32,21 +28,12 @@ public class Tag {
         return this;
     }
 
-    public TagColor getColor() {
-        return color;
-    }
-
-    public Tag setColor(TagColor color) {
-        this.color = color;
-        return this;
-    }
 
     @Override
     public String toString() {
         return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", color=" + color +
                 '}';
     }
 }
