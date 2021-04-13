@@ -1,6 +1,8 @@
 package com.example.proyectoFinalExpertos.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -11,6 +13,11 @@ public class Tag {
     private Long id;
 
     private String name;
+
+    // Bidireccional
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
+    private List<Expert> experts = new ArrayList<>();
+
 
     public Tag() {
     }
@@ -28,6 +35,14 @@ public class Tag {
         return this;
     }
 
+    public List<Expert> getExperts() {
+        return experts;
+    }
+
+    public Tag setExperts(List<Expert> experts) {
+        this.experts = experts;
+        return this;
+    }
 
     @Override
     public String toString() {

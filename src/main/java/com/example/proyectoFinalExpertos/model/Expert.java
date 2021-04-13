@@ -2,6 +2,8 @@ package com.example.proyectoFinalExpertos.model;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "experts")
@@ -20,9 +22,6 @@ public class Expert {
     @Column(name="nif")
     private String nif;
 
-    @Column(name="etiquetas")
-    private String etiquetas;
-
     @Column(name="cursos")
     private String cursos;
 
@@ -38,6 +37,19 @@ public class Expert {
 
     @Column(name="created_date")
     private Instant createdDate;
+
+
+    @ManyToMany
+    @JoinTable(
+            // nombre de la nueva tabla auxiliar
+            name = "expert_tag",
+            // nombre de la primera nueva columna de la tabla de la entidad actual (Employee)
+            joinColumns = {@JoinColumn(name="expert_id", referencedColumnName = "id")},
+            // nombre de la segunda nueva columna de la tabla de la entidad relacionada (Project)
+            inverseJoinColumns = {@JoinColumn(name="tag_id", referencedColumnName = "id")}
+    )
+    private List<Tag> tags = new ArrayList<>();
+
 
     public Expert() {
     }
@@ -69,12 +81,12 @@ public class Expert {
         return this;
     }
 
-    public String getEtiquetas() {
-        return etiquetas;
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    public Expert setEtiquetas(String etiquetas) {
-        this.etiquetas = etiquetas;
+    public Expert setTags(List<Tag> tags) {
+        this.tags = tags;
         return this;
     }
 
@@ -130,7 +142,6 @@ public class Expert {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", nif='" + nif + '\'' +
-                ", etiquetas='" + etiquetas + '\'' +
                 ", cursos='" + cursos + '\'' +
                 ", condiciones='" + condiciones + '\'' +
                 ", estado=" + estado +
