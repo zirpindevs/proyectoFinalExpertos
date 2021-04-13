@@ -26,12 +26,6 @@ public class UserServiceImpl implements UserService {
         return results;
     }*/
 
-    @Override
-    public List<User> findAllFromRepository() {
-        List<User> results = this.userDAO.findAllFromRepository();
-        System.out.println("***********");
-        return results;
-    }
 
     @Override
     public User createUser(User user) {

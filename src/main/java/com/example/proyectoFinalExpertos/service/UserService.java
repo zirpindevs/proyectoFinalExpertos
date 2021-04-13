@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface UserService {
 
-    List<User> findAllFromRepository();
-
     User createUser(User user);
     User updateUser(Long id, User user);
 

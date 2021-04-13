@@ -70,17 +70,6 @@ public class UserController {
 
 
     /**
-     * FIND ALL USERS
-     *
-     * @return List<User>
-     */
-    @GetMapping("/users")
-    public List<User> findAllUsers() {
-        log.debug("REST request to find all users");
-        return this.userService.findAllFromRepository();
-    }
-
-    /**
      * Find USER BY ID
      *
      * @param id
