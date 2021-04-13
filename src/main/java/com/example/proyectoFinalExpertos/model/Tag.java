@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.model;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,10 @@ public class Tag {
     private Long id;
 
     private String name;
+
+    @Column(name="created_date")
+    private Instant createdDate;
+
 
     @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
     private List<Expert> experts = new ArrayList<>();
@@ -34,6 +39,15 @@ public class Tag {
         return this;
     }
 
+    public Instant getCreatedDate() {
+        return createdDate;
+    }
+
+    public Tag setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
+        return this;
+    }
+
     public List<Expert> getExperts() {
         return experts;
     }
@@ -48,6 +62,8 @@ public class Tag {
         return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", createdDate=" + createdDate +
+                ", experts=" + experts +
                 '}';
     }
 }
