@@ -1,11 +1,11 @@
 package com.example.proyectoFinalExpertos.service;
 
-import com.example.proyecto5hibernate.model.Tag;
+import com.example.proyectoFinalExpertos.model.Tag;
 
 import java.util.List;
 
 public interface TagService {
-
+/*
     List<Tag> findAllFromRepository();
 
     Tag createTag(Tag tag);
@@ -13,6 +13,6 @@ public interface TagService {
 
     List<Tag> findAll();
     Tag findOne(Long id);
-    List<Tag> findByAllByName(String name);
+    List<Tag> findByAllByName(String name);*/
 
     }

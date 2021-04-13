@@ -1,8 +1,8 @@
 package com.example.proyectoFinalExpertos.service.impl;
 
-import com.example.proyecto5hibernate.dao.TagDAO;
-import com.example.proyecto5hibernate.model.Tag;
-import com.example.proyecto5hibernate.service.TagService;
+import com.example.proyectoFinalExpertos.dao.TagDAO;
+import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.service.TagService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class TagServiceImpl implements TagService {
         System.out.println("***********");
         return results;
     }*/
-
+/*
     @Override
     public List<Tag> findAllFromRepository() {
         List<Tag> results = this.tagDAO.findAllFromRepository();
@@ -77,5 +77,5 @@ public class TagServiceImpl implements TagService {
         if(name.isEmpty())
             return null;
         return this.tagDAO.findByAllByName(name);
-    }
+    }*/
 }

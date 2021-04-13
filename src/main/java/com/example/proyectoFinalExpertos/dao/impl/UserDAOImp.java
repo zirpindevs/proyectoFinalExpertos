@@ -1,8 +1,7 @@
 package com.example.proyectoFinalExpertos.dao.impl;
 
-import com.example.proyecto5hibernate.dao.UserDAO;
-import com.example.proyecto5hibernate.model.User;
-import com.example.proyecto5hibernate.repository.UserRepository;
+import com.example.proyectoFinalExpertos.dao.UserDAO;
+import com.example.proyectoFinalExpertos.model.User;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,20 +24,11 @@ public class UserDAOImp implements UserDAO {
     @Autowired
     private Session session;
 
-    @Autowired
-    private UserRepository repository;
-
-
     @Override
     public List<User> findAllFromSession() {
         return session.createQuery("from User e").list();
     }
 
-
-    @Override
-    public List<User> findAllFromRepository() {
-        return repository.findAll();
-    }
 
     @Override
     public User createUser(User user) {

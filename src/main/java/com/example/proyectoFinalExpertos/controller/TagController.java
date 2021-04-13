@@ -1,7 +1,7 @@
 package com.example.proyectoFinalExpertos.controller;
 
-import com.example.proyecto5hibernate.model.Tag;
-import com.example.proyecto5hibernate.service.impl.TagServiceImpl;
+import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.service.impl.TagServiceImpl;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,12 +30,12 @@ public class TagController {
     }
 
 
-    /**
+/*    *//**
      * CREATE A TAG
      * @param tag
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
-     */
+     *//*
     @PostMapping("/tags")
     public ResponseEntity<Tag> createTag(@RequestBody Tag tag) throws URISyntaxException {
         log.debug("REST request to create a tag: {} ", tag);
@@ -50,12 +50,12 @@ public class TagController {
                 .body(createTag);
     }
 
-    /**
+    *//**
      * UPDATE TAG
      * @param id
      * @param modifiedTag
      * @return ResponseEntity<Tag>
-     */
+     *//*
     @PutMapping("/tags/{id}")
     public ResponseEntity<Tag> updateTag(@PathVariable Long id, @RequestBody Tag modifiedTag){
         log.debug("REST request to update one tag: {} ",modifiedTag);
@@ -71,10 +71,10 @@ public class TagController {
         return ResponseEntity.ok().body(updateTag);
     }
 
-    /**
+    *//**
      * FIND ALL TAGS
      * @return List<Tag>
-     */
+     *//*
     @GetMapping("/tags")
     public List<Tag> findTags(){
         log.debug("REST request to find all Tags");
@@ -82,12 +82,12 @@ public class TagController {
         return this.tagService.findAll();
     }
 
-    /**
+    *//**
      * FIND ONE TAG BY ID
      * @param id
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
-     */
+     *//*
     @GetMapping("/tags/{id}")
     public ResponseEntity<Tag> findTagId(@PathVariable Long id) throws URISyntaxException {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -105,15 +105,15 @@ public class TagController {
         return ResponseEntity.ok().body(findTag);
     }
 
-    /**
+    *//**
      * FIND ALL TAGS BY NAME
      * @param name
      * @return List<Tag>
      * @throws URISyntaxException
-     */
+     *//*
     @GetMapping("/tags/name/{name}")
     public List<Tag> findTagName(@PathVariable String name) throws URISyntaxException {
 
         return this.tagService.findByAllByName(name);
-    }
+    }*/
 }

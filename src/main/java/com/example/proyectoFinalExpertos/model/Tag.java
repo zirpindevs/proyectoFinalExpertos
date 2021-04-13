@@ -15,10 +15,6 @@ public class Tag {
     @Enumerated(EnumType.STRING)
     private TagColor color;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_task")
-    private Task task;
-
 
     public Tag() {
     }
@@ -44,16 +40,6 @@ public class Tag {
         this.color = color;
         return this;
     }
-
-    public Task getTask() {
-        return task;
-    }
-
-    public Tag setTask(Task task) {
-        this.task = task;
-        return this;
-    }
-
 
     @Override
     public String toString() {

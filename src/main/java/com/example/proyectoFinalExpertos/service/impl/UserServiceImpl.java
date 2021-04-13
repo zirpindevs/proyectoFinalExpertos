@@ -1,8 +1,8 @@
 package com.example.proyectoFinalExpertos.service.impl;
 
-import com.example.proyecto5hibernate.dao.UserDAO;
-import com.example.proyecto5hibernate.model.User;
-import com.example.proyecto5hibernate.service.UserService;
+import com.example.proyectoFinalExpertos.dao.UserDAO;
+import com.example.proyectoFinalExpertos.model.User;
+import com.example.proyectoFinalExpertos.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

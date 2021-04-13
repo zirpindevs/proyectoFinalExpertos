@@ -1,9 +1,8 @@
 package com.example.proyectoFinalExpertos.dao.impl;
 
-import com.example.proyecto5hibernate.dao.TagDAO;
-import com.example.proyecto5hibernate.model.Tag;
-import com.example.proyecto5hibernate.model.TagColor;
-import com.example.proyecto5hibernate.repository.TagRepository;
+import com.example.proyectoFinalExpertos.dao.TagDAO;
+import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.model.TagColor;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,18 +25,11 @@ public class TagDAOImp implements TagDAO {
     private Session session;
 
     @Autowired
-    private TagRepository repository;
 
 
     @Override
     public List<Tag> findAllFromSession() {
         return session.createQuery("from Tag g").list();
-    }
-
-
-    @Override
-    public List<Tag> findAllFromRepository() {
-        return repository.findAll();
     }
 
     @Override

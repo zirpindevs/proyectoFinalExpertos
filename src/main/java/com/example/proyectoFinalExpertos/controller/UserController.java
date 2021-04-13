@@ -1,7 +1,7 @@
 package com.example.proyectoFinalExpertos.controller;
 
-import com.example.proyecto5hibernate.model.User;
-import com.example.proyecto5hibernate.service.impl.UserServiceImpl;
+import com.example.proyectoFinalExpertos.model.User;
+import com.example.proyectoFinalExpertos.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

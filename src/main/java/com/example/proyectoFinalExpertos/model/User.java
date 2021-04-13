@@ -28,13 +28,6 @@ public class User {
     @Column(name="created_date")
     private Instant createdDate;
 
-    @OneToOne
-    @JoinColumn(name = "id_billing_info")
-    private BillingInfo billingInfo;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    public List<Task> tasks = new ArrayList<>();
-
     public User() {
     }
 
@@ -91,23 +84,6 @@ public class User {
         return this;
     }
 
-    public BillingInfo getBillingInfo() {
-        return billingInfo;
-    }
-
-    public User setBillingInfo(BillingInfo billingInfo) {
-        this.billingInfo = billingInfo;
-        return this;
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public User setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-        return this;
-    }
 
     @Override
     public String toString() {

@@ -1,6 +1,6 @@
 package com.example.proyectoFinalExpertos.service;
 
-import com.example.proyecto5hibernate.model.User;
+import com.example.proyectoFinalExpertos.model.User;
 
 import java.util.List;
 
