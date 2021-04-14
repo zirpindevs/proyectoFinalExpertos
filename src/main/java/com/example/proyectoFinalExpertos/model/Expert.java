@@ -29,8 +29,7 @@ public class Expert {
     private Long condiciones;
 
     @Column(name="estado")
-    @Enumerated(EnumType.STRING)
-    private ExpertConditions estado;
+    private String estado;
 
     @Column(name="disponibilidad")
     private String disponibilidad;
@@ -39,7 +38,7 @@ public class Expert {
     private Instant createdDate;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "expert_tag",
             joinColumns = {@JoinColumn(name="expert_id", referencedColumnName = "id")},
@@ -118,13 +117,12 @@ public class Expert {
         return this;
     }
 
-    public ExpertConditions getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public Expert setEstado(ExpertConditions estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
-        return this;
     }
 
     public Instant getCreatedDate() {

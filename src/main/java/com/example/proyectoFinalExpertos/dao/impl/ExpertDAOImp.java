@@ -60,12 +60,12 @@ public class ExpertDAOImp implements ExpertDAO {
 
         findedExpert.setDisponibilidad(modifiedExpert.getDisponibilidad());
 
-        switch (findedExpert.getEstado()) {
-            case DESCARTADO -> modifiedExpert.setEstado(ExpertConditions.DESCARTADO);
-            case VALIDADO -> modifiedExpert.setEstado(ExpertConditions.VALIDADO);
-            case PENDIENTE -> modifiedExpert.setEstado(ExpertConditions.PENDIENTE);
-            default -> modifiedExpert.setEstado(ExpertConditions.PENDIENTE);
-        }
+//        switch (findedExpert.getEstado()) {
+//            case DESCARTADO -> modifiedExpert.setEstado(ExpertConditions.DESCARTADO);
+//            case VALIDADO -> modifiedExpert.setEstado(ExpertConditions.VALIDADO);
+//            case PENDIENTE -> modifiedExpert.setEstado(ExpertConditions.PENDIENTE);
+//            default -> modifiedExpert.setEstado(ExpertConditions.PENDIENTE);
+//        }
 
         session.update(findedExpert);
         session.getTransaction().commit();
