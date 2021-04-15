@@ -86,7 +86,7 @@ public class ExpertController {
      * @return ResponseEntity<Expert>
      * @throws URISyntaxException
      */
-    @GetMapping("/experts/{id}")
+    @GetMapping("/experts={id}")
     public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
 
         Expert findExpert = this.expertService.findOne(id);
@@ -103,7 +103,7 @@ public class ExpertController {
      * @return List<Expert>
      * @throws URISyntaxException
      */
-    @GetMapping("/experts/name/{name}")
+    @GetMapping("/experts/name={name}")
     public List<Expert> findExpertName(@PathVariable String name) throws URISyntaxException {
 
         return this.expertService.findAllByName(name);
