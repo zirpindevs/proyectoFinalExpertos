@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers( HttpMethod.GET,"/api/experts").permitAll()
                 .mvcMatchers( HttpMethod.GET,"/api/tags/**").permitAll()
                 .mvcMatchers("/api/**")
-                .authenticated()
+                .anonymous()
                 .and()
                 .csrf().disable() // Deshabilita CSRF (habilitado por defecto) para que funcione permitAll sobre endpoints POST, PUT y DELETE
                 .httpBasic();
