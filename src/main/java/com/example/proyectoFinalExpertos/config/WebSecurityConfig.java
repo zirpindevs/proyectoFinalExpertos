@@ -32,6 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .mvcMatchers( HttpMethod.GET,"/api/experts").permitAll()
+                .mvcMatchers( HttpMethod.POST,"/api/experts").permitAll()
+                .mvcMatchers( HttpMethod.DELETE,"/api/experts").permitAll()
+                .mvcMatchers( HttpMethod.PUT,"/api/experts").permitAll()
                 .mvcMatchers( HttpMethod.GET,"/api/tags/**").permitAll()
                 .mvcMatchers("/api/**")
                 .anonymous()
