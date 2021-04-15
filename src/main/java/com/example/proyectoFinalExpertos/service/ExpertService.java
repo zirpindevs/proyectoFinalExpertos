@@ -13,5 +13,6 @@ public interface ExpertService {
     List<Expert> findAll();
     Expert findOne(Long id);
     List<Expert> findAllByName(String name);
+    void insertExampleData();
 
-    }
+}

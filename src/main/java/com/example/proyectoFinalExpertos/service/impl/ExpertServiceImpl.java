@@ -68,6 +68,10 @@ public class ExpertServiceImpl implements ExpertService {
         this.expertDAO.deleteExpert(expertToDelete);
 
     }
+    @Override
+    public void insertExampleData(){
+        this.expertDAO.insertExampleData();
+    }
 
 
 }
