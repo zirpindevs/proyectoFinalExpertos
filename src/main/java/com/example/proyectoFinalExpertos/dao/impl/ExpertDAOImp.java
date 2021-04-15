@@ -130,31 +130,4 @@ public class ExpertDAOImp implements ExpertDAO {
         session.close();
     }
 
-    @Override
-    public void insertExampleData() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Expert expert1 = new Expert("Juan_Experto", "apellido1", "10000A", "master1", 30L, "pendiente", "inmediata", Instant.now());
-        Expert expert2 = new Expert("Jose_Experto", "apellido2", "20000A", "master2", 50L, "pendiente", "inmediata", Instant.now());
-
-
-        Tag tag1 = new Tag("tarea1", Instant.now());
-        Tag tag2 = new Tag("tarea2", Instant.now());
-        Tag tag3 = new Tag("tarea1", Instant.now());
-
-        tag1.getExperts().add(expert1);
-        tag2.getExperts().add(expert2);
-        tag3.getExperts().add(expert1);
-
-        session.save(expert1);
-        session.save(expert2);
-
-        session.save(tag1);
-        session.save(tag2);
-        session.save(tag3);
-
-        session.getTransaction().commit();
-
-        session.close();
-
-    }
 }

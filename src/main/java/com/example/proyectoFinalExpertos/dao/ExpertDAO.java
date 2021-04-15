@@ -15,7 +15,4 @@ public interface ExpertDAO {
     Expert createExpert(Expert expert);
     Expert modifyExpert(Expert expert, Expert findedExpert);
 
-    void insertExampleData();
-
-
 }
