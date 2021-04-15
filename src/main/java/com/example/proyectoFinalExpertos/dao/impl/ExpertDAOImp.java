@@ -118,4 +118,15 @@ public class ExpertDAOImp implements ExpertDAO {
         return experts;
     }
 
+    @Override
+    public void deleteExpert(Expert expertToDelete){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+        session.delete(expertToDelete);
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
 }

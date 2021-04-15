@@ -33,7 +33,7 @@ public class ExpertController {
      * @return ResponseEntity<Expert>
      * @throws URISyntaxException
      */
-    @PostMapping("/experts")
+    @PostMapping("/expertos")
     public ResponseEntity<Expert> createExpert(@RequestBody Expert expert) throws URISyntaxException {
         log.debug("REST request to create an expert: {} ", expert);
 
@@ -54,7 +54,7 @@ public class ExpertController {
      * @param modifiedExpert
      * @return ResponseEntity<Expert>
      */
-    @PutMapping("/experts/{id}")
+    @PutMapping("/expertos/{id}")
     public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
 
@@ -72,7 +72,8 @@ public class ExpertController {
      * FIND ALL EXPERTS
      * @return List<Expert>
      */
-    @GetMapping("/experts")
+
+    @GetMapping("/expertos")
     public List<Expert> findExpert(){
         log.debug("REST request to find all experts");
 
@@ -86,10 +87,11 @@ public class ExpertController {
      * @return ResponseEntity<Expert>
      * @throws URISyntaxException
      */
-    @GetMapping("/experts={id}")
+    @GetMapping("/expertos/{id}")
     public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
 
         Expert findExpert = this.expertService.findOne(id);
+
         if (findExpert == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -103,11 +105,31 @@ public class ExpertController {
      * @return List<Expert>
      * @throws URISyntaxException
      */
-    @GetMapping("/experts/name={name}")
+    @GetMapping("/expertos/name/{name}")
     public List<Expert> findExpertName(@PathVariable String name) throws URISyntaxException {
 
         return this.expertService.findAllByName(name);
 
     }
+
+    @DeleteMapping("/expertos/{id}")
+    public ResponseEntity<Void> deleteExpert(@PathVariable Long id){
+        log.debug("REST request to delete a expert: {} ", id);
+
+        Expert expertToDelete = this.expertService.findOne(id);
+
+
+        if (expertToDelete.getId() == null) {
+            log.warn("expert not exists");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+/*
+        elseif(expertToDelete.getId())
+*/
+
+        this.expertService.deleteExpert(expertToDelete);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

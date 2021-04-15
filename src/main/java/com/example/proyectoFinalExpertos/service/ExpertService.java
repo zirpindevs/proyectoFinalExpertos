@@ -8,6 +8,7 @@ public interface ExpertService {
 
     Expert createExpert(Expert expert);
     Expert updateExpert(Long id, Expert expert);
+    void deleteExpert(Expert expertToDelete);
 
     List<Expert> findAll();
     Expert findOne(Long id);

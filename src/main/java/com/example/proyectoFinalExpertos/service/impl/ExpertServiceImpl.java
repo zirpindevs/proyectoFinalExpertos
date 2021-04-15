@@ -62,6 +62,12 @@ public class ExpertServiceImpl implements ExpertService {
             return null;
         return this.expertDAO.findAllByName(name);
     }
+    @Override
+    public void deleteExpert(Expert expertToDelete){
+        log.info("REST request to delete an expert by id");
+        this.expertDAO.deleteExpert(expertToDelete);
+
+    }
 
 
 }

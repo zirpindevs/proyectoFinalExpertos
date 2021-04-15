@@ -10,6 +10,7 @@ public interface ExpertDAO {
 
     List<Expert> findAll();
     Expert findById(Long id);
+    void deleteExpert(Expert expertToDelete);
     List<Expert> findAllByName(String name);
     Expert createExpert(Expert expert);
     Expert modifyExpert(Expert expert, Expert findedExpert);
