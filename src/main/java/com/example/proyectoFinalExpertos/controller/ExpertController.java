@@ -99,33 +99,16 @@ public class ExpertController {
 
     }
 
-    /**
-     * FIND EXPERT BY NAME
-     * @param name
-     * @return List<Expert>
-     * @throws URISyntaxException
-     */
-    @GetMapping("/expertos/name/{name}")
-    public List<Expert> findExpertName(@PathVariable String name) throws URISyntaxException {
-
-        return this.expertService.findAllByName(name);
-
-    }
-
     @DeleteMapping("/expertos/{id}")
     public ResponseEntity<Void> deleteExpert(@PathVariable Long id){
         log.debug("REST request to delete a expert: {} ", id);
 
         Expert expertToDelete = this.expertService.findOne(id);
 
-
         if (expertToDelete.getId() == null) {
             log.warn("expert not exists");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-/*
-        elseif(expertToDelete.getId())
-*/
 
         this.expertService.deleteExpert(expertToDelete);
         return ResponseEntity.noContent().build();

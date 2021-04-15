@@ -1,5 +1,6 @@
 package com.example.proyectoFinalExpertos.controller;
 
+import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.service.impl.TagServiceImpl;
 import org.hibernate.Session;
@@ -36,7 +37,7 @@ public class TagController {
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
      */
-    @PostMapping("/tags")
+    @PostMapping("/etiquetas")
     public ResponseEntity<Tag> createTag(@RequestBody Tag tag) throws URISyntaxException {
         log.debug("REST request to create a tag: {} ", tag);
 
@@ -56,7 +57,7 @@ public class TagController {
      * @param modifiedTag
      * @return ResponseEntity<Tag>
      */
-    @PutMapping("/tags/{id}")
+    @PutMapping("/etiquetas/{id}")
     public ResponseEntity<Tag> updateTag(@PathVariable Long id, @RequestBody Tag modifiedTag){
         log.debug("REST request to update one tag: {} ",modifiedTag);
 
@@ -75,7 +76,7 @@ public class TagController {
      * FIND ALL TAGS
      * @return List<Tag>
      */
-    @GetMapping("/tags")
+    @GetMapping("/etiquetas")
     public List<Tag> findTags(){
         log.debug("REST request to find all Tags");
 
@@ -87,7 +88,7 @@ public class TagController {
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
      */
-    @GetMapping("/tags/{id}")
+    @GetMapping("/etiquetas/{id}")
     public ResponseEntity<Tag> findTagId(@PathVariable Long id) throws URISyntaxException {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -104,15 +105,19 @@ public class TagController {
         return ResponseEntity.ok().body(findTag);
     }
 
-    /**
-     * FIND ALL TAGS BY NAME
-     * @param name
-     * @return List<Tag>
-     * @throws URISyntaxException
-     */
-    @GetMapping("/tags/name/{name}")
-    public List<Tag> findTagName(@PathVariable String name) throws URISyntaxException {
+    @DeleteMapping("/etiquetas/{id}")
+    public ResponseEntity<Void> deleteExpert(@PathVariable Long id){
+        log.debug("REST request to delete a expert: {} ", id);
 
-        return this.tagService.findByAllByName(name);
+        Tag tagToDelete = this.tagService.findOne(id);
+
+
+        if (tagToDelete.getId() == null) {
+            log.warn("expert not exists");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        this.tagService.deleteTag(tagToDelete);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.service.impl;
 
 import com.example.proyectoFinalExpertos.dao.TagDAO;
+import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.service.TagService;
 import org.slf4j.Logger;
@@ -61,5 +62,12 @@ public class TagServiceImpl implements TagService {
         if(name.isEmpty())
             return null;
         return this.tagDAO.findByAllByName(name);
+    }
+
+    @Override
+    public void deleteTag(Tag tagToDelete){
+        log.info("REST request to delete a tag by id");
+        this.tagDAO.deleteTag(tagToDelete);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.TagDAO;
+import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,4 +105,15 @@ public class TagDAOImp implements TagDAO {
         return tag;
     }
 
+
+    @Override
+    public void deleteTag(Tag tagToDelete){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+        session.delete(tagToDelete);
+
+        session.getTransaction().commit();
+        session.close();
+    }
 }
