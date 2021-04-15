@@ -40,7 +40,7 @@ public class Expert {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "expert_tag",
+            name = "pivot",
             joinColumns = {@JoinColumn(name="expert_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name="tag_id", referencedColumnName = "id")}
     )
