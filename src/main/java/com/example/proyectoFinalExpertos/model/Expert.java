@@ -50,6 +50,17 @@ public class Expert {
     public Expert() {
     }
 
+    public Expert(String name, String surname, String nif, String cursos, Long condiciones, String estado, String disponibilidad, Instant createdDate) {
+        this.name = name;
+        this.surname = surname;
+        this.nif = nif;
+        this.cursos = cursos;
+        this.condiciones = condiciones;
+        this.estado = estado;
+        this.disponibilidad = disponibilidad;
+        this.createdDate = createdDate;
+    }
+
     public Long getId() {
         return id;
     }

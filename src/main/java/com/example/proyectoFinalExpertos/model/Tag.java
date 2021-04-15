@@ -27,6 +27,11 @@ public class Tag {
     public Tag() {
     }
 
+    public Tag(String name, Instant createdDate) {
+        this.name = name;
+        this.createdDate = createdDate;
+    }
+
     public Long getId() {
         return id;
     }
