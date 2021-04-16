@@ -28,7 +28,7 @@ public class ProyectoFinalExpertosApplication {
 
 		Tag tag1 = new Tag("tarea1", Instant.now());
 		Tag tag2 = new Tag("tarea2", Instant.now());
-		Tag tag3 = new Tag("tarea1", Instant.now());
+		Tag tag3 = new Tag("tarea3", Instant.now());
 
 		expert1.getTags().add(tag1);
 		expert1.getTags().add(tag3);
