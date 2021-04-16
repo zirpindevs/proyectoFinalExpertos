@@ -50,6 +50,11 @@ public class Expert {
     public Expert() {
     }
 
+    public Expert(String name, String estado) {
+        this.name = name;
+        this.estado = estado;
+    }
+
     public Expert(String name, String surname, String nif, String cursos, Long condiciones, String estado, String disponibilidad, Instant createdDate) {
         this.name = name;
         this.surname = surname;

@@ -14,5 +14,6 @@ public interface ExpertDAO {
     List<Expert> findAllByName(String name);
     Expert createExpert(Expert expert);
     Expert modifyExpert(Expert expert, Expert findedExpert);
+    List<Expert> findAllByFilter(String name, String estado);
 
-}
+    }

@@ -62,6 +62,19 @@ public class ExpertServiceImpl implements ExpertService {
             return null;
         return this.expertDAO.findAllByName(name);
     }
+
+    @Override
+    public List<Expert> findAllByFilter(String name, String estado) {
+        log.info("REST request to find an expert by name");
+
+    /*    System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(params.size());
+        params.forEach(param -> System.out.println(param.toString()));
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+*/
+        return this.expertDAO.findAllByFilter(name, estado);
+    }
+
     @Override
     public void deleteExpert(Expert expertToDelete){
         log.info("REST request to delete an expert by id");

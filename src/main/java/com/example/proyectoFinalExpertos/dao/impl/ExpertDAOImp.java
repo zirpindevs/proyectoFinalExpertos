@@ -153,6 +153,33 @@ public class ExpertDAOImp implements ExpertDAO {
     }
 
     @Override
+    public List<Expert> findAllByFilter(String nombre, String estado) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Expert> criteria = builder.createQuery(Expert.class);
+
+        Root<Expert> root = criteria.from(Expert.class);
+
+        criteria.multiselect(root.get("name"), root.get("estado"));
+
+/*
+        criteria.where(builder.like(root.get("name"), "%"+nombre+"%"));
+*/
+
+        List<Expert> experts = session.createQuery(criteria).list();
+
+ /*       for (Object[] row: experts) {
+            System.out.println("Name: " + row[0]);
+            System.out.println("estado: " + row[1]);
+        }
+*/
+        session.close();
+
+        return experts;
+    }
+
+    @Override
     public void deleteExpert(Expert expertToDelete){
         Session session = HibernateUtil.getSessionFactory().openSession();
 

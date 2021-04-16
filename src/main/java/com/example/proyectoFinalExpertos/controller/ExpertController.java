@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -73,31 +74,37 @@ public class ExpertController {
      * FIND ALL EXPERTS
      * @return List<Expert>
      */
-
-//    @GetMapping("/expertos")
-//    public List<Expert> findExpert(){
-//        log.debug("REST request to find all experts");
-//
-//        return this.expertService.findAll();
-//    }
-
-    //http://localhost:8080/expertos?name=nombre1&surname=surname1&nif=11
     @RequestMapping(method = RequestMethod.GET, value = "/expertos")
     public List<Expert> controllerMethod(@RequestParam Map<String, String> customQuery){
         log.debug("REST request to find all experts");
 
-        System.out.println("***************************************************************************");
-        System.out.println("customQuery = nombre " + customQuery.containsKey("nombre"));
-        System.out.println("customQuery = etiqueta " + customQuery.containsKey("etiqueta"));
-        System.out.println("customQuery = modalidad " + customQuery.containsKey("modalidad"));
-        System.out.println("customQuery = estado " + customQuery.containsKey("estado"));
-        System.out.println("customQuery = limite " + customQuery.containsKey("limite"));
-        System.out.println("customQuery = pagina " + customQuery.containsKey("pagina"));
-        System.out.println("***************************************************************************");
+        List<String> params = new ArrayList<>();
 
+        String nombre = customQuery.get("nombre");
+        String etiqueta = customQuery.get("etiqueta");
+        String modalidad =  customQuery.get("modalidad");
+        String estado = customQuery.get("estado");
+        String limite = customQuery.get("limite");
+        String pagina = customQuery.get("pagina");
 
+        if(customQuery.containsKey("nombre"))
+            params.add(nombre);
+        if(customQuery.containsKey("etiqueta"))
+            params.add(etiqueta);
+        if(customQuery.containsKey("modalidad"))
+            params.add(modalidad);
+        if(customQuery.containsKey("estado"))
+            params.add(estado);
+        if(customQuery.containsKey("limite"))
+            params.add(limite);
+        if(customQuery.containsKey("pagina"))
+            params.add(pagina);
+
+        if(params.size() > 0)
+            return this.expertService.findAllByFilter(nombre, estado);
 
         return this.expertService.findAll();
+
     }
     /**
      * Find EXPERT BY ID
