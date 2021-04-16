@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -73,13 +74,31 @@ public class ExpertController {
      * @return List<Expert>
      */
 
-    @GetMapping("/expertos")
-    public List<Expert> findExpert(){
+//    @GetMapping("/expertos")
+//    public List<Expert> findExpert(){
+//        log.debug("REST request to find all experts");
+//
+//        return this.expertService.findAll();
+//    }
+
+    //http://localhost:8080/expertos?name=nombre1&surname=surname1&nif=11
+    @RequestMapping(method = RequestMethod.GET, value = "/expertos")
+    public List<Expert> controllerMethod(@RequestParam Map<String, String> customQuery){
         log.debug("REST request to find all experts");
+
+        System.out.println("***************************************************************************");
+        System.out.println("customQuery = nombre " + customQuery.containsKey("nombre"));
+        System.out.println("customQuery = etiqueta " + customQuery.containsKey("etiqueta"));
+        System.out.println("customQuery = modalidad " + customQuery.containsKey("modalidad"));
+        System.out.println("customQuery = estado " + customQuery.containsKey("estado"));
+        System.out.println("customQuery = limite " + customQuery.containsKey("limite"));
+        System.out.println("customQuery = pagina " + customQuery.containsKey("pagina"));
+        System.out.println("***************************************************************************");
+
+
 
         return this.expertService.findAll();
     }
-
     /**
      * Find EXPERT BY ID
      *

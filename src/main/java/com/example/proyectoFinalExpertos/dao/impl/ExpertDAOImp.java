@@ -2,10 +2,8 @@ package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
-import com.example.proyectoFinalExpertos.model.ExpertConditions;
-import com.example.proyectoFinalExpertos.model.Tag;
-import com.example.proyectoFinalExpertos.model.User;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import util.HibernateUtil;
@@ -83,18 +81,53 @@ public class ExpertDAOImp implements ExpertDAO {
 
     }
 
+//    @Override
+//    public Expert findById(Long id){
+//
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//
+//        CriteriaBuilder builder = session.getCriteriaBuilder();
+//        CriteriaQuery<Expert> criteria = builder.createQuery(Expert.class);
+//        Root<Expert> root = criteria.from(Expert.class);
+//
+//        criteria.where(builder.equal(root.get("id"), id));
+//
+//        Expert expert = session.createQuery(criteria).uniqueResult();
+//
+//        session.close();
+//
+//        return expert;
+//    }
+
     @Override
     public Expert findById(Long id){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Expert> criteria = builder.createQuery(Expert.class);
-        Root<Expert> root = criteria.from(Expert.class);
+        String hql ="SELECT e.name e.surname t.name FROM Expert e INNER JOIN Tag t WHERE e.id = t.id AND e.id = 5";
 
-        criteria.where(builder.equal(root.get("id"), id));
+        Query<Expert> query = session.createQuery(hql);
 
-        Expert expert = session.createQuery(criteria).uniqueResult();
+
+
+
+
+
+//        String hql = "select a.firstName, a.lastName from Authors a, Books b, AuthorBook ab where ab.authorId=a.authorId and ab.bookId=b.bookId and ab.bookId=:id";
+
+
+//        select e.name, e.surname , e.nif, t.name FROM  experts e
+//        inner join
+//        pivot pvt on e.id = pvt.expert_id
+//        inner join
+//        tags t on pvt.tag_id = t.id
+//        WHERE  e.id = 4
+
+        Expert expert = query.getSingleResult();
+
+        System.out.println("************************************************");
+        System.out.println(expert);
+        System.out.println(expert.getTags());
 
         session.close();
 
