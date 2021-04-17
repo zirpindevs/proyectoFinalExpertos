@@ -78,32 +78,41 @@ public class ExpertController {
     public List<Expert> controllerMethod(@RequestParam Map<String, String> customQuery){
         log.debug("REST request to find all experts");
 
-        List<String> params = new ArrayList<>();
-
-        String nombre = customQuery.get("nombre");
-        String etiqueta = customQuery.get("etiqueta");
-        String modalidad =  customQuery.get("modalidad");
-        String estado = customQuery.get("estado");
-        String limite = customQuery.get("limite");
-        String pagina = customQuery.get("pagina");
+        String nombre = "";
+        String etiqueta = "";
+        String modalidad = "";
+        String estado = "";
+        String limite = "5";
+        String pagina = "0";
 
         if(customQuery.containsKey("nombre"))
-            params.add(nombre);
+            nombre = customQuery.get("nombre");
         if(customQuery.containsKey("etiqueta"))
-            params.add(etiqueta);
+            etiqueta = customQuery.get("etiqueta");
         if(customQuery.containsKey("modalidad"))
-            params.add(modalidad);
+            modalidad = customQuery.get("modalidad");
         if(customQuery.containsKey("estado"))
-            params.add(estado);
+            estado = customQuery.get("estado");
         if(customQuery.containsKey("limite"))
-            params.add(limite);
+            limite = customQuery.get("limite");
         if(customQuery.containsKey("pagina"))
-            params.add(pagina);
+            pagina = customQuery.get("pagina");
 
-        if(params.size() > 0)
-            return this.expertService.findAllByFilter(nombre, estado);
+        System.out.println("************************************************************************************");
+        System.out.println(nombre);
+        System.out.println(etiqueta);
+        System.out.println(modalidad);
+        System.out.println(estado);
+        System.out.println(limite);
+        System.out.println(pagina);
+        System.out.println("************************************************************************************");
 
+
+        return this.expertService.findAllByFilter(nombre, etiqueta, modalidad, estado, limite, pagina);
+
+/*
         return this.expertService.findAll();
+*/
 
     }
     /**

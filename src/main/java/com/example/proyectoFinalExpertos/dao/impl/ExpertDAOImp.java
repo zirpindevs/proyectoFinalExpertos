@@ -134,15 +134,24 @@ public class ExpertDAOImp implements ExpertDAO {
     }
 
     @Override
-    public List<Expert> findAllByFilter(String nombre, String estado) {
+    public List<Expert> findAllByFilter(String nombre, String etiqueta, String modalidad, String estado, String limite, String pagina) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
 
-        String hql = "FROM Expert WHERE name like :nombre AND estado = :estado"; // named parameters
+        String hql = "FROM Expert WHERE name LIKE :nombre AND estado LIKE :estado";
         Query query = session.createQuery(hql);
 
         query.setParameter("nombre", "%"+nombre+"%");
-        query.setParameter("estado", estado);
+        query.setParameter("estado", "%"+estado+"%");
+
+        /*
+        query.setParameter("etiqueta", "%"+etiqueta+"%");
+         query.setParameter("modalidad", "%"+modalidad+"%"); */
+       /*  query.setParameter("estado", estado);*/
+
+       query.setMaxResults(Integer.parseInt(limite));
+       query.setFirstResult(Integer.parseInt(pagina));
+
 
         List experts = query.getResultList();
 

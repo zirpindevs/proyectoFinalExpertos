@@ -64,15 +64,15 @@ public class ExpertServiceImpl implements ExpertService {
     }
 
     @Override
-    public List<Expert> findAllByFilter(String name, String estado) {
-        log.info("REST request to find an expert by name");
+    public List<Expert> findAllByFilter(String nombre, String etiqueta, String modalidad, String estado, String limite, String pagina) {
+        log.info("REST request to find an expert by filter");
 
     /*    System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println(params.size());
         params.forEach(param -> System.out.println(param.toString()));
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 */
-        return this.expertDAO.findAllByFilter(name, estado);
+        return this.expertDAO.findAllByFilter(nombre, etiqueta, modalidad, estado, limite, pagina);
     }
 
     @Override

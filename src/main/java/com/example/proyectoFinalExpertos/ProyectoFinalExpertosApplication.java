@@ -22,8 +22,8 @@ public class ProyectoFinalExpertosApplication {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		session.beginTransaction();
-		Expert expert1 = new Expert("Juan_Experto", "apellido1", "10000A", "master1", 30L, "pendiente", "inmediata", Instant.now());
-		Expert expert2 = new Expert("Jose_Experto", "apellido2", "20000A", "master2", 50L, "pendiente", "inmediata", Instant.now());
+		Expert expert1 = new Expert("Juan_Experto", "apellido1", "10000A", "master1", "", 30L, "pendiente", "inmediata", Instant.now());
+		Expert expert2 = new Expert("Jose_Experto", "apellido2", "20000A", "master2","", 50L, "pendiente", "inmediata", Instant.now());
 
 
 		Tag tag1 = new Tag("tarea1", Instant.now());

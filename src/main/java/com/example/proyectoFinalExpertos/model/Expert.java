@@ -25,6 +25,9 @@ public class Expert {
     @Column(name="cursos")
     private String cursos;
 
+    @Column(name="modalidad")
+    private String modalidad;
+
     @Column(name="condiciones")
     private Long condiciones;
 
@@ -50,16 +53,13 @@ public class Expert {
     public Expert() {
     }
 
-    public Expert(String name, String estado) {
-        this.name = name;
-        this.estado = estado;
-    }
 
-    public Expert(String name, String surname, String nif, String cursos, Long condiciones, String estado, String disponibilidad, Instant createdDate) {
+    public Expert(String name, String surname, String nif, String cursos, String modalidad, Long condiciones, String estado, String disponibilidad, Instant createdDate) {
         this.name = name;
         this.surname = surname;
         this.nif = nif;
         this.cursos = cursos;
+        this.modalidad = modalidad;
         this.condiciones = condiciones;
         this.estado = estado;
         this.disponibilidad = disponibilidad;
@@ -150,6 +150,15 @@ public class Expert {
         return this;
     }
 
+    public String getModalidad() {
+        return modalidad;
+    }
+
+    public Expert setModalidad(String modalidad) {
+        this.modalidad = modalidad;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Expert{" +
@@ -158,10 +167,12 @@ public class Expert {
                 ", surname='" + surname + '\'' +
                 ", nif='" + nif + '\'' +
                 ", cursos='" + cursos + '\'' +
-                ", condiciones='" + condiciones + '\'' +
-                ", estado=" + estado +
+                ", modalidad='" + modalidad + '\'' +
+                ", condiciones=" + condiciones +
+                ", estado='" + estado + '\'' +
                 ", disponibilidad='" + disponibilidad + '\'' +
                 ", createdDate=" + createdDate +
+                ", tags=" + tags +
                 '}';
     }
 }
