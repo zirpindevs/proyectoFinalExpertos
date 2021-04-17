@@ -20,10 +20,6 @@ public class Tag {
     private Instant createdDate;
 
 
-    @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
-    private List<Expert> experts = new ArrayList<>();
-
-
     public Tag() {
     }
 
@@ -54,22 +50,12 @@ public class Tag {
         return this;
     }
 
-    public List<Expert> getExperts() {
-        return experts;
-    }
-
-    public Tag setExperts(List<Expert> experts) {
-        this.experts = experts;
-        return this;
-    }
-
     @Override
     public String toString() {
         return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", createdDate=" + createdDate +
-                ", experts=" + experts +
                 '}';
     }
 }
