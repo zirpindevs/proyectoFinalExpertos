@@ -15,7 +15,7 @@ public class ProyectoFinalExpertosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoFinalExpertosApplication.class, args);
 
-//		addDataExample();
+		addDataExample();
 	}
 
 	static void addDataExample(){
@@ -45,6 +45,5 @@ public class ProyectoFinalExpertosApplication {
 		session.getTransaction().commit();
 
 		session.close();
-		HibernateUtil.shutdown();
 	}
 }
