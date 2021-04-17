@@ -3,13 +3,14 @@ package com.example.proyectoFinalExpertos.dao.impl;
 import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import util.HibernateUtil;
+import util.JpaUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -75,10 +76,9 @@ public class ExpertDAOImp implements ExpertDAO {
 
     @Override
     public List<Expert> findAll(){
-        Session session = HibernateUtil.getSessionFactory().openSession();
+       Session session = HibernateUtil.getSessionFactory().openSession();
 
         return session.createQuery("from Expert", Expert.class ).list();
-
     }
 
 //    @Override
@@ -104,30 +104,11 @@ public class ExpertDAOImp implements ExpertDAO {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        String hql ="SELECT e.name e.surname t.name FROM Expert e INNER JOIN Tag t WHERE e.id = t.id AND e.id = 5";
 
-        Query<Expert> query = session.createQuery(hql);
-
-
-
-
-
-
-//        String hql = "select a.firstName, a.lastName from Authors a, Books b, AuthorBook ab where ab.authorId=a.authorId and ab.bookId=b.bookId and ab.bookId=:id";
-
-
-//        select e.name, e.surname , e.nif, t.name FROM  experts e
-//        inner join
-//        pivot pvt on e.id = pvt.expert_id
-//        inner join
-//        tags t on pvt.tag_id = t.id
-//        WHERE  e.id = 4
-
-        Expert expert = query.getSingleResult();
-
-        System.out.println("************************************************");
-        System.out.println(expert);
-        System.out.println(expert.getTags());
+       String hql = "FROM Expert e WHERE e.id = :id"; // named parameters
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        Expert expert = (Expert) query.getSingleResult();
 
         session.close();
 
@@ -156,24 +137,15 @@ public class ExpertDAOImp implements ExpertDAO {
     public List<Expert> findAllByFilter(String nombre, String estado) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Expert> criteria = builder.createQuery(Expert.class);
 
-        Root<Expert> root = criteria.from(Expert.class);
+        String hql = "FROM Expert WHERE name like :nombre AND estado = :estado"; // named parameters
+        Query query = session.createQuery(hql);
 
-        criteria.multiselect(root.get("name"), root.get("estado"));
+        query.setParameter("nombre", "%"+nombre+"%");
+        query.setParameter("estado", estado);
 
-/*
-        criteria.where(builder.like(root.get("name"), "%"+nombre+"%"));
-*/
+        List experts = query.getResultList();
 
-        List<Expert> experts = session.createQuery(criteria).list();
-
- /*       for (Object[] row: experts) {
-            System.out.println("Name: " + row[0]);
-            System.out.println("estado: " + row[1]);
-        }
-*/
         session.close();
 
         return experts;
