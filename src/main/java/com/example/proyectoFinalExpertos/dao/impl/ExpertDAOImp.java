@@ -138,16 +138,15 @@ public class ExpertDAOImp implements ExpertDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
 
-        String hql = "FROM Expert WHERE name LIKE :nombre AND estado LIKE :estado";
+        String hql = "FROM Expert WHERE name LIKE :nombre AND estado LIKE :estado AND modalidad LIKE :modalidad";
         Query query = session.createQuery(hql);
 
         query.setParameter("nombre", "%"+nombre+"%");
         query.setParameter("estado", "%"+estado+"%");
 
-        /*
-        query.setParameter("etiqueta", "%"+etiqueta+"%");
-         query.setParameter("modalidad", "%"+modalidad+"%"); */
-       /*  query.setParameter("estado", estado);*/
+
+        query.setParameter("modalidad", "%"+modalidad+"%");
+        /* query.setParameter("etiqueta", "%"+etiqueta+"%"); */
 
        query.setMaxResults(Integer.parseInt(limite));
        query.setFirstResult(Integer.parseInt(pagina));
