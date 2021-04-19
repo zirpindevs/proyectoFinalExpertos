@@ -149,13 +149,18 @@ public class ExpertDAOImp implements ExpertDAO {
         /* query.setParameter("etiqueta", "%"+etiqueta+"%"); */
 
 
+        //si quitas este devuelve all y permitiria paginar, sino se limita a enseñar lo que tiene
+       query.setMaxResults(Integer.parseInt(limite));
+       /* query.setFirstResult(Integer.parseInt(pagina));*/
+
+
         List experts = query.getResultList();
 
         //formulas de paginacion
         Integer countResults = query.getResultList().size();
-        int pageSize = Integer.parseInt(pagina);
-        int lastPageNumber = (int) (Math.ceil(countResults / pageSize));
+        int pageSize = Integer.parseInt(limite);
 
+        int lastPageNumber = (int) (Math.ceil(countResults / pageSize));
         System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
         System.out.println(countResults);
         System.out.println(lastPageNumber);
