@@ -148,16 +148,26 @@ public class ExpertDAOImp implements ExpertDAO {
         query.setParameter("modalidad", "%"+modalidad+"%");
         /* query.setParameter("etiqueta", "%"+etiqueta+"%"); */
 
-       query.setMaxResults(Integer.parseInt(limite));
-       query.setFirstResult(Integer.parseInt(pagina));
-
 
         List experts = query.getResultList();
+
+        //formulas de paginacion
+        Integer countResults = query.getResultList().size();
+        int pageSize = Integer.parseInt(pagina);
+        int lastPageNumber = (int) (Math.ceil(countResults / pageSize));
+
+        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
+        System.out.println(countResults);
+        System.out.println(lastPageNumber);
+
+        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
+
 
         session.close();
 
         return experts;
     }
+
 
     @Override
     public void deleteExpert(Expert expertToDelete){
