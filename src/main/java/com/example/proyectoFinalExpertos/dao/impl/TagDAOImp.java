@@ -32,6 +32,7 @@ public class TagDAOImp implements TagDAO {
         session.beginTransaction();
 
         tag.setCreatedDate(Instant.now());
+        tag.setLast_updated(Instant.now());
 
         session.save(tag);
 
@@ -49,6 +50,9 @@ public class TagDAOImp implements TagDAO {
         session.beginTransaction();
 
         findedTag.setName(modifiedTag.getName());
+        findedTag.setLast_updated(Instant.now());
+
+
 /*
         findedTag.setColor(modifiedTag.getColor());
 */
@@ -70,7 +74,7 @@ public class TagDAOImp implements TagDAO {
     @Override
     public Tag findById(Long id){
 
-        System.out.println("********************************************");
+        System.out.println("*****************tag find by id***************************");
         System.out.println(id);
         System.out.println("*********************************************");
         Session session = HibernateUtil.getSessionFactory().openSession();

@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.dao;
 
 import com.example.proyectoFinalExpertos.model.Expert;
+import com.example.proyectoFinalExpertos.model.Tag;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface ExpertDAO {
     void deleteExpert(Expert expertToDelete);
     List<Expert> findAllByName(String name);
     Expert createExpert(Expert expert);
-    Expert modifyExpert(Expert expert, Expert findedExpert);
+    Expert modifyExpert(Expert expert, Expert findedExpert, Tag getNewTag, List existingTags);
     List<Expert> findAllByFilter(String nombre, String etiqueta, String modalidad, String estado, String limite, String pagina);
 
     }

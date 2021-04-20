@@ -1,7 +1,9 @@
 package com.example.proyectoFinalExpertos.service.impl;
 
 import com.example.proyectoFinalExpertos.dao.ExpertDAO;
+import com.example.proyectoFinalExpertos.dao.TagDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
+import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.service.ExpertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +16,11 @@ public class ExpertServiceImpl implements ExpertService {
     private final Logger log = LoggerFactory.getLogger(ExpertServiceImpl.class);
 
     private final ExpertDAO expertDAO;
+    private final TagDAO tagDAO;
 
-    public ExpertServiceImpl(ExpertDAO expertDAO) {
+    public ExpertServiceImpl(ExpertDAO expertDAO, TagDAO tagDAO) {
         this.expertDAO = expertDAO;
+        this.tagDAO = tagDAO;
     }
 
     @Override
@@ -30,12 +34,34 @@ public class ExpertServiceImpl implements ExpertService {
         log.info("REST request to update an expert");
 
         Expert findExpert = this.findOne(id);
+        Tag getNewTag = new Tag();
+        List<Tag> listExistedTags = findExpert.getTags();
+        Long newTagId = expert.getTags().get(0).getId();
+        String newTagName = expert.getTags().get(0).getName();
 
         if(findExpert == null) {
             return null;
         }
 
-        return this.expertDAO.modifyExpert(expert, findExpert);
+        System.out.println("###########################    SERVICE    ###################################################");
+
+
+        if(listExistedTags.contains(newTagId) == false){
+            System.out.println("resultado de busqueda falso, podemos insertar");
+
+            //buscamos si ya existe
+            getNewTag = tagDAO.findById(newTagId);
+            System.out.println(getNewTag);
+            //si es null no existe, y hay que crear la etiqueta primero
+            if(getNewTag == null){
+                getNewTag = new Tag(newTagName);
+                tagDAO.createTag(getNewTag);
+            }
+        }
+
+        System.out.println("##############################################################################");
+
+        return this.expertDAO.modifyExpert(expert, findExpert, getNewTag, listExistedTags);
     }
 
     @Override

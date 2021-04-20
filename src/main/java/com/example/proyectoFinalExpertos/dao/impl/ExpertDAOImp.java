@@ -2,6 +2,7 @@ package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
+import com.example.proyectoFinalExpertos.model.Tag;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -48,17 +49,31 @@ public class ExpertDAOImp implements ExpertDAO {
     }
 
     @Override
-    public Expert modifyExpert(Expert modifiedExpert, Expert findedExpert) {
+    public Expert modifyExpert(Expert modifiedExpert, Expert findedExpert, Tag getNewTag, List existingTags) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
+
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@   DAO       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(modifiedExpert);
+        System.out.println(modifiedExpert.getTags().size());
+        System.out.println(findedExpert.getTags());
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+
 
         findedExpert.setName(modifiedExpert.getName());
         findedExpert.setSurname(modifiedExpert.getSurname());
         findedExpert.setNif(modifiedExpert.getNif());
         findedExpert.setDisponibilidad(modifiedExpert.getDisponibilidad());
 
+        //añadimos etiqueta nueva a la lista de etiquetas
+        if(getNewTag != null)
+            existingTags.add(getNewTag);
+            findedExpert.setTags(existingTags);
+
         findedExpert.setDisponibilidad(modifiedExpert.getDisponibilidad());
+        findedExpert.setLast_updated(Instant.now());
 
 //        switch (findedExpert.getEstado()) {
 //            case DESCARTADO -> modifiedExpert.setEstado(ExpertConditions.DESCARTADO);
