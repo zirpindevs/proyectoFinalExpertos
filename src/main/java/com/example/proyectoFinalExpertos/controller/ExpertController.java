@@ -124,7 +124,7 @@ public class ExpertController {
      */
     @GetMapping("/expertos/{id}")
     public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
-
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         Expert findExpert = this.expertService.findOne(id);
 
         if (findExpert == null)

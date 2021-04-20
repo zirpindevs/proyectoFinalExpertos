@@ -22,6 +22,15 @@ public class Expert {
     @Column(name="nif")
     private String nif;
 
+    @Column(name="telefono")
+    private Long telefono;
+
+    @Column(name="correo")
+    private String correo;
+
+    @Column(name="direccion")
+    private String direccion;
+
     @Column(name="cursos")
     private String cursos;
 
@@ -36,6 +45,9 @@ public class Expert {
 
     @Column(name="disponibilidad")
     private String disponibilidad;
+
+    @Column(name="puntuacion")
+    private String puntuacion;
 
     @Column(name="created_date")
     private Instant createdDate;
@@ -54,15 +66,19 @@ public class Expert {
     }
 
 
-    public Expert(String name, String surname, String nif, String cursos, String modalidad, Long condiciones, String estado, String disponibilidad, Instant createdDate) {
+    public Expert(String name, String surname, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad, Long condiciones, String estado, String disponibilidad, String puntuacion, Instant createdDate) {
         this.name = name;
         this.surname = surname;
         this.nif = nif;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.direccion = direccion;
         this.cursos = cursos;
         this.modalidad = modalidad;
         this.condiciones = condiciones;
         this.estado = estado;
         this.disponibilidad = disponibilidad;
+        this.puntuacion = puntuacion;
         this.createdDate = createdDate;
     }
 
@@ -159,6 +175,42 @@ public class Expert {
         return this;
     }
 
+    public Long getTelefono() {
+        return telefono;
+    }
+
+    public Expert setTelefono(Long telefono) {
+        this.telefono = telefono;
+        return this;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public Expert setCorreo(String correo) {
+        this.correo = correo;
+        return this;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public Expert setDireccion(String direccion) {
+        this.direccion = direccion;
+        return this;
+    }
+
+    public String getPuntuacion() {
+        return puntuacion;
+    }
+
+    public Expert setPuntuacion(String puntuacion) {
+        this.puntuacion = puntuacion;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Expert{" +
@@ -166,11 +218,15 @@ public class Expert {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", nif='" + nif + '\'' +
+                ", telefono=" + telefono +
+                ", correo='" + correo + '\'' +
+                ", direccion='" + direccion + '\'' +
                 ", cursos='" + cursos + '\'' +
                 ", modalidad='" + modalidad + '\'' +
                 ", condiciones=" + condiciones +
                 ", estado='" + estado + '\'' +
                 ", disponibilidad='" + disponibilidad + '\'' +
+                ", puntuacion='" + puntuacion + '\'' +
                 ", createdDate=" + createdDate +
                 ", tags=" + tags +
                 '}';
