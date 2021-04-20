@@ -25,6 +25,10 @@ public class Tag {
     public Tag() {
     }
 
+    public Tag(String name) {
+        this.name = name;
+    }
+
     public Tag(String name, Instant createdDate, Instant last_updated) {
         this.name = name;
         this.createdDate = createdDate;
