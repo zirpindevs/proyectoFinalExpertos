@@ -19,13 +19,16 @@ public class Tag {
     @Column(name="created_date")
     private Instant createdDate;
 
+    @Column(name="last_updated")
+    private Instant last_updated;
 
     public Tag() {
     }
 
-    public Tag(String name, Instant createdDate) {
+    public Tag(String name, Instant createdDate, Instant last_updated) {
         this.name = name;
         this.createdDate = createdDate;
+        this.last_updated = last_updated;
     }
 
     public Long getId() {
@@ -50,12 +53,22 @@ public class Tag {
         return this;
     }
 
+    public Instant getLast_updated() {
+        return last_updated;
+    }
+
+    public Tag setLast_updated(Instant last_updated) {
+        this.last_updated = last_updated;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", createdDate=" + createdDate +
+                ", last_updated=" + last_updated +
                 '}';
     }
 }

@@ -52,6 +52,8 @@ public class Expert {
     @Column(name="created_date")
     private Instant createdDate;
 
+    @Column(name="last_updated")
+    private Instant last_updated;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -65,8 +67,7 @@ public class Expert {
     public Expert() {
     }
 
-
-    public Expert(String name, String surname, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad, Long condiciones, String estado, String disponibilidad, String puntuacion, Instant createdDate) {
+    public Expert(String name, String surname, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad, Long condiciones, String estado, String disponibilidad, String puntuacion, Instant createdDate, Instant last_updated) {
         this.name = name;
         this.surname = surname;
         this.nif = nif;
@@ -80,6 +81,7 @@ public class Expert {
         this.disponibilidad = disponibilidad;
         this.puntuacion = puntuacion;
         this.createdDate = createdDate;
+        this.last_updated = last_updated;
     }
 
     public Long getId() {
@@ -211,6 +213,15 @@ public class Expert {
         return this;
     }
 
+    public Instant getLast_updated() {
+        return last_updated;
+    }
+
+    public Expert setLast_updated(Instant last_updated) {
+        this.last_updated = last_updated;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Expert{" +
@@ -228,6 +239,7 @@ public class Expert {
                 ", disponibilidad='" + disponibilidad + '\'' +
                 ", puntuacion='" + puntuacion + '\'' +
                 ", createdDate=" + createdDate +
+                ", updatedDate=" + last_updated +
                 ", tags=" + tags +
                 '}';
     }
