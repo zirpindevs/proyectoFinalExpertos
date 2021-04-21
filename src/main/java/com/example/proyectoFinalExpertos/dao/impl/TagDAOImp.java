@@ -1,7 +1,6 @@
 package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.TagDAO;
-import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import util.HibernateUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -109,6 +109,38 @@ public class TagDAOImp implements TagDAO {
         return tag;
     }
 
+
+    @Override
+    public List<Tag> findAllByFilter(String nombre, String limite, String pagina) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "FROM Tag WHERE name LIKE :nombre";
+        Query query = session.createQuery(hql);
+
+        query.setParameter("nombre", "%"+nombre+"%");
+
+        //si quitas este devuelve all y permitiria paginar, sino se limita a enseñar lo que tiene
+        query.setMaxResults(Integer.parseInt(limite));
+        /* query.setFirstResult(Integer.parseInt(pagina));*/
+
+        List tags = query.getResultList();
+
+        //formulas de paginacion
+        Integer countResults = query.getResultList().size();
+        int pageSize = Integer.parseInt(limite);
+
+        int lastPageNumber = (int) (Math.ceil(countResults / pageSize));
+        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
+        System.out.println(countResults);
+        System.out.println(lastPageNumber);
+
+        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
+
+
+        session.close();
+
+        return tags;
+    }
 
     @Override
     public void deleteTag(Tag tagToDelete){

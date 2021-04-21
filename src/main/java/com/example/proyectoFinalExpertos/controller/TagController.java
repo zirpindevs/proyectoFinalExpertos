@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -72,16 +73,47 @@ public class TagController {
         return ResponseEntity.ok().body(updateTag);
     }
 
-    /**
+
+        /**
      * FIND ALL TAGS
      * @return List<Tag>
      */
-    @GetMapping("/etiquetas")
+/*    @GetMapping("/etiquetas")
     public List<Tag> findTags(){
         log.debug("REST request to find all Tags");
 
         return this.tagService.findAll();
+    }*/
+
+    /**
+     * FIND ALL EXPERTS
+     * @return List<Expert>
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/etiquetas")
+    public List<Tag> controllerMethod(@RequestParam Map<String, String> customQuery) {
+        log.debug("REST request to find all tags");
+
+        String nombre = "";
+        String limite = "5";
+        String pagina = "0";
+
+        if (customQuery.containsKey("nombre"))
+            nombre = customQuery.get("nombre");
+        if (customQuery.containsKey("limite"))
+            limite = customQuery.get("limite");
+        if (customQuery.containsKey("pagina"))
+            pagina = customQuery.get("pagina");
+
+        System.out.println("************************************************************************************");
+        System.out.println(nombre);
+        System.out.println(limite);
+        System.out.println(pagina);
+        System.out.println("************************************************************************************");
+
+
+        return this.tagService.findAllByFilter(nombre, limite, pagina);
     }
+
     /**
      * FIND ONE TAG BY ID
      * @param id

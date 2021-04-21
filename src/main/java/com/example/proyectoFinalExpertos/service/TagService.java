@@ -10,7 +10,7 @@ public interface TagService {
     Tag createTag(Tag tag);
     Tag updateTag(Long id, Tag tag);
     void deleteTag(Tag tagToDelete);
-
+    List<Tag> findAllByFilter(String nombre, String limite, String pagina);
     List<Tag> findAll();
     Tag findOne(Long id);
     List<Tag> findByAllByName(String name);
