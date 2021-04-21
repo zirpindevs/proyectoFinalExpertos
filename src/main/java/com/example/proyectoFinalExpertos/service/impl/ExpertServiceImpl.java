@@ -45,7 +45,7 @@ public class ExpertServiceImpl implements ExpertService {
 
         System.out.println("###########################    SERVICE    ###################################################");
 
-
+//esto no parece que busque*******************
         if(listExistedTags.contains(newTagId) == false){
             System.out.println("resultado de busqueda falso, podemos insertar");
 
@@ -54,7 +54,7 @@ public class ExpertServiceImpl implements ExpertService {
             System.out.println(getNewTag);
             //si es null no existe, y hay que crear la etiqueta primero
             if(getNewTag == null){
-                tagDAO.createTag(newTagName);
+                getNewTag = tagDAO.createTag(newTagName);
             }
         }
 
