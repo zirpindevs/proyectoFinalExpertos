@@ -34,18 +34,23 @@ public class TagController {
 
    /**
      * CREATE A TAG
-     * @param tag
+     * @param tagName
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
      */
     @PostMapping("/etiquetas")
-    public ResponseEntity<Tag> createTag(@RequestBody Tag tag) throws URISyntaxException {
-        log.debug("REST request to create a tag: {} ", tag);
+    public ResponseEntity<Tag> createTag(@RequestBody String tagName) throws URISyntaxException {
+        log.debug("REST request to create a tag: {} ", tagName);
 
-        if (tag.getId() != null)
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&createTag controller&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.println(tagName);
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+
+
+        if (tagName.isEmpty())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        Tag createTag = this.tagService.createTag(tag);
+        Tag createTag = this.tagService.createTag(tagName);
 
         return ResponseEntity
                 .created(new URI("/api/tags/" + createTag.getName()))

@@ -54,8 +54,7 @@ public class ExpertServiceImpl implements ExpertService {
             System.out.println(getNewTag);
             //si es null no existe, y hay que crear la etiqueta primero
             if(getNewTag == null){
-                getNewTag = new Tag(newTagName);
-                tagDAO.createTag(getNewTag);
+                tagDAO.createTag(newTagName);
             }
         }
 

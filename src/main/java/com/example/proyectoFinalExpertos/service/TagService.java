@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TagService {
 
-    Tag createTag(Tag tag);
+    Tag createTag(String tagName);
     Tag updateTag(Long id, Tag tag);
     void deleteTag(Tag tagToDelete);
     List<Tag> findAllByFilter(String nombre, String limite, String pagina);

@@ -26,11 +26,13 @@ public class TagDAOImp implements TagDAO {
     private Session session;
 
     @Override
-    public Tag createTag(Tag tag) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+    public Tag createTag(String tagName) {
+        Tag tag = new Tag();
 
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
+        tag.setName(tagName);
         tag.setCreatedDate(Instant.now());
         tag.setLast_updated(Instant.now());
 

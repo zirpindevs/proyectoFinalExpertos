@@ -12,7 +12,7 @@ public interface TagDAO {
     void deleteTag(Tag tagToDelete);
     List<Tag> findAllByFilter(String nombre, String limite, String pagina);
     List<Tag> findByAllByName(String name);
-    Tag createTag(Tag tag);
+    Tag createTag(String tagName);
     Tag modifyTag(Tag tag, Tag findedTag);
 
 
