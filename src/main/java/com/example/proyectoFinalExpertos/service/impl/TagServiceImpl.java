@@ -21,9 +21,9 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag createTag(Tag tag) {
+    public Tag createTag(String tagName) {
         log.info("REST request to create a tag");
-        return this.tagDAO.createTag(tag);
+        return this.tagDAO.createTag(tagName);
     }
 
     @Override
