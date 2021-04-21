@@ -22,6 +22,15 @@ insert into tags(name, created_date) values ('python', "2021-02-11 01:00:00");
 insert into tags(name, created_date) values ('angular', "2020-04-11 01:00:00");
 insert into tags(name, created_date) values ('linux', "2021-04-14 01:00:00");
 
+insert into tags(name, created_date) values ('windows', "2020-08-11 01:00:00");
+insert into tags(name, created_date) values ('mail', "2013-06-11 01:00:00");
+insert into tags(name, created_date) values ('c++', "2012-01-21 01:00:00");
+insert into tags(name, created_date) values ('c#', "2020-02-12 01:00:00");
+insert into tags(name, created_date) values ('mysql', "2020-03-14 01:00:00");
+
+insert into tags(name, created_date) values ('basic', "2001-01-11 01:00:00");
+insert into tags(name, created_date) values ('cobol', "2011-02-11 01:00:00");
+
 
 insert into pivot (expert_id, tag_id) values (1, 1);
 insert into pivot (expert_id, tag_id) values (1, 2);
