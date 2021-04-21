@@ -130,7 +130,7 @@ public class TagDAOImp implements TagDAO {
         int pageSize = Integer.parseInt(limite);
 
         int lastPageNumber = (int) (Math.ceil(countResults / pageSize));
-        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
+        System.out.println("/////////////////////////////findAllByFilter dao///////////////////////////////////////////////////////");
         System.out.println(countResults);
         System.out.println(lastPageNumber);
 

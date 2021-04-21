@@ -68,11 +68,11 @@ public class TagServiceImpl implements TagService {
     public List<Tag> findAllByFilter(String nombre, String limite, String pagina) {
         log.info("REST request to find an expert by filter");
 
-    /*    System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println(params.size());
-        params.forEach(param -> System.out.println(param.toString()));
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-*/
+/*        System.out.println("+++++++++++++++++++++++++++indAllByFilter service++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(nombre);
+        System.out.println(limite);
+        System.out.println(pagina);
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");*/
         return this.tagDAO.findAllByFilter(nombre, limite, pagina);
     }
 
