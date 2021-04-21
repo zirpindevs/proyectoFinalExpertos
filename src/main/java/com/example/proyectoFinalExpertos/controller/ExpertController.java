@@ -82,7 +82,7 @@ public class ExpertController {
         String etiqueta = "";
         String modalidad = "";
         String estado = "";
-        String limite = "5";
+        String limite = "15";
         String pagina = "0";
 
         if(customQuery.containsKey("nombre"))
