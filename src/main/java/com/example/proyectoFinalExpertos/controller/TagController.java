@@ -1,6 +1,5 @@
 package com.example.proyectoFinalExpertos.controller;
 
-import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.service.impl.TagServiceImpl;
 import org.hibernate.Session;
@@ -53,7 +52,7 @@ public class TagController {
         Tag createTag = this.tagService.createTag(tagName);
 
         return ResponseEntity
-                .created(new URI("/api/tags/" + createTag.getName()))
+                .created(new URI("/api/etiquetas/" + createTag.getName()))
                 .body(createTag);
     }
 
@@ -91,8 +90,8 @@ public class TagController {
     }*/
 
     /**
-     * FIND ALL EXPERTS BY FILTER
-     * @return List<Expert>
+     * FIND ALL TAG BY FILTER
+     * @return List<Tag>
      */
     @RequestMapping(method = RequestMethod.GET, value = "/etiquetas")
     public List<Tag> controllerMethod(@RequestParam Map<String, String> customQuery){
@@ -110,7 +109,7 @@ public class TagController {
             pagina = customQuery.get("pagina");
 
 /*
-        System.out.println("****************************FIND ALL EXPERTS BY FILTER*************************************************");
+        System.out.println("****************************FIND ALL TAG BY FILTER*************************************************");
         System.out.println(nombre);
         System.out.println(limite);
         System.out.println(pagina);
@@ -145,14 +144,13 @@ public class TagController {
     }
 
     @DeleteMapping("/etiquetas/{id}")
-    public ResponseEntity<Void> deleteExpert(@PathVariable Long id){
-        log.debug("REST request to delete a expert: {} ", id);
+    public ResponseEntity<Void> deleteTag(@PathVariable Long id){
+        log.debug("REST request to delete a tag: {} ", id);
 
         Tag tagToDelete = this.tagService.findOne(id);
 
-
         if (tagToDelete.getId() == null) {
-            log.warn("expert not exists");
+            log.warn("tag not exists");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
