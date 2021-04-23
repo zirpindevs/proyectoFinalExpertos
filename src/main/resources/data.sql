@@ -46,13 +46,15 @@ insert into pivot (expert_id, tag_id) values (5, 2);
 insert into pivot (expert_id, tag_id) values (6, 4);
 insert into pivot (expert_id, tag_id) values (7, 2);
 
-insert into pivot (expert_id, tag_id) values (8, 4);
 insert into pivot (expert_id, tag_id) values (8, 1);
+insert into pivot (expert_id, tag_id) values (8, 4);
+
 
 insert into pivot (expert_id, tag_id) values (9, 5);
 
-insert into pivot (expert_id, tag_id) values (10, 3);
 insert into pivot (expert_id, tag_id) values (10, 1);
+insert into pivot (expert_id, tag_id) values (10, 3);
+
 
 
 insert into pivot (expert_id, tag_id) values (11, 2);
