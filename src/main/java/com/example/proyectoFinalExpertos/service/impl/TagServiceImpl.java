@@ -1,5 +1,6 @@
 package com.example.proyectoFinalExpertos.service.impl;
 
+import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.dao.TagDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
@@ -14,11 +15,14 @@ import java.util.List;
 public class TagServiceImpl implements TagService {
     private final Logger log = LoggerFactory.getLogger(TagServiceImpl.class);
 
+    private final ExpertDAO expertDAO;
     private final TagDAO tagDAO;
 
-    public TagServiceImpl(TagDAO tagDAO) {
+    public TagServiceImpl(ExpertDAO expertDAO, TagDAO tagDAO) {
+        this.expertDAO = expertDAO;
         this.tagDAO = tagDAO;
     }
+
 
     @Override
     public Tag createTag(String tagName) {
@@ -79,7 +83,22 @@ public class TagServiceImpl implements TagService {
     @Override
     public void deleteTag(Tag tagToDelete){
         log.info("REST request to delete a tag by id");
-        this.tagDAO.deleteTag(tagToDelete);
+
+    //buscamos los expertos que tienen esa tag y se la desasociamos
+    List<Expert> experts = expertDAO.findAll();
+        System.out.println(experts);
+
+        for (Expert expert : experts) {
+            List<Tag> expertTags = expert.getTags();
+            for (Tag listTag : expertTags) {
+                if (listTag.getName().equals(tagToDelete.getName())) {
+                    System.out.println("el experto " + expert.getName() + " tiene la etiqueta " + tagToDelete.getName());
+                    expertDAO.deleteTagExpert(tagToDelete, expert);
+                }
+            }
+        }
+
+       this.tagDAO.deleteTag(tagToDelete);
 
     }
 }
