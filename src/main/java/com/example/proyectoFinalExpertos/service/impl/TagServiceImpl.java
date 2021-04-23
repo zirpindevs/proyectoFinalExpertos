@@ -84,10 +84,9 @@ public class TagServiceImpl implements TagService {
     public void deleteTag(Tag tagToDelete){
         log.info("REST request to delete a tag by id");
 
-    //buscamos los expertos que tienen esa tag y se la desasociamos
+    //buscamos los expertos que tienen esa tag y se la desasociamos si es que hay
     List<Expert> experts = expertDAO.findAll();
-        System.out.println(experts);
-
+    if (!experts.isEmpty()){
         for (Expert expert : experts) {
             List<Tag> expertTags = expert.getTags();
             for (Tag listTag : expertTags) {
@@ -97,8 +96,9 @@ public class TagServiceImpl implements TagService {
                 }
             }
         }
-
+    }
        this.tagDAO.deleteTag(tagToDelete);
 
     }
+
 }
