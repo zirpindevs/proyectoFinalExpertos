@@ -22,6 +22,9 @@ public class Tag {
     @Column(name="last_updated")
     private Instant last_updated;
 
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
+    private List<Expert> experts = new ArrayList<>();
+
     public Tag() {
     }
 

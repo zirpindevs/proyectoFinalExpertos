@@ -115,14 +115,6 @@ public class Expert {
         return this;
     }
 
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public Expert setTags(List<Tag> tags) {
-        this.tags = tags;
-        return this;
-    }
 
     public String getCursos() {
         return cursos;
@@ -222,6 +214,15 @@ public class Expert {
         return this;
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public Expert setTags(List<Tag> tags) {
+        this.tags = tags;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Expert{" +
@@ -239,8 +240,7 @@ public class Expert {
                 ", disponibilidad='" + disponibilidad + '\'' +
                 ", puntuacion='" + puntuacion + '\'' +
                 ", createdDate=" + createdDate +
-                ", updatedDate=" + last_updated +
-                ", tags=" + tags +
+                ", last_updated=" + last_updated +
                 '}';
     }
 }
