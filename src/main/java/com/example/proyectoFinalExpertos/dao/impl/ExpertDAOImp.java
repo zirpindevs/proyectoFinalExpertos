@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -119,8 +120,7 @@ public class ExpertDAOImp implements ExpertDAO {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-
-       String hql = "FROM Expert e WHERE e.id = :id"; // named parameters
+        String hql = "FROM Expert e WHERE e.id = :id"; // named parameters
         Query query = session.createQuery(hql);
         query.setParameter("id", id);
         Expert expert = (Expert) query.getSingleResult();
@@ -154,6 +154,7 @@ public class ExpertDAOImp implements ExpertDAO {
 
 
         String hql = "FROM Expert WHERE name LIKE :nombre AND estado LIKE :estado AND modalidad LIKE :modalidad";
+        System.out.println(hql);
         Query query = session.createQuery(hql);
 
         query.setParameter("nombre", "%"+nombre+"%");
@@ -171,7 +172,7 @@ public class ExpertDAOImp implements ExpertDAO {
 
         List experts = query.getResultList();
 
-        //formulas de paginacion
+/*        //formulas de paginacion
         Integer countResults = query.getResultList().size();
         int pageSize = Integer.parseInt(limite);
 
@@ -183,7 +184,7 @@ public class ExpertDAOImp implements ExpertDAO {
         System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
 
 
-        session.close();
+        session.close();*/
 
         return experts;
     }
@@ -198,6 +199,33 @@ public class ExpertDAOImp implements ExpertDAO {
 
         session.getTransaction().commit();
         session.close();
+    }
+
+
+    @Override
+    public void deleteTagExpert(Tag listTag, Expert expert){
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+        System.out.println(expert);
+        expert = session.find(Expert.class, expert.getId());
+        System.out.println(expert);
+
+        for (int x = 0; x < expert.getTags().size(); x++) {
+            Tag t = expert.getTags().get(x);
+            if (t.getName().equals(listTag.getName())) {
+                  expert.getTags().remove(t);
+                break;
+            }
+        }
+
+         session.save(expert);
+         session.getTransaction().commit();
+         session.close();
+        System.out.println(expert.getTags());
+
+
     }
 
 }
