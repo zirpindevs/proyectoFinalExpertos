@@ -57,10 +57,17 @@ public class ExpertController {
      * @return ResponseEntity<Expert>
      */
     @PutMapping("/expertos/{id}")
-    public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
+    public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody String modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
 
-        Expert updateExpert = this.expertService.updateExpert(id, modifiedExpert);
+
+        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+        System.out.println(id);
+        System.out.println(modifiedExpert);
+
+        Expert updateExpert = expertService.findOne(id);
+
+        updateExpert = this.expertService.updateExpert(id, updateExpert);
 
         if (updateExpert.getId() == null) {
             log.warn("update expert without id");
@@ -110,9 +117,7 @@ public class ExpertController {
 
         return this.expertService.findAllByFilter(nombre, etiqueta, modalidad, estado, limite, pagina);
 
-/*
-        return this.expertService.findAll();
-*/
+        //return this.expertService.findAll();
 
     }
     /**
@@ -124,7 +129,6 @@ public class ExpertController {
      */
     @GetMapping("/expertos/{id}")
     public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         Expert findExpert = this.expertService.findOne(id);
 
         if (findExpert == null)
