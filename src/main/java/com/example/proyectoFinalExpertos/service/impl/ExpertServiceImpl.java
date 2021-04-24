@@ -34,13 +34,14 @@ public class ExpertServiceImpl implements ExpertService {
     public Expert updateExpert(Long id, Expert modifiedExpert) {
         log.info("REST request to update an expert");
 
-        Expert findExpert = this.findOne(id);
+        Tag findedTag = new Tag();
+        Expert findedExpert = this.findOne(id);
+        List<Tag> existingTags = findedExpert.getTags();
 
-        if (findExpert == null) {
-            return null;
+        if(findedExpert.getTags().size() < modifiedExpert.getTags().size()) {
+            findedTag = tagDAO.findByName(modifiedExpert.getTags().get(modifiedExpert.getTags().size()-1).getName());
         }
-
-            return this.expertDAO.updateExpert(modifiedExpert, findExpert);
+            return this.expertDAO.updateExpert(modifiedExpert, findedExpert, findedTag, existingTags);
     }
 
 

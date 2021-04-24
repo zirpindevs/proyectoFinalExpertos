@@ -91,7 +91,7 @@ public class ExpertDAOImp implements ExpertDAO {
     }
 
     @Override
-    public  Expert updateExpert(Expert modifiedExpert, Expert findedExpert){
+    public  Expert updateExpert(Expert modifiedExpert, Expert findedExpert, Tag findedTag, List<Tag> existingTags){
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
@@ -99,6 +99,8 @@ public class ExpertDAOImp implements ExpertDAO {
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@   modifyExpert DAO       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println(findedExpert);
        System.out.println(modifiedExpert);
+        System.out.println(findedTag);
+
 
 
         if(!modifiedExpert.getName().isEmpty())
@@ -134,11 +136,13 @@ public class ExpertDAOImp implements ExpertDAO {
         if(!modifiedExpert.getEstadoMotivo().isEmpty())
             findedExpert.setEstadoMotivo(modifiedExpert.getEstadoMotivo());
 
-        //añadimos etiqueta nueva a la lista de etiquetas
-   /*     if(getNewTag != null)
-            existingTags.add(getNewTag);
-        findedExpert.setTags(existingTags);
-*/
+        //comprobamos si hay etiquetas que añadir
+
+        if (findedTag != null) {
+            existingTags.add(findedTag);
+            findedExpert.setTags(existingTags);
+        }
+
         findedExpert.setLast_updated(Instant.now());
 
         session.update(findedExpert);
