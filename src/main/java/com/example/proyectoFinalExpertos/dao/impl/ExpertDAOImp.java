@@ -42,11 +42,8 @@ public class ExpertDAOImp implements ExpertDAO {
         Expert newExpert = new Expert();
 
 
-        if(!expertToCreate.getName().isEmpty())
-            newExpert.setName(expertToCreate.getName());
-
-        if(!expertToCreate.getSurname().isEmpty())
-            newExpert.setSurname(expertToCreate.getSurname());
+        if(!expertToCreate.getNombre().isEmpty())
+            newExpert.setNombre(expertToCreate.getNombre());
 
         if(!expertToCreate.getNif().isEmpty())
             newExpert.setNif(expertToCreate.getNif());
@@ -93,16 +90,7 @@ public class ExpertDAOImp implements ExpertDAO {
 
         session.beginTransaction();
 
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@   modifyExpert DAO       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(modifiedExpert);
-        System.out.println(modifiedExpert.getTags().size());
-        System.out.println(findedExpert.getTags());
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
-
-
-        findedExpert.setName(modifiedExpert.getName());
-        findedExpert.setSurname(modifiedExpert.getSurname());
+        findedExpert.setNombre(modifiedExpert.getNombre());
         findedExpert.setNif(modifiedExpert.getNif());
         findedExpert.setDisponibilidad(modifiedExpert.getDisponibilidad());
 
@@ -113,13 +101,6 @@ public class ExpertDAOImp implements ExpertDAO {
 
         findedExpert.setDisponibilidad(modifiedExpert.getDisponibilidad());
         findedExpert.setLast_updated(Instant.now());
-
-//        switch (findedExpert.getEstado()) {
-//            case DESCARTADO -> modifiedExpert.setEstado(ExpertConditions.DESCARTADO);
-//            case VALIDADO -> modifiedExpert.setEstado(ExpertConditions.VALIDADO);
-//            case PENDIENTE -> modifiedExpert.setEstado(ExpertConditions.PENDIENTE);
-//            default -> modifiedExpert.setEstado(ExpertConditions.PENDIENTE);
-//        }
 
         session.update(findedExpert);
         session.getTransaction().commit();
@@ -141,11 +122,8 @@ public class ExpertDAOImp implements ExpertDAO {
 
 
 
-        if(!modifiedExpert.getName().isEmpty())
-            findedExpert.setName(modifiedExpert.getName());
-
-        if(!modifiedExpert.getSurname().isEmpty())
-            findedExpert.setSurname(modifiedExpert.getSurname());
+        if(!modifiedExpert.getNombre().isEmpty())
+            findedExpert.setNombre(modifiedExpert.getNombre());
 
         if(!modifiedExpert.getNif().isEmpty())
             findedExpert.setNif(modifiedExpert.getNif());

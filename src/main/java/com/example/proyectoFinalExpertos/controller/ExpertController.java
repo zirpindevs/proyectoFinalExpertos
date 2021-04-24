@@ -45,7 +45,7 @@ public class ExpertController {
         Expert createdExpert = this.expertService.createExpert(expertToCreate);
 
         return ResponseEntity
-                .created(new URI("/api/experts/" + createdExpert.getName()))
+                .created(new URI("/api/experts/" + createdExpert.getNombre()))
                 .body(createdExpert);
     }
 
