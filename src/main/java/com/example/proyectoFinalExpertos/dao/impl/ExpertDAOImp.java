@@ -138,7 +138,7 @@ public class ExpertDAOImp implements ExpertDAO {
 
         //comprobamos si hay etiquetas que añadir
 
-        if (findedTag != null) {
+        if (findedTag.getName() != null) {
             existingTags.add(findedTag);
             findedExpert.setTags(existingTags);
         }
