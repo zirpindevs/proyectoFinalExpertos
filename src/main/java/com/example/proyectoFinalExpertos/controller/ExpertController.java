@@ -31,22 +31,22 @@ public class ExpertController {
     /**
      * CREATE EXPERT
      *
-     * @param expert
+     * @param expertToCreate
      * @return ResponseEntity<Expert>
      * @throws URISyntaxException
      */
     @PostMapping("/expertos")
-    public ResponseEntity<Expert> createExpert(@RequestBody Expert expert) throws URISyntaxException {
-        log.debug("REST request to create an expert: {} ", expert);
+    public ResponseEntity<Expert> createExpert(@RequestBody Expert expertToCreate) throws URISyntaxException {
+        log.debug("REST request to create an expert: {} ", expertToCreate);
 
-        if (expert.getId() != null)
+        if (expertToCreate.getId() != null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        Expert createExpert = this.expertService.createExpert(expert);
+        Expert createdExpert = this.expertService.createExpert(expertToCreate);
 
         return ResponseEntity
-                .created(new URI("/api/experts/" + createExpert.getName()))
-                .body(createExpert);
+                .created(new URI("/api/experts/" + createdExpert.getName()))
+                .body(createdExpert);
     }
 
     /**

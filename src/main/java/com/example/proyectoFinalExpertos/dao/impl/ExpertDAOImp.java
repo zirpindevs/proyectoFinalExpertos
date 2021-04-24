@@ -34,19 +34,57 @@ public class ExpertDAOImp implements ExpertDAO {
     }
 
     @Override
-    public Expert createExpert(Expert expert) {
+    public Expert createExpert(Expert expertToCreate) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
 
-        expert.setCreatedDate(Instant.now());
-        session.save(expert);
+        Expert newExpert = new Expert();
+
+
+        if(!expertToCreate.getName().isEmpty())
+            newExpert.setName(expertToCreate.getName());
+
+        if(!expertToCreate.getSurname().isEmpty())
+            newExpert.setSurname(expertToCreate.getSurname());
+
+        if(!expertToCreate.getNif().isEmpty())
+            newExpert.setNif(expertToCreate.getNif());
+
+        if(!expertToCreate.getDisponibilidad().isEmpty())
+            newExpert.setDisponibilidad(expertToCreate.getDisponibilidad());
+
+        if(!expertToCreate.getEstado().isEmpty())
+            newExpert.setEstado(expertToCreate.getEstado());
+
+        if(!expertToCreate.getPuntuacion().isEmpty())
+            newExpert.setPuntuacion(expertToCreate.getPuntuacion());
+
+        if(expertToCreate.getTelefono() != null )
+            newExpert.setTelefono(expertToCreate.getTelefono());
+
+        if(!expertToCreate.getCorreo().isEmpty())
+            newExpert.setCorreo(expertToCreate.getCorreo());
+
+        if(!expertToCreate.getDireccion().isEmpty())
+            newExpert.setDireccion(expertToCreate.getDireccion());
+
+        if(!expertToCreate.getObservaciones().isEmpty())
+            newExpert.setObservaciones(expertToCreate.getObservaciones());
+
+        if(!expertToCreate.getEstadoMotivo().isEmpty())
+            newExpert.setEstadoMotivo(expertToCreate.getEstadoMotivo());
+
+        newExpert.setCreatedDate(Instant.now());
+        newExpert.setLast_updated(Instant.now());
+
+        session.save(newExpert);
 
         session.getTransaction().commit();
 
         session.close();
 
-        return expert;
+        return newExpert;
     }
 
     @Override
