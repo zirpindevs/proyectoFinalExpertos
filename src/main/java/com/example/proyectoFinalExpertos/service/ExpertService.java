@@ -7,7 +7,7 @@ import java.util.List;
 public interface ExpertService {
 
     Expert createExpert(Expert expert);
-    Expert updateExpert(Long id, Expert expert);
+    Expert updateExpert(Long id, Expert modifiedExpert);
     void deleteExpert(Expert expertToDelete);
 
     List<Expert> findAll();

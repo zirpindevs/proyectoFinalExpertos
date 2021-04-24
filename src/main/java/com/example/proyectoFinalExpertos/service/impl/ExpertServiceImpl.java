@@ -29,7 +29,22 @@ public class ExpertServiceImpl implements ExpertService {
         return this.expertDAO.createExpert(expert);
     }
 
+
     @Override
+    public Expert updateExpert(Long id, Expert modifiedExpert) {
+        log.info("REST request to update an expert");
+
+        Expert findExpert = this.findOne(id);
+
+        if (findExpert == null) {
+            return null;
+        }
+
+            return this.expertDAO.updateExpert(modifiedExpert, findExpert);
+    }
+
+
+    /*@Override
     public Expert updateExpert(Long id, Expert expert) {
         log.info("REST request to update an expert");
 
@@ -61,7 +76,7 @@ public class ExpertServiceImpl implements ExpertService {
         System.out.println("##############################################################################");
 
         return this.expertDAO.modifyExpert(expert, findExpert, getNewTag, listExistedTags);
-    }
+    }*/
 
     @Override
     public List<Expert> findAll() {

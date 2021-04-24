@@ -55,7 +55,7 @@ public class ExpertDAOImp implements ExpertDAO {
 
         session.beginTransaction();
 
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@   DAO       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@   modifyExpert DAO       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println(modifiedExpert);
         System.out.println(modifiedExpert.getTags().size());
         System.out.println(findedExpert.getTags());
@@ -89,6 +89,65 @@ public class ExpertDAOImp implements ExpertDAO {
 
         return findedExpert;
     }
+
+    @Override
+    public  Expert updateExpert(Expert modifiedExpert, Expert findedExpert){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@   modifyExpert DAO       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(findedExpert);
+       System.out.println(modifiedExpert);
+
+
+        if(!modifiedExpert.getName().isEmpty())
+            findedExpert.setName(modifiedExpert.getName());
+
+        if(!modifiedExpert.getSurname().isEmpty())
+            findedExpert.setSurname(modifiedExpert.getSurname());
+
+        if(!modifiedExpert.getNif().isEmpty())
+            findedExpert.setNif(modifiedExpert.getNif());
+
+        if(!modifiedExpert.getDisponibilidad().isEmpty())
+            findedExpert.setDisponibilidad(modifiedExpert.getDisponibilidad());
+
+        if(!modifiedExpert.getEstado().isEmpty())
+        findedExpert.setEstado(modifiedExpert.getEstado());
+
+        if(!modifiedExpert.getPuntuacion().isEmpty())
+            findedExpert.setPuntuacion(modifiedExpert.getPuntuacion());
+
+        if(modifiedExpert.getTelefono() != null )
+            findedExpert.setTelefono(modifiedExpert.getTelefono());
+
+        if(!modifiedExpert.getCorreo().isEmpty())
+            findedExpert.setCorreo(modifiedExpert.getCorreo());
+
+        if(!modifiedExpert.getDireccion().isEmpty())
+            findedExpert.setDireccion(modifiedExpert.getDireccion());
+
+
+        //añadimos etiqueta nueva a la lista de etiquetas
+   /*     if(getNewTag != null)
+            existingTags.add(getNewTag);
+        findedExpert.setTags(existingTags);
+*/
+        findedExpert.setLast_updated(Instant.now());
+
+        session.update(findedExpert);
+        session.getTransaction().commit();
+        session.close();
+
+
+        // System.out.println(modifiedExpert.getTags());
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+        return modifiedExpert;
+    }
+
+
 
     @Override
     public List<Expert> findAll(){

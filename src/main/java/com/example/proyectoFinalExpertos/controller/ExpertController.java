@@ -57,7 +57,7 @@ public class ExpertController {
      * @return ResponseEntity<Expert>
      */
     @PutMapping("/expertos/{id}")
-    public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody String modifiedExpert) {
+    public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
 
 
@@ -65,16 +65,18 @@ public class ExpertController {
         System.out.println(id);
         System.out.println(modifiedExpert);
 
-        Expert updateExpert = expertService.findOne(id);
+        Expert findUpdateExpert = this.expertService.findOne(id);
 
-        updateExpert = this.expertService.updateExpert(id, updateExpert);
-
-        if (updateExpert.getId() == null) {
+        if (findUpdateExpert.getId() == null) {
             log.warn("update expert without id");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return ResponseEntity.ok().body(updateExpert);
+        Expert updateExpert = this.expertService.updateExpert(id, modifiedExpert);
+
+
+     return ResponseEntity.ok().body(updateExpert);
+
     }
 
     /**
