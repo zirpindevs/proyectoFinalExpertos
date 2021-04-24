@@ -61,7 +61,7 @@ public class Expert {
     @Column(name="last_updated")
     private Instant last_updated;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "pivot",
             joinColumns = {@JoinColumn(name="expert_id", referencedColumnName = "id")},
