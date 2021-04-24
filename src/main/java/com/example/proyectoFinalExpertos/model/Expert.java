@@ -13,11 +13,8 @@ public class Expert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
-    private String name;
-
-    @Column(name="surname")
-    private String surname;
+    @Column(name="nombre")
+    private String nombre;
 
     @Column(name="nif")
     private String nif;
@@ -73,10 +70,9 @@ public class Expert {
     public Expert() {
     }
 
-    public Expert(String name, String surname, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad,Long condiciones
+    public Expert(String nombre, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad,Long condiciones
             , String estado, String disponibilidad, String puntuacion, String estadoMotivo, String observaciones, Instant createdDate, Instant last_updated) {
-        this.name = name;
-        this.surname = surname;
+        this.nombre = nombre;
         this.nif = nif;
         this.telefono = telefono;
         this.correo = correo;
@@ -97,21 +93,12 @@ public class Expert {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public Expert setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public Expert setSurname(String surname) {
-        this.surname = surname;
+    public Expert setNombre(String nombre) {
+        this.nombre = nombre;
         return this;
     }
 
@@ -254,8 +241,7 @@ public class Expert {
     public String toString() {
         return "Expert{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", name='" + nombre + '\'' +
                 ", nif='" + nif + '\'' +
                 ", telefono=" + telefono +
                 ", correo='" + correo + '\'' +
