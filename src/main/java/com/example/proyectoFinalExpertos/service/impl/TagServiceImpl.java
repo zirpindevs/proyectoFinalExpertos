@@ -91,7 +91,7 @@ public class TagServiceImpl implements TagService {
             List<Tag> expertTags = expert.getTags();
             for (Tag listTag : expertTags) {
                 if (listTag.getName().equals(tagToDelete.getName())) {
-                    System.out.println("el experto " + expert.getName() + " tiene la etiqueta " + tagToDelete.getName());
+                    System.out.println("el experto " + expert.getNombre() + " tiene la etiqueta " + tagToDelete.getName());
                     expertDAO.deleteTagExpert(tagToDelete, expert);
                 }
             }
