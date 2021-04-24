@@ -45,7 +45,7 @@ public class ExpertController {
         Expert createdExpert = this.expertService.createExpert(expertToCreate);
 
         return ResponseEntity
-                .created(new URI("/api/experts/" + createdExpert.getNombre()))
+                .created(new URI("/api/expertos/" + createdExpert.getNombre()))
                 .body(createdExpert);
     }
 
@@ -59,11 +59,6 @@ public class ExpertController {
     @PutMapping("/expertos/{id}")
     public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
-
-
-        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
-        System.out.println(id);
-        System.out.println(modifiedExpert);
 
         Expert findUpdateExpert = this.expertService.findOne(id);
 
