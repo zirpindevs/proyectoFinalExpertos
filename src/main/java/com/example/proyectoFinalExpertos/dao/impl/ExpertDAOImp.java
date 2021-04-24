@@ -128,6 +128,11 @@ public class ExpertDAOImp implements ExpertDAO {
         if(!modifiedExpert.getDireccion().isEmpty())
             findedExpert.setDireccion(modifiedExpert.getDireccion());
 
+        if(!modifiedExpert.getObservaciones().isEmpty())
+            findedExpert.setObservaciones(modifiedExpert.getObservaciones());
+
+        if(!modifiedExpert.getEstadoMotivo().isEmpty())
+            findedExpert.setEstadoMotivo(modifiedExpert.getEstadoMotivo());
 
         //añadimos etiqueta nueva a la lista de etiquetas
    /*     if(getNewTag != null)
