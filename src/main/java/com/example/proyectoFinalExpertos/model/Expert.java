@@ -49,6 +49,9 @@ public class Expert {
     @Column(name="puntuacion")
     private String puntuacion;
 
+    @Column(name="estado_motivo")
+    private String estadoMotivo;
+
     @Column(name="created_date")
     private Instant createdDate;
 
@@ -67,7 +70,8 @@ public class Expert {
     public Expert() {
     }
 
-    public Expert(String name, String surname, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad, Long condiciones, String estado, String disponibilidad, String puntuacion, Instant createdDate, Instant last_updated) {
+    public Expert(String name, String surname, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad,
+                  Long condiciones, String estado, String disponibilidad, String puntuacion, String estadoMotivo, Instant createdDate, Instant last_updated) {
         this.name = name;
         this.surname = surname;
         this.nif = nif;
@@ -80,6 +84,7 @@ public class Expert {
         this.estado = estado;
         this.disponibilidad = disponibilidad;
         this.puntuacion = puntuacion;
+        this.estadoMotivo = estadoMotivo;
         this.createdDate = createdDate;
         this.last_updated = last_updated;
     }
@@ -223,6 +228,15 @@ public class Expert {
         return this;
     }
 
+    public String getEstadoMotivo() {
+        return estadoMotivo;
+    }
+
+    public Expert setEstadoMotivo(String estadoMotivo) {
+        this.estadoMotivo = estadoMotivo;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Expert{" +
@@ -239,6 +253,7 @@ public class Expert {
                 ", estado='" + estado + '\'' +
                 ", disponibilidad='" + disponibilidad + '\'' +
                 ", puntuacion='" + puntuacion + '\'' +
+                ", estadoMotivo='" + estadoMotivo + '\'' +
                 ", createdDate=" + createdDate +
                 ", last_updated=" + last_updated +
                 '}';
