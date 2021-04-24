@@ -41,7 +41,6 @@ public class ExpertDAOImp implements ExpertDAO {
 
         Expert newExpert = new Expert();
 
-
         if(!expertToCreate.getNombre().isEmpty())
             newExpert.setNombre(expertToCreate.getNombre());
 
@@ -114,12 +113,6 @@ public class ExpertDAOImp implements ExpertDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
-
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@   modifyExpert DAO       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(findedExpert);
-       System.out.println(modifiedExpert);
-        System.out.println(findedTag);
-
 
 
         if(!modifiedExpert.getNombre().isEmpty())
