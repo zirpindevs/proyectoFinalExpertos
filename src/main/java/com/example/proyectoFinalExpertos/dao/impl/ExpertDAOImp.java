@@ -216,7 +216,7 @@ public class ExpertDAOImp implements ExpertDAO {
         Root<Expert> root = criteria.from(Expert.class);
 
         criteria.select(root);
-        criteria.where(builder.like(root.get("name"), "%"+name+"%"));
+        criteria.where(builder.like(root.get("nombre"), "%"+name+"%"));
 
         List<Expert> experts = session.createQuery(criteria).list();
 
@@ -230,7 +230,7 @@ public class ExpertDAOImp implements ExpertDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
 
-        String hql = "FROM Expert WHERE name LIKE :nombre AND estado LIKE :estado AND modalidad LIKE :modalidad";
+        String hql = "FROM Expert WHERE nombre LIKE :nombre AND estado LIKE :estado AND modalidad LIKE :modalidad";
         System.out.println(hql);
         Query query = session.createQuery(hql);
 
