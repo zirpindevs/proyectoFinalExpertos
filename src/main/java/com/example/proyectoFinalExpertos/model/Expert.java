@@ -52,6 +52,9 @@ public class Expert {
     @Column(name="estado_motivo")
     private String estadoMotivo;
 
+    @Column(name="observaciones")
+    private String observaciones;
+
     @Column(name="created_date")
     private Instant createdDate;
 
@@ -70,8 +73,8 @@ public class Expert {
     public Expert() {
     }
 
-    public Expert(String name, String surname, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad,
-                  Long condiciones, String estado, String disponibilidad, String puntuacion, String estadoMotivo, Instant createdDate, Instant last_updated) {
+    public Expert(String name, String surname, String nif, Long telefono, String correo, String direccion, String cursos, String modalidad,Long condiciones
+            , String estado, String disponibilidad, String puntuacion, String estadoMotivo, String observaciones, Instant createdDate, Instant last_updated) {
         this.name = name;
         this.surname = surname;
         this.nif = nif;
@@ -85,6 +88,7 @@ public class Expert {
         this.disponibilidad = disponibilidad;
         this.puntuacion = puntuacion;
         this.estadoMotivo = estadoMotivo;
+        this.observaciones = observaciones;
         this.createdDate = createdDate;
         this.last_updated = last_updated;
     }
@@ -237,6 +241,15 @@ public class Expert {
         return this;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public Expert setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Expert{" +
@@ -254,6 +267,7 @@ public class Expert {
                 ", disponibilidad='" + disponibilidad + '\'' +
                 ", puntuacion='" + puntuacion + '\'' +
                 ", estadoMotivo='" + estadoMotivo + '\'' +
+                ", observaciones='" + observaciones + '\'' +
                 ", createdDate=" + createdDate +
                 ", last_updated=" + last_updated +
                 '}';
