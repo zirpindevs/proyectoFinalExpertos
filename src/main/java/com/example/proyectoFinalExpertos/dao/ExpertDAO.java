@@ -17,6 +17,6 @@ public interface ExpertDAO {
     Expert createExpert(Expert expert);
     Expert modifyExpert(Expert expert, Expert findedExpert, Tag getNewTag, List existingTags);
     Expert updateExpert(Expert expert, Expert findedExpert, Tag findedTag, List<Tag> existingTags);
-    List<Expert> findAllByFilter(String nombre, String etiqueta, String modalidad, String estado, String limite, String pagina);
+    List<Expert> findAllByFilter(String nombre, String estado, String tamano, String pagina);
 
     }

@@ -83,36 +83,28 @@ public class ExpertController {
         log.debug("REST request to find all experts");
 
         String nombre = "";
-        String etiqueta = "";
-        String modalidad = "";
         String estado = "";
-        String limite = "15";
+        String tamano = "";
         String pagina = "0";
 
         if(customQuery.containsKey("nombre"))
             nombre = customQuery.get("nombre");
-        if(customQuery.containsKey("etiqueta"))
-            etiqueta = customQuery.get("etiqueta");
-        if(customQuery.containsKey("modalidad"))
-            modalidad = customQuery.get("modalidad");
         if(customQuery.containsKey("estado"))
             estado = customQuery.get("estado");
         if(customQuery.containsKey("limite"))
-            limite = customQuery.get("limite");
+            tamano = customQuery.get("tamaño");
         if(customQuery.containsKey("pagina"))
             pagina = customQuery.get("pagina");
 
         System.out.println("************************************************************************************");
         System.out.println(nombre);
-        System.out.println(etiqueta);
-        System.out.println(modalidad);
         System.out.println(estado);
-        System.out.println(limite);
+        System.out.println(tamano);
         System.out.println(pagina);
         System.out.println("************************************************************************************");
 
 
-        return this.expertService.findAllByFilter(nombre, etiqueta, modalidad, estado, limite, pagina);
+        return this.expertService.findAllByFilter(nombre, estado, tamano, pagina);
 
         //return this.expertService.findAll();
 

@@ -226,24 +226,20 @@ public class ExpertDAOImp implements ExpertDAO {
     }
 
     @Override
-    public List<Expert> findAllByFilter(String nombre, String etiqueta, String modalidad, String estado, String limite, String pagina) {
+    public List<Expert> findAllByFilter(String nombre, String estado, String tamano, String pagina) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
 
-        String hql = "FROM Expert WHERE nombre LIKE :nombre AND estado LIKE :estado AND modalidad LIKE :modalidad";
+        String hql = "FROM Expert WHERE nombre LIKE :nombre AND estado LIKE :estado";
         System.out.println(hql);
         Query query = session.createQuery(hql);
 
         query.setParameter("nombre", "%"+nombre+"%");
         query.setParameter("estado", "%"+estado+"%");
 
-
-        query.setParameter("modalidad", "%"+modalidad+"%");
-        /* query.setParameter("etiqueta", "%"+etiqueta+"%"); */
-
-
         //si quitas este devuelve all y permitiria paginar, sino se limita a enseñar lo que tiene
-       query.setMaxResults(Integer.parseInt(limite));
+        if(pagina != null)
+       query.setMaxResults(Integer.parseInt(tamano));
        /* query.setFirstResult(Integer.parseInt(pagina));*/
 
 

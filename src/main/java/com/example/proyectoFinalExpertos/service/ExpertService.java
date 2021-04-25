@@ -13,6 +13,6 @@ public interface ExpertService {
     List<Expert> findAll();
     Expert findOne(Long id);
     List<Expert> findAllByName(String name);
-    List<Expert> findAllByFilter(String nombre, String etiqueta, String modalidad, String estado, String limite, String pagina);
+    List<Expert> findAllByFilter(String nombre, String estado, String tamano, String pagina);
 
     }
