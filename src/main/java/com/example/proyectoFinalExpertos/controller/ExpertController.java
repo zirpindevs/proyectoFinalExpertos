@@ -1,10 +1,13 @@
 package com.example.proyectoFinalExpertos.controller;
 
 import com.example.proyectoFinalExpertos.model.Expert;
-import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.repository.ExpertRepository;
 import com.example.proyectoFinalExpertos.service.ExpertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +27,11 @@ public class ExpertController {
 
     private final ExpertService expertService;
 
-    public ExpertController(ExpertService expertService) {
+    private final ExpertRepository expertRepository;
+
+    public ExpertController(ExpertService expertService, ExpertRepository expertRepository) {
         this.expertService = expertService;
+        this.expertRepository = expertRepository;
     }
 
 
@@ -70,7 +77,7 @@ public class ExpertController {
         Expert updateExpert = this.expertService.updateExpert(id, modifiedExpert);
 
 
-     return ResponseEntity.ok().body(updateExpert);
+        return ResponseEntity.ok().body(updateExpert);
 
     }
 
@@ -79,22 +86,23 @@ public class ExpertController {
      * @return List<Expert>
      */
     @RequestMapping(method = RequestMethod.GET, value = "/expertos")
-    public List<Expert> controllerMethod(@RequestParam Map<String, String> customQuery){
+    public ResponseEntity<Map<String, Object>>getAll(
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String estado,
+            @RequestParam(defaultValue = "0") int pagina,
+            @RequestParam(defaultValue = "3") int tamano){
+
         log.debug("REST request to find all experts");
 
-        String nombre = "";
-        String estado = "";
-        String tamano = "";
-        String pagina = "0";
 
-        if(customQuery.containsKey("nombre"))
-            nombre = customQuery.get("nombre");
-        if(customQuery.containsKey("estado"))
-            estado = customQuery.get("estado");
-        if(customQuery.containsKey("limite"))
-            tamano = customQuery.get("tamaño");
-        if(customQuery.containsKey("pagina"))
-            pagina = customQuery.get("pagina");
+//        if(customQuery.containsKey("nombre"))
+//            nombre = customQuery.get("nombre");
+//        if(customQuery.containsKey("estado"))
+//            estado = customQuery.get("estado");
+//        if(customQuery.containsKey("limite"))
+//            tamano = Integer.valueOf(customQuery.get("tamaño"));
+//        if(customQuery.containsKey("pagina"))
+//            pagina = Integer.valueOf(customQuery.get("pagina"));
 
         System.out.println("************************************************************************************");
         System.out.println(nombre);
@@ -104,7 +112,39 @@ public class ExpertController {
         System.out.println("************************************************************************************");
 
 
-        return this.expertService.findAllByFilter(nombre, estado, tamano, pagina);
+        try {
+            List<Expert> experts = new ArrayList<Expert>();
+            Pageable paging = PageRequest.of(pagina, tamano);
+
+            Page<Expert> pageExpert;
+            if (nombre == null) {
+                pageExpert = expertRepository.findAll(paging);
+            }
+            else {
+                pageExpert = expertRepository.findByNombre(nombre, paging);
+            }
+
+            if (estado == null) {
+                pageExpert = expertRepository.findAll(paging);
+            }
+            else {
+                pageExpert = expertRepository.findByEstado(estado, paging);
+            }
+            experts = pageExpert.getContent();
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("experts", experts);
+            response.put("currentPage", pageExpert.get());
+            response.put("totalItems", pageExpert.getTotalElements());
+            response.put("totalPages", pageExpert.getTotalPages());
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+        // return this.expertService.findAllByFilter(nombre, estado, tamano, pagina);
 
         //return this.expertService.findAll();
 
