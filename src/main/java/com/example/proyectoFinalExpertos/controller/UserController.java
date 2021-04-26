@@ -1,5 +1,6 @@
 package com.example.proyectoFinalExpertos.controller;
 
+import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.User;
 import com.example.proyectoFinalExpertos.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
@@ -24,80 +25,20 @@ public class UserController {
         this.userService = userService;
     }
 
-
-    /**
-     * CREATE USER
-     *
-     * @param user
-     * @return ResponseEntity<User>
-     * @throws URISyntaxException
-     */
-    @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) throws URISyntaxException {
-        log.debug("REST request to create an user: {} ", user);
-
-        if (user.getId() != null)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-        User createUser = this.userService.createUser(user);
-
-        return ResponseEntity
-                .created(new URI("/api/users/" + createUser.getName()))
-                .body(createUser);
-    }
-
-    /**
-     * UPDATE USER
-     *
-     * @param id
-     * @param modifiedUser
-     * @return ResponseEntity<User>
-     */
-    @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User modifiedUser) {
-        log.debug("REST request to update one user: {} ", modifiedUser);
-
-        User updateUser = this.userService.updateUser(id, modifiedUser);
-
-        if (updateUser.getId() == null) {
-            log.warn("update user without id");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        return ResponseEntity.ok().body(updateUser);
-    }
-
-
-
-    /**
-     * Find USER BY ID
-     *
-     * @param id
-     * @return ResponseEntity<User>
-     * @throws URISyntaxException
-     */
-    @GetMapping("/users/{id}")
-    public ResponseEntity<User> findUserId(@PathVariable Long id) throws URISyntaxException {
-
-        User findUser = this.userService.findOne(id);
-        if (findUser == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        return ResponseEntity.ok().body(findUser);
-
-    }
-
     /**
      * FIND USER BY NAME
-     * @param name
+     * @param User
      * @return List<User>
      * @throws URISyntaxException
      */
-    @GetMapping("/users/name/{name}")
-    public List<User> findUserName(@PathVariable String name) throws URISyntaxException {
+    @GetMapping("/users/}")
+    public User findUserName(@RequestBody Expert user) throws URISyntaxException {
+        log.debug("REST request to login an user: {} ", user);
 
-        return this.userService.findAllByName(name);
+        System.out.println(user);
 
+        //return this.userService.findAllByName(user);
+return null;
     }
 
 }

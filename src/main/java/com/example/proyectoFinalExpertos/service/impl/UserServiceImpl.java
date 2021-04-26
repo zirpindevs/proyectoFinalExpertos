@@ -19,40 +19,6 @@ public class UserServiceImpl implements UserService {
         this.userDAO = userDAO;
     }
 
-/*    @Override
-    public List<User> findAllFromSession() {
-        List<User> results = this.userDAO.findAllFromSession();
-        System.out.println("***********");
-        return results;
-    }*/
-
-
-    @Override
-    public User createUser(User user) {
-        log.info("REST request to create an user");
-        return this.userDAO.createUser(user);
-    }
-
-    @Override
-    public User updateUser(Long id, User user) {
-        log.info("REST request to update an user");
-
-        User findUser = this.findOne(id);
-
-        if(findUser == null) {
-            return null;
-        }
-
-        return this.userDAO.modifyUser(user, findUser);
-    }
-
-    @Override
-    public List<User> findAll() {
-        log.info("REST request to find all users");
-
-        return this.userDAO.findAll();
-    }
-
     @Override
     public User findOne(Long id) {
         log.info("REST request to find one user by id");

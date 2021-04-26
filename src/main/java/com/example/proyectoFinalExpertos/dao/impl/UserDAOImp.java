@@ -31,47 +31,6 @@ public class UserDAOImp implements UserDAO {
 
 
     @Override
-    public User createUser(User user) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        session.beginTransaction();
-
-        user.setCreatedDate(Instant.now());
-        session.save(user);
-
-        session.getTransaction().commit();
-
-        session.close();
-
-        return user;
-    }
-
-    @Override
-    public User modifyUser(User modifiedUser, User findedUser) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        session.beginTransaction();
-
-        findedUser.setName(modifiedUser.getName());
-        findedUser.setSurname(modifiedUser.getSurname());
-        findedUser.setDni(modifiedUser.getDni());
-        findedUser.setActive(modifiedUser.getActive());
-
-        session.update(findedUser);
-        session.getTransaction().commit();
-        session.close();
-
-        return findedUser;
-    }
-
-    @Override
-    public List<User> findAll(){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        return session.createQuery("from User", User.class ).list();
-
-    }
-    @Override
     public User findById(Long id){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
