@@ -61,4 +61,4 @@ insert into pivot (expert_id, tag_id) values (11, 2);
 insert into pivot (expert_id, tag_id) values (12, 4);
 
 
-insert into users (name, surname, dni, is_active) values ('name1', 'surname 1', '10000A', true);
+insert into users (username, password) values ('ingenia', '1234');
