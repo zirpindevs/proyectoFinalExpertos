@@ -114,34 +114,34 @@ public class ExpertDAOImp implements ExpertDAO {
         session.beginTransaction();
 
 
-        if(!modifiedExpert.getNombre().isEmpty())
+        if(modifiedExpert.getNombre() != null)
             findedExpert.setNombre(modifiedExpert.getNombre());
 
-        if(!modifiedExpert.getNif().isEmpty())
+        if(modifiedExpert.getNif() != null)
             findedExpert.setNif(modifiedExpert.getNif());
 
-        if(!modifiedExpert.getDisponibilidad().isEmpty())
+        if(modifiedExpert.getDisponibilidad() != null)
             findedExpert.setDisponibilidad(modifiedExpert.getDisponibilidad());
 
-        if(!modifiedExpert.getEstado().isEmpty())
+        if(modifiedExpert.getEstado() != null)
         findedExpert.setEstado(modifiedExpert.getEstado());
 
-        if(!modifiedExpert.getPuntuacion().isEmpty())
+        if(modifiedExpert.getPuntuacion() != null)
             findedExpert.setPuntuacion(modifiedExpert.getPuntuacion());
 
         if(modifiedExpert.getTelefono() != null )
             findedExpert.setTelefono(modifiedExpert.getTelefono());
 
-        if(!modifiedExpert.getCorreo().isEmpty())
+        if(modifiedExpert.getCorreo() != null)
             findedExpert.setCorreo(modifiedExpert.getCorreo());
 
-        if(!modifiedExpert.getDireccion().isEmpty())
+        if(modifiedExpert.getDireccion() != null)
             findedExpert.setDireccion(modifiedExpert.getDireccion());
 
-        if(!modifiedExpert.getObservaciones().isEmpty())
+        if(modifiedExpert.getObservaciones() != null)
             findedExpert.setObservaciones(modifiedExpert.getObservaciones());
 
-        if(!modifiedExpert.getEstadoMotivo().isEmpty())
+        if(modifiedExpert.getEstadoMotivo() != null)
             findedExpert.setEstadoMotivo(modifiedExpert.getEstadoMotivo());
 
         //comprobamos si hay etiquetas que añadir
