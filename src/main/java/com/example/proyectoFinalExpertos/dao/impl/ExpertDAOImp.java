@@ -41,34 +41,33 @@ public class ExpertDAOImp implements ExpertDAO {
 
         Expert newExpert = new Expert();
 
-        if(!expertToCreate.getNombre().isEmpty())
-            newExpert.setNombre(expertToCreate.getNombre());
+        newExpert.setNombre(expertToCreate.getNombre());
+        newExpert.setTelefono(expertToCreate.getTelefono());
 
-        if(!expertToCreate.getNif().isEmpty())
+
+        if(expertToCreate.getNif() != null)
             newExpert.setNif(expertToCreate.getNif());
 
-        if(!expertToCreate.getDisponibilidad().isEmpty())
+        if(expertToCreate.getDisponibilidad() != null)
             newExpert.setDisponibilidad(expertToCreate.getDisponibilidad());
 
-        if(!expertToCreate.getEstado().isEmpty())
+        if(expertToCreate.getEstado() != null)
             newExpert.setEstado(expertToCreate.getEstado());
 
-        if(!expertToCreate.getPuntuacion().isEmpty())
+        if(expertToCreate.getPuntuacion() != null)
             newExpert.setPuntuacion(expertToCreate.getPuntuacion());
 
-        if(expertToCreate.getTelefono() != null )
-            newExpert.setTelefono(expertToCreate.getTelefono());
 
-        if(!expertToCreate.getCorreo().isEmpty())
+        if(expertToCreate.getCorreo() != null)
             newExpert.setCorreo(expertToCreate.getCorreo());
 
-        if(!expertToCreate.getDireccion().isEmpty())
+        if(expertToCreate.getDireccion() != null)
             newExpert.setDireccion(expertToCreate.getDireccion());
 
-        if(!expertToCreate.getObservaciones().isEmpty())
+        if(expertToCreate.getObservaciones() != null)
             newExpert.setObservaciones(expertToCreate.getObservaciones());
 
-        if(!expertToCreate.getEstadoMotivo().isEmpty())
+        if(expertToCreate.getEstadoMotivo()!= null)
             newExpert.setEstadoMotivo(expertToCreate.getEstadoMotivo());
 
         newExpert.setCreatedDate(Instant.now());
