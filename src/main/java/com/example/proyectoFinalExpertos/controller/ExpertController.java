@@ -96,54 +96,57 @@ public class ExpertController {
         log.debug("REST request to find all experts");
 
 
-//        if(customQuery.containsKey("nombre"))
-//            nombre = customQuery.get("nombre");
-//        if(customQuery.containsKey("estado"))
-//            estado = customQuery.get("estado");
-//        if(customQuery.containsKey("limite"))
-//            tamano = Integer.valueOf(customQuery.get("tamaño"));
-//        if(customQuery.containsKey("pagina"))
-//            pagina = Integer.valueOf(customQuery.get("pagina"));
-
-        System.out.println("************************************************************************************");
-        System.out.println(nombre);
-        System.out.println(estado);
-        System.out.println(tamano);
-        System.out.println(pagina);
-        System.out.println("************************************************************************************");
-
-
         try {
             List<Expert> experts = new ArrayList<Expert>();
             Pageable paging = PageRequest.of(pagina, tamano);
 
             Page<Expert> pageExpert;
-            if (nombre == null) {
-                pageExpert = expertRepository.findAll(paging);
-            }
-            else {
-                pageExpert = expertRepository.findByNombre(nombre, paging);
+            if (nombre != null) {
+               pageExpert = expertRepository.findByNombre(nombre, paging);
+
+               experts = pageExpert.getContent();
+
+
+                Map<String, Object> response = new HashMap<>();
+                response.put("experts", experts);
+                response.put("currentPage", pageExpert.get());
+                response.put("totalItems", pageExpert.getTotalElements());
+                response.put("totalPages", pageExpert.getTotalPages());
+
+                return new ResponseEntity<>(response, HttpStatus.OK);
+
             }
 
-            if (estado == null) {
-                pageExpert = expertRepository.findAll(paging);
-            }
-            else {
+            if (estado != null) {
                 pageExpert = expertRepository.findByEstado(estado, paging);
+
+                System.out.println(pageExpert);
+                experts = pageExpert.getContent();
+
+                Map<String, Object> response = new HashMap<>();
+                response.put("experts", experts);
+                response.put("currentPage", pageExpert.get());
+                response.put("totalItems", pageExpert.getTotalElements());
+                response.put("totalPages", pageExpert.getTotalPages());
+
+                return new ResponseEntity<>(response, HttpStatus.OK);
             }
-            experts = pageExpert.getContent();
+            else {
+                pageExpert = expertRepository.findAll(paging);
 
-            Map<String, Object> response = new HashMap<>();
-            response.put("experts", experts);
-            response.put("currentPage", pageExpert.get());
-            response.put("totalItems", pageExpert.getTotalElements());
-            response.put("totalPages", pageExpert.getTotalPages());
+                experts = pageExpert.getContent();
 
-            return new ResponseEntity<>(response, HttpStatus.OK);
+                Map<String, Object> response = new HashMap<>();
+                response.put("experts", experts);
+                response.put("currentPage", pageExpert.get());
+                response.put("totalItems", pageExpert.getTotalElements());
+                response.put("totalPages", pageExpert.getTotalPages());
+
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
 
         // return this.expertService.findAllByFilter(nombre, estado, tamano, pagina);
 
