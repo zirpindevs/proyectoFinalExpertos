@@ -37,7 +37,7 @@ public class UserController {
         User checkUser = this.userService.findByUserName(user.getUsername());
         System.out.println(checkUser);
 
-        if(checkUser.getPassword() == "1234")
+        if(checkUser.getPassword().equals("1234"))
             return ResponseEntity.ok().body(checkUser);
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
