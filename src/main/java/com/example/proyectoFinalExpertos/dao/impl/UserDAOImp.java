@@ -49,17 +49,17 @@ public class UserDAOImp implements UserDAO {
     }
 
     @Override
-    public List<User> findAllByName(String name) {
+    public User findByUserName(String username){
+
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
         Root<User> root = criteria.from(User.class);
 
-        criteria.select(root);
-        criteria.where(builder.like(root.get("name"), "%"+name+"%"));
+        criteria.where(builder.equal(root.get("username"), username));
 
-        List<User> user = session.createQuery(criteria).list();
+        User user = session.createQuery(criteria).uniqueResult();
 
         session.close();
 

@@ -29,12 +29,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllByName(String name) {
-        log.info("REST request to find an user by name");
+    public User findByUserName(String username) {
+        log.info("REST request to find an username by name");
 
-        if(name.isEmpty())
+        if(username == null)
             return null;
-        return this.userDAO.findAllByName(name);
+        return this.userDAO.findByUserName(username);
     }
 
 

@@ -239,28 +239,11 @@ public class ExpertDAOImp implements ExpertDAO {
         //si quitas este devuelve all y permitiria paginar, sino se limita a enseñar lo que tiene
         if(pagina != null)
        query.setMaxResults(Integer.parseInt(tamano));
-       /* query.setFirstResult(Integer.parseInt(pagina));*/
-
 
         List experts = query.getResultList();
 
-/*        //formulas de paginacion
-        Integer countResults = query.getResultList().size();
-        int pageSize = Integer.parseInt(limite);
-
-        int lastPageNumber = (int) (Math.ceil(countResults / pageSize));
-        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
-        System.out.println(countResults);
-        System.out.println(lastPageNumber);
-
-        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
-
-
-        session.close();*/
-
         return experts;
     }
-
 
     @Override
     public void deleteExpert(Expert expertToDelete){

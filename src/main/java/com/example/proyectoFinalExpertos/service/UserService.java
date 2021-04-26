@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface UserService {
     User findOne(Long id);
-    List<User> findAllByName(String name);
+    User findByUserName(String username);
     }

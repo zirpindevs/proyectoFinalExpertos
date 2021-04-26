@@ -26,20 +26,21 @@ public class UserController {
     }
 
     /**
-     * FIND USER BY NAME
-     * @return List<User>
-     * @throws URISyntaxException
+     * FIND USER BY USERNAME
+     * @return String
      */
-    @GetMapping("/users/}")
-    public String findUserName(@RequestBody Expert user) throws URISyntaxException {
+    @PostMapping("/users")
+    public ResponseEntity<User>  findUserName(@RequestBody User user) throws URISyntaxException {
         log.debug("REST request to login an user: {} ", user);
 
         System.out.println(user);
+        User checkUser = this.userService.findByUserName(user.getUsername());
+        System.out.println(checkUser);
 
-        String token = "1234";
-
-        //return this.userService.findAllByName(user);
-    return token;
+        if(checkUser.getPassword() == "1234")
+            return ResponseEntity.ok().body(checkUser);
+        else
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }
