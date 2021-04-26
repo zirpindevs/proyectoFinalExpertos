@@ -38,6 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers( HttpMethod.GET,"/api/etiquetas/**").permitAll()
                 .mvcMatchers( HttpMethod.DELETE,"/api/etiquetas/**").permitAll()
                 .mvcMatchers( HttpMethod.PUT,"/api/etiquetas/**").permitAll()
+                .mvcMatchers( HttpMethod.POST,"/api/users").permitAll()
+
 
                 .mvcMatchers("/api/**")
                 .anonymous()
