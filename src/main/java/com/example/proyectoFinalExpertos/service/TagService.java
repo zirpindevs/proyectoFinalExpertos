@@ -12,6 +12,8 @@ public interface TagService {
     void deleteTag(Tag tagToDelete);
     List<Tag> findAllByFilter(String nombre, String limite, String pagina);
     List<Tag> findAll();
+    Tag findByName(String name);
+
     Tag findOne(Long id);
     List<Tag> findByAllByName(String name);
 
