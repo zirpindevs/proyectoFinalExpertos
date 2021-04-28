@@ -49,6 +49,10 @@ public class ExpertController {
         if (expertToCreate.getId() != null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
+        if (expertToCreate.getNombre().isBlank() || expertToCreate.getTelefono().equals("")) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         Expert createdExpert = this.expertService.createExpert(expertToCreate);
 
         return ResponseEntity
