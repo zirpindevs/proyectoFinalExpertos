@@ -1,6 +1,6 @@
 
 insert into experts (nombre, nif, telefono, correo, direccion, cursos, condiciones, estado, disponibilidad, modalidad, created_date, puntuacion) values ('juan', '10000A', 601, "juan@lopez", "paseo de marsella", "curso1", 30, "pendiente", "inmediata", "online", "2021-04-22 01:00:00", "100");
-insert into experts (nombre, nif, telefono, correo, direccion, cursos, condiciones, estado, disponibilidad, modalidad, created_date) values ('rafa', '20000A', 602, "rafa@montero", "paseo de cadiz", "curso2", 40, "validado", "media", "", "2011-04-21 01:02:00");
+insert into experts (nombre, nif, telefono, correo, direccion, cursos, condiciones, estado, disponibilidad, modalidad, created_date) values ('rafael', '20000A', 602, "rafa@montero", "paseo de cadiz", "curso2", 40, "validado", "media", "", "2011-04-21 01:02:00");
 insert into experts (nombre, nif, telefono, correo, direccion, cursos, condiciones, estado, disponibilidad, modalidad, created_date, puntuacion) values ('javi', '30000A', 603, "javi@diaz", "paseo de malaga", "curso3", 50, "pendiente", "inmediata", "presencial", "2021-05-20 00:00:00", "90");
 
 insert into experts (nombre, nif, telefono, correo, direccion, cursos, condiciones, estado, disponibilidad, modalidad, created_date) values ('juan','40000A', 604, "juan@gomez", "paseo de pozoblanco", "curso4", 30, "pendiente", "inmediata", "", "2021-04-21 01:00:00");
