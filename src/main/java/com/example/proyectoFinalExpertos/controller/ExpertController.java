@@ -49,7 +49,7 @@ public class ExpertController {
         if (expertToCreate.getId() != null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        if (expertToCreate.getNombre().isBlank() || expertToCreate.getTelefono().equals("")) {
+        if (expertToCreate.getNombre() == "" || expertToCreate.getTelefono().equals("")) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
