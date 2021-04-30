@@ -91,7 +91,6 @@ public class ExpertController {
      * FIND ALL EXPERTS
      * @return List<Expert>
      */
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/expertos")
     public ResponseEntity<Map<String, Object>>getAll(
             @RequestParam(required = false) String nombre,

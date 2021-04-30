@@ -90,7 +90,7 @@ public class TagController {
      * FIND ALL TAGS
      * @return List<Tag>
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/etiquetas")
+    @RequestMapping(method = RequestMethod.GET, value = "/expertos")
     public List<Tag> findTags(){
         log.debug("REST request to find all Tags");
 
