@@ -1,5 +1,7 @@
 package com.example.proyectoFinalExpertos.model;
 
+import com.example.proyectoFinalExpertos.Tag;
+
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.ArrayList;

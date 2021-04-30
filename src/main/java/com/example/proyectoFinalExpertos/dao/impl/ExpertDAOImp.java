@@ -2,12 +2,11 @@ package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
-import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.Tag;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import util.HibernateUtil;
-import util.JpaUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +15,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.time.Instant;
-import java.util.Collection;
 import java.util.List;
 
 @Repository

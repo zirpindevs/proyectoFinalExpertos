@@ -1,6 +1,6 @@
 package com.example.proyectoFinalExpertos.controller;
 
-import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.Tag;
 import com.example.proyectoFinalExpertos.service.impl.TagServiceImpl;
 import org.hibernate.Session;
 import org.slf4j.Logger;
@@ -16,7 +16,6 @@ import javax.persistence.criteria.Root;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "https://proyectofinal12345.netlify.app", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})

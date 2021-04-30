@@ -3,7 +3,7 @@ package com.example.proyectoFinalExpertos.service.impl;
 import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.dao.TagDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
-import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.Tag;
 import com.example.proyectoFinalExpertos.service.TagService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

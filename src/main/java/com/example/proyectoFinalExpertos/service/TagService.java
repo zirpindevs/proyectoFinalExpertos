@@ -1,7 +1,6 @@
 package com.example.proyectoFinalExpertos.service;
 
-import com.example.proyectoFinalExpertos.model.Expert;
-import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.Tag;
 
 import java.util.List;
 
