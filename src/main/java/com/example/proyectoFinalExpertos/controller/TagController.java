@@ -18,9 +18,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-/*
-@CrossOrigin(origins = "https://proyectofinal12345.netlify.app", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-*/
+@CrossOrigin(origins = "https://proyecto-final-expertos-front-25n460oej-zirpindevs.vercel.app/etiquetas", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 @RequestMapping("/api")
 public class TagController {
 
@@ -92,7 +90,8 @@ public class TagController {
      * FIND ALL TAGS
      * @return List<Tag>
      */
-    @GetMapping("/etiquetas2")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/etiquetas")
     public List<Tag> findTags(){
         log.debug("REST request to find all Tags");
 

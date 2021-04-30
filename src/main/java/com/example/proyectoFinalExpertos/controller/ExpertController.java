@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "https://proyectofinal12345.netlify.app", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@CrossOrigin(origins = "https://proyecto-final-expertos-front-25n460oej-zirpindevs.vercel.app", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 
 @RequestMapping("/api")
 public class ExpertController {
@@ -96,6 +96,7 @@ public class ExpertController {
      * FIND ALL EXPERTS
      * @return List<Expert>
      */
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/expertos")
     public ResponseEntity<Map<String, Object>>getAll(
             @RequestParam(required = false) String nombre,
@@ -195,13 +196,5 @@ public class ExpertController {
         this.expertService.deleteExpert(expertToDelete);
         return ResponseEntity.noContent().build();
     }
-
-    @GetMapping("/etiquetas")
-    public List<Tag> findTags(){
-        log.debug("REST request to find all Tags");
-
-        return this.tagService.findAll();
-    }
-
 
 }
