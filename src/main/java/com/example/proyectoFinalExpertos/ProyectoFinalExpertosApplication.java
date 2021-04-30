@@ -6,12 +6,14 @@ import org.hibernate.Session;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import util.HibernateUtil;
 
 import java.time.Instant;
 
 @SpringBootApplication
 @ComponentScan({"com.example.proyectoFinalExpertos"})
+@EnableJpaRepositories
 public class ProyectoFinalExpertosApplication {
 
 	public static void main(String[] args) {
