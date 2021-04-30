@@ -56,7 +56,13 @@ public class TagController {
                     .body(createTag);
         }
         else
-        return new ResponseEntity<>(HttpStatus.IM_USED);
+        {
+            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            System.out.println("im used");
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
      /**
