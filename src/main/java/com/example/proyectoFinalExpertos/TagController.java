@@ -1,6 +1,6 @@
-package com.example.proyectoFinalExpertos.controller;
+package com.example.proyectoFinalExpertos;
 
-import com.example.proyectoFinalExpertos.Tag;
+import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.service.impl.TagServiceImpl;
 import org.hibernate.Session;
 import org.slf4j.Logger;

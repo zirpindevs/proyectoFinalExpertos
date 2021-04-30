@@ -2,7 +2,7 @@ package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
-import com.example.proyectoFinalExpertos.Tag;
+import com.example.proyectoFinalExpertos.model.Tag;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

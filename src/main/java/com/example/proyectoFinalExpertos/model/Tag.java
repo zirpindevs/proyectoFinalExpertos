@@ -1,6 +1,4 @@
-package com.example.proyectoFinalExpertos;
-
-import com.example.proyectoFinalExpertos.model.Expert;
+package com.example.proyectoFinalExpertos.model;
 
 import javax.persistence.*;
 import java.time.Instant;
