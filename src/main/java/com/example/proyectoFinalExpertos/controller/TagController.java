@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "https://proyectofinal12345.netlify.app", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-@RequestMapping("/api2")
+@RequestMapping("/api")
 public class TagController {
 
     private final Logger log = LoggerFactory.getLogger(TagController.class);
@@ -90,7 +90,7 @@ public class TagController {
      * FIND ALL TAGS
      * @return List<Tag>
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/etiquetas")
+    @RequestMapping(method = RequestMethod.GET, value = "/etiquetas2")
     public List<Tag> findTags(){
         log.debug("REST request to find all Tags");
 

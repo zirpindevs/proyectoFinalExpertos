@@ -1,8 +1,10 @@
 package com.example.proyectoFinalExpertos.controller;
 
 import com.example.proyectoFinalExpertos.model.Expert;
+import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.repository.ExpertRepository;
 import com.example.proyectoFinalExpertos.service.ExpertService;
+import com.example.proyectoFinalExpertos.service.TagService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -29,10 +31,13 @@ public class ExpertController {
 
     private final ExpertService expertService;
 
+    private final TagService tagService;
+
     private final ExpertRepository expertRepository;
 
-    public ExpertController(ExpertService expertService, ExpertRepository expertRepository) {
+    public ExpertController(ExpertService expertService, TagService tagService, ExpertRepository expertRepository) {
         this.expertService = expertService;
+        this.tagService = tagService;
         this.expertRepository = expertRepository;
     }
 
@@ -189,6 +194,18 @@ public class ExpertController {
 
         this.expertService.deleteExpert(expertToDelete);
         return ResponseEntity.noContent().build();
+    }
+
+
+    /**
+     * FIND ALL TAGS
+     * @return List<Tag>
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/etiquetas")
+    public List<Tag> findTags(){
+        log.debug("REST request to find all Tags");
+
+        return this.tagService.findAll();
     }
 
 
