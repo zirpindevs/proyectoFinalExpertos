@@ -1,4 +1,4 @@
-package com.example.proyectoFinalExpertos;
+package com.example.proyectoFinalExpertos.controller;
 
 import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.service.impl.TagServiceImpl;
