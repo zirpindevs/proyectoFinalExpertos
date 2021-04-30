@@ -5,11 +5,13 @@ import com.example.proyectoFinalExpertos.model.Tag;
 import org.hibernate.Session;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import util.HibernateUtil;
 
 import java.time.Instant;
 
 @SpringBootApplication
+@ComponentScan({"com.example.proyectoFinalExpertos.controller"})
 public class ProyectoFinalExpertosApplication {
 
 	public static void main(String[] args) {
