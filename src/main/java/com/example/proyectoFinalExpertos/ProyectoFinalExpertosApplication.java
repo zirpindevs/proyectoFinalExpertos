@@ -11,8 +11,7 @@ import util.HibernateUtil;
 
 import java.time.Instant;
 
-@SpringBootApplication
-@ComponentScan({"com.example.proyectoFinalExpertos"})
+@SpringBootApplication(scanBasePackages="controller")
 public class ProyectoFinalExpertosApplication {
 
 	public static void main(String[] args) {
