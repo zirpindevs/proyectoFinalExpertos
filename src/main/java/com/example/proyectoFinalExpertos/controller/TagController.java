@@ -90,6 +90,7 @@ public class TagController {
      * FIND ALL TAGS
      * @return List<Tag>
      */
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/etiquetas")
     public List<Tag> findTags(){
         log.debug("REST request to find all Tags");
