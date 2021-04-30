@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "https://proyectofinal12345.netlify.app", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-@RequestMapping("/api")
+@RequestMapping("/api2")
 public class TagController {
 
     private final Logger log = LoggerFactory.getLogger(TagController.class);
