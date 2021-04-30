@@ -96,9 +96,7 @@ public class TagDAOImp implements TagDAO {
 
     @Override
     public Tag findByName(String name){
-        System.out.println("*****************tag find by name***************************");
-        System.out.println(name);
-        System.out.println("*********************************************");
+
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();

@@ -72,7 +72,7 @@ public class TagServiceImpl implements TagService {
     public Tag findByName(String name) {
         log.info("REST request to find an tag by title");
 
-        if(name.isEmpty())
+        if(name == "")
             return null;
         return this.tagDAO.findByName(name);
     }
