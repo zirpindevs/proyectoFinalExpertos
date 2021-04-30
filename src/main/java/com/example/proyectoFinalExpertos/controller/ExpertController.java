@@ -31,11 +31,13 @@ public class ExpertController {
 
     private final ExpertService expertService;
 
+    private final TagService tagService;
 
     private final ExpertRepository expertRepository;
 
-    public ExpertController(ExpertService expertService, TagService tagService, ExpertRepository expertRepository) {
+    public ExpertController(ExpertService expertService, TagService tagService, TagService tagService1, ExpertRepository expertRepository) {
         this.expertService = expertService;
+        this.tagService = tagService1;
         this.expertRepository = expertRepository;
     }
 
@@ -194,7 +196,12 @@ public class ExpertController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/etiquetas")
+    public List<Tag> findTags(){
+        log.debug("REST request to find all Tags");
 
+        return this.tagService.findAll();
+    }
 
 
 }
