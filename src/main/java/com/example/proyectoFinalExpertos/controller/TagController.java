@@ -18,7 +18,9 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+/*
 @CrossOrigin(origins = "https://proyectofinal12345.netlify.app", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+*/
 @RequestMapping("/api")
 public class TagController {
 
