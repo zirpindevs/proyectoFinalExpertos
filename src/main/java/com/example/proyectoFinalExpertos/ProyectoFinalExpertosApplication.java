@@ -13,7 +13,6 @@ import java.time.Instant;
 
 @SpringBootApplication
 @ComponentScan({"com.example.proyectoFinalExpertos"})
-@EnableJpaRepositories
 public class ProyectoFinalExpertosApplication {
 
 	public static void main(String[] args) {
