@@ -99,37 +99,6 @@ public class TagController {
     }
 
     /**
-     * FIND ALL TAG BY FILTER
-     * @return List<Tag>
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/etiquetas")
-    public List<Tag> controllerMethod(@RequestParam Map<String, String> customQuery){
-        log.debug("REST request to find all tags");
-
-        String nombre = "";
-        String limite = "5";
-        String pagina = "0";
-
-        if(customQuery.containsKey("nombre"))
-            nombre = customQuery.get("nombre");
-        if(customQuery.containsKey("limite"))
-            limite = customQuery.get("limite");
-        if(customQuery.containsKey("pagina"))
-            pagina = customQuery.get("pagina");
-
-/*
-        System.out.println("****************************FIND ALL TAG BY FILTER*************************************************");
-        System.out.println(nombre);
-        System.out.println(limite);
-        System.out.println(pagina);
-        System.out.println("************************************************************************************");
-*/
-
-
-        return this.tagService.findAllByFilter(nombre, limite, pagina);
-        }
-
-    /**
      * FIND ONE TAG BY ID
      * @param id
      * @return ResponseEntity<Tag>
