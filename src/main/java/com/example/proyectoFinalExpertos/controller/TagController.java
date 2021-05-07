@@ -18,7 +18,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://proyecto-final-expertos-front-25n460oej-zirpindevs.vercel.app/etiquetas", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@CrossOrigin(origins = "https://proyecto-final-expertos-front-5468r47tm-zirpindevs.vercel.app/etiquetas", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 
 @RequestMapping("/api")
 public class TagController {
@@ -38,6 +38,7 @@ public class TagController {
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
      */
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/etiquetas")
     public ResponseEntity<Tag> createTag(@RequestBody Tag tagName) throws URISyntaxException {
         log.debug("REST request to create new a tag: {} ", tagName);

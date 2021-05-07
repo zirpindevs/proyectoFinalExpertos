@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "https://proyecto-final-expertos-front-25n460oej-zirpindevs.vercel.app", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@CrossOrigin(origins = "https://proyecto-final-expertos-front-5468r47tm-zirpindevs.vercel.app/expertos", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 
 @RequestMapping("/api")
 public class ExpertController {
@@ -46,6 +46,7 @@ public class ExpertController {
      * @throws URISyntaxException
      */
     @PostMapping("/expertos")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Expert> createExpert(@RequestBody Expert expertToCreate) throws URISyntaxException {
         log.debug("REST request to create an expert: {} ", expertToCreate);
 
