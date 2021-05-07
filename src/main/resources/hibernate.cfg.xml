@@ -26,10 +26,9 @@
 
 
 <!--        Entidades-->
-        <mapping class="com.example.proyectoFinalExpertos.model.User" />
         <mapping class="com.example.proyectoFinalExpertos.model.Expert" />
         <mapping class="com.example.proyectoFinalExpertos.model.Tag" />
-        <mapping class="com.example.proyectoFinalExpertos.model.ExpertConditions" />
+        <mapping class="com.example.proyectoFinalExpertos.model.User" />
 
     </session-factory>
 </hibernate-configuration>
