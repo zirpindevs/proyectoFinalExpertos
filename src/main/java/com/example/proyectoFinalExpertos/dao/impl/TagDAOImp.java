@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.TagDAO;
+import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class TagDAOImp implements TagDAO {
 
     @Autowired
     private Session session;
+
+    @Override
+    public List<Tag> findAllFromSession() {
+        return session.createQuery("from Tag t").list();
+    }
 
     @Override
     public Tag createTag(String tagName) {
@@ -67,11 +73,14 @@ public class TagDAOImp implements TagDAO {
     }
 
     @Override
-    public List<Tag> findAll(){
+    public List<Tag> findAll() {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        return session.createQuery("from Tag", Tag.class ).list();
+
+        List<Tag> tags = session.createQuery("from Employee", Tag.class).list();
+    return tags;
     }
+
 
     @Override
     public Tag findById(Long id){

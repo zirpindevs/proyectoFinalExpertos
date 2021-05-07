@@ -1,5 +1,6 @@
 package com.example.proyectoFinalExpertos.service;
 
+import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.model.User;
 
 import java.util.List;
@@ -7,4 +8,6 @@ import java.util.List;
 public interface UserService {
     User findOne(Long id);
     User findByUserName(String username);
-    }
+    List<User> findAll();
+
+}

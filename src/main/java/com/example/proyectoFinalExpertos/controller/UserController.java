@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -26,9 +27,23 @@ public class UserController {
     }
 
     /**
-     * FIND USER BY USERNAME
-     * @return String
+     * FIND ALL EXPERTS
+     * @return List<User>
      */
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @RequestMapping(method = RequestMethod.GET, value = "/users")
+    public List<User>getAll() {
+
+        log.debug("REST request to find all usres");
+
+        return this.userService.findAll();
+
+    }
+
+        /**
+         * FIND USER BY USERNAME
+         * @return String
+         */
     @PostMapping("/users")
     public ResponseEntity<User>  findUserName(@RequestBody User user) throws URISyntaxException {
         log.debug("REST request to login an user: {} ", user);

@@ -37,5 +37,9 @@ public class UserServiceImpl implements UserService {
         return this.userDAO.findByUserName(username);
     }
 
+    @Override
+    public List<User> findAll(){
+        return this.userDAO.findAllFromSession();
+    }
 
 }
