@@ -32,6 +32,33 @@ insert into tags(name, created_date) values ('basic', "2001-01-11 01:00:00");
 insert into tags(name, created_date) values ('cobol', "2011-02-11 01:00:00");
 
 
+insert into pivot (expert_id, tag_id) values (1, 1);
+insert into pivot (expert_id, tag_id) values (1, 2);
+
+insert into pivot (expert_id, tag_id) values (2, 3);
+
+insert into pivot (expert_id, tag_id) values (3, 3);
+insert into pivot (expert_id, tag_id) values (4, 5);
+
+insert into pivot (expert_id, tag_id) values (5, 3);
+insert into pivot (expert_id, tag_id) values (5, 2);
+
+insert into pivot (expert_id, tag_id) values (6, 4);
+insert into pivot (expert_id, tag_id) values (7, 2);
+
+insert into pivot (expert_id, tag_id) values (8, 1);
+insert into pivot (expert_id, tag_id) values (8, 4);
+
+
+insert into pivot (expert_id, tag_id) values (9, 5);
+
+insert into pivot (expert_id, tag_id) values (10, 1);
+insert into pivot (expert_id, tag_id) values (10, 3);
+
+
+
+insert into pivot (expert_id, tag_id) values (11, 2);
+insert into pivot (expert_id, tag_id) values (12, 4);
 
 
 insert into users (username, password) values ('ingenia', '1234');
