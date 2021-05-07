@@ -1,7 +1,7 @@
 package com.example.proyectoFinalExpertos.controller;
 
 import com.example.proyectoFinalExpertos.model.Tag;
-import com.example.proyectoFinalExpertos.service.impl.TagServiceImpl;
+import com.example.proyectoFinalExpertos.service.TagService;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,19 +19,20 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "https://proyecto-final-expertos-front-25n460oej-zirpindevs.vercel.app/etiquetas", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+
 @RequestMapping("/api")
 public class TagController {
 
     private final Logger log = LoggerFactory.getLogger(TagController.class);
 
-    private final TagServiceImpl tagService;
+    private final TagService tagService;
 
-    public TagController(TagServiceImpl tagService) {
+    public TagController(TagService tagService) {
         this.tagService = tagService;
     }
 
 
-   /**
+    /**
      * CREATE A TAG
      * @param tagName
      * @return ResponseEntity<Tag>
