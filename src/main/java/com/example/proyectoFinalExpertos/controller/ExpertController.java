@@ -1,10 +1,8 @@
 package com.example.proyectoFinalExpertos.controller;
 
 import com.example.proyectoFinalExpertos.model.Expert;
-import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.repository.ExpertRepository;
 import com.example.proyectoFinalExpertos.service.ExpertService;
-import com.example.proyectoFinalExpertos.service.TagService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -31,13 +29,11 @@ public class ExpertController {
 
     private final ExpertService expertService;
 
-    private final TagService tagService;
 
     private final ExpertRepository expertRepository;
 
-    public ExpertController(ExpertService expertService, TagService tagService, TagService tagService1, ExpertRepository expertRepository) {
+    public ExpertController(ExpertService expertService, ExpertRepository expertRepository) {
         this.expertService = expertService;
-        this.tagService = tagService1;
         this.expertRepository = expertRepository;
     }
 
