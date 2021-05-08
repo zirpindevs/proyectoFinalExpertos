@@ -30,22 +30,26 @@ public class UserController {
     }
 
     /**
-         * FIND USER BY MAIL
+         * FIND USER BY EMAIL
          * @return String
          */
     @PostMapping("/users")
-    public ResponseEntity<User>  findUserName(@RequestBody User user) throws URISyntaxException {
-        log.debug("REST request to login an user: {} ", user);
+    public ResponseEntity<User> findUserName(@RequestBody User user) throws URISyntaxException {
+        log.debug("REST request to find an user by mail: {} ", user);
 
         System.out.println(user);
-        User checkUser = userRepository.findByEmail((user.getEmail()));
-        System.out.println(checkUser);
+        User checkUser = new User();
 
-        if(checkUser.getPassword().equals("1234"))
-            return ResponseEntity.ok().body(checkUser);
-        else
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            checkUser = userRepository.findByEmail((user.getEmail()));
+            if (checkUser.getEmail().equals(user.getEmail()))
+                return ResponseEntity.ok().body(checkUser);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+
 
     /**
      * CREATE USER
