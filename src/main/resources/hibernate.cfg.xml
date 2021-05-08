@@ -7,26 +7,24 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
         <!--
         <property name="connection.url">jdbc:mysql://localhost:3306/hibernatedb</property>
         <property name="connection.username">root</property>
         <property name="connection.password">admin</property>-->
-<!--        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
         <property name="connection.url">mysql://jcjuthwxzd0tff3l:o64djcmdwhdvkxgd@d3y0lbg7abxmbuoi.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/ia9n6wmgehvlnycm</property>
         <property name="connection.username">jcjuthwxzd0tff3l</property>
-        <property name="connection.password">o64djcmdwhdvkxgd</property>-->
-
-        <property name="connection.url">mysql://b28d0a283b0325:6191f490@eu-cdbr-west-01.cleardb.com/heroku_b598cbf79f5b8d7?reconnect=true</property>
-        <property name="connection.username">b28d0a283b0325</property>
-        <property name="connection.password">6191f490</property>
+        <property name="connection.password">o64djcmdwhdvkxgd</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
-        <!--        <property name="connection.pool_size">1</property>-->
+        <property name="connection.pool_size">1</property>
         <!-- Select our SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
+
 
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
