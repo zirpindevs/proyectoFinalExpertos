@@ -50,6 +50,9 @@ public class ExpertController {
     public ResponseEntity<Expert> createExpert(@RequestBody Expert expertToCreate) throws URISyntaxException {
         log.debug("REST request to create an expert: {} ", expertToCreate);
 
+        System.out.println(("controleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeer"));
+        System.out.println(expertToCreate);
+
         if (expertToCreate.getNombre() != null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
