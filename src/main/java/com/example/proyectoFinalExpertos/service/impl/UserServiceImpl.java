@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.service.impl;
 
 import com.example.proyectoFinalExpertos.dao.UserDAO;
+import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.User;
 import com.example.proyectoFinalExpertos.service.UserService;
 import org.slf4j.Logger;
@@ -38,8 +39,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll(){
-        return this.userDAO.findAllFromSession();
+    public User createUser(User user) {
+        log.info("REST request to create an iser");
+        return this.userDAO.createUser(user);
     }
 
 }

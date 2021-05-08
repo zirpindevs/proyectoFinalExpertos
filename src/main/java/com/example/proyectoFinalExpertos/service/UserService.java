@@ -8,6 +8,6 @@ import java.util.List;
 public interface UserService {
     User findOne(Long id);
     User findByEmail(String email);
-    List<User> findAll();
+    User createUser(User user);
 
 }

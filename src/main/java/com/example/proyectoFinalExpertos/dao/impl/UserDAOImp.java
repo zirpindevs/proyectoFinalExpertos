@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.dao.impl;
 
 import com.example.proyectoFinalExpertos.dao.UserDAO;
+import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.User;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +67,28 @@ public class UserDAOImp implements UserDAO {
         return user;
     }
 
+
+    @Override
+    public User createUser(User userToCreate)
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        User newUser = new User();
+
+        newUser.setEmail(userToCreate.getEmail());
+        newUser.setPassword(userToCreate.getPassword());
+
+
+        newUser.setCreatedDate(Instant.now());
+
+        session.save(newUser);
+
+        session.getTransaction().commit();
+
+        session.close();
+
+        return newUser;
+    }
 }
