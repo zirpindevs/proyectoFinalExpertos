@@ -4,9 +4,12 @@ import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import util.HibernateUtil;
+import util.JpaUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,11 +34,17 @@ public class ExpertDAOImp implements ExpertDAO {
         return session.createQuery("from Expert e").list();
     }
 
+
+
+
     @Override
     public Expert createExpert(Expert expertToCreate) {
 
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
 
         session.beginTransaction();
 
