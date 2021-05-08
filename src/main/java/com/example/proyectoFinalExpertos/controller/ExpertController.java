@@ -53,10 +53,6 @@ public class ExpertController {
         if (expertToCreate.getNombre() != null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        if (expertToCreate.getNombre() == "" || expertToCreate.getTelefono().equals("")) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
         Expert createdExpert = this.expertService.createExpert(expertToCreate);
 
         return ResponseEntity
