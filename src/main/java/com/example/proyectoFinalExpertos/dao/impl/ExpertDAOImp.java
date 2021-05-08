@@ -31,11 +31,12 @@ public class ExpertDAOImp implements ExpertDAO {
         return session.createQuery("from Expert e").list();
     }
 
-
-
     @Override
     public Expert createExpert(Expert expertToCreate) {
 
+        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        System.out.println(expertToCreate);
+        System.out.println(expertToCreate.getNombre());
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
