@@ -55,7 +55,7 @@ public class ExpertController {
         System.out.println(expertToCreate.getNombre());
 
 
-        if (expertToCreate.getNombre() != null)
+        if (expertToCreate.getNombre() == null || expertToCreate.getTelefono() == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         Expert createdExpert = this.expertService.createExpert(expertToCreate);

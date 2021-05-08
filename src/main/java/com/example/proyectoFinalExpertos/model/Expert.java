@@ -241,7 +241,7 @@ public class Expert {
     public String toString() {
         return "Expert{" +
                 "id=" + id +
-                ", name='" + nombre + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", nif='" + nif + '\'' +
                 ", telefono=" + telefono +
                 ", correo='" + correo + '\'' +
