@@ -49,7 +49,7 @@ public class UserDAOImp implements UserDAO {
     }
 
     @Override
-    public User findByUserName(String username){
+    public User findByEmail(String email){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -57,7 +57,7 @@ public class UserDAOImp implements UserDAO {
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
         Root<User> root = criteria.from(User.class);
 
-        criteria.where(builder.equal(root.get("username"), username));
+        criteria.where(builder.equal(root.get("email"), email));
 
         User user = session.createQuery(criteria).uniqueResult();
 

@@ -13,8 +13,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="username")
-    private String username;
+    @Column(name="email")
+    private String email;
 
     @Column(name="password")
     private String password;
@@ -25,12 +25,12 @@ public class User {
     public User() {
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public User setUsername(String username) {
-        this.username = username;
+    public User setEmail(String email) {
+        this.email = email;
         return this;
     }
 
@@ -56,7 +56,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", createdDate=" + createdDate +
                 '}';

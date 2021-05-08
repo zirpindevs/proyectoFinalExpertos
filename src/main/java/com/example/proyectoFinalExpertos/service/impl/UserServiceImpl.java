@@ -29,12 +29,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUserName(String username) {
-        log.info("REST request to find an username by name");
+    public User findByEmail(String email){
+        log.info("REST request to find an username by email");
 
-        if(username == null)
+        if(email == null)
             return null;
-        return this.userDAO.findByUserName(username);
+        return this.userDAO.findByEmail(email);
     }
 
     @Override
