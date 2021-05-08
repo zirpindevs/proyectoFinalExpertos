@@ -26,6 +26,7 @@
         <property name="format_sql">true</property>
 
 
+
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
         <!-- Drop and re-create the database schema on startup -->
