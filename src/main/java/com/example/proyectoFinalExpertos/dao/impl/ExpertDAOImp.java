@@ -33,9 +33,14 @@ public class ExpertDAOImp implements ExpertDAO {
 
     @Override
     public Expert createExpert(Expert expertToCreate) {
+
+        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        System.out.println(expertToCreate);
+
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
+
 
         Expert newExpert = new Expert();
 
