@@ -52,6 +52,8 @@ public class ExpertController {
 
         System.out.println(("controleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeer"));
         System.out.println(expertToCreate);
+        System.out.println(expertToCreate.getNombre());
+
 
         if (expertToCreate.getNombre() != null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
