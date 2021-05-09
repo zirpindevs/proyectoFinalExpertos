@@ -31,16 +31,17 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tag createTag(String tagName) {
         log.info("REST request to create a tag");
-
+        System.out.println(tagName);
         Tag tagCreate = null;
 
             try {
+                tagCreate.setName(tagName);
                 tagCreate.setCreatedDate(Instant.now());
                 tagCreate.setLast_updated(Instant.now());
-                tagCreate.setName(tagName);
+                System.out.println(tagCreate);
                 tagCreate = tagRepository.save(tagCreate);
             } catch (Exception e) {
-                log.error("Cannot save the expert: {} , error : {}", tagCreate, e);
+                log.error("Cannot save the tag: {} , error : {}", tagCreate, e);
             }
 
     return tagCreate;
