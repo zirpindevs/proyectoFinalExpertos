@@ -71,22 +71,25 @@ public class TagController {
 
      /**
      * UPDATE TAG
-     * @param id
      * @param modifiedTag
      * @return ResponseEntity<Tag>
      */
-    @PutMapping("/etiquetas/{id}")
-    public ResponseEntity<Tag> updateTag(@PathVariable Long id, @RequestBody Tag modifiedTag){
+    @PutMapping("/etiquetas")
+    public ResponseEntity<Tag> updateTag(@RequestBody Tag modifiedTag){
         log.debug("REST request to update one tag: {} ",modifiedTag);
 
-        Tag updateTag = this.tagService.updateTag(id, modifiedTag);
-
-        if(updateTag.getId() == null) {
+        if (modifiedTag.getId() == null) {
             log.warn("update tag without id");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
+        Tag updateTag = this.tagService.updateTag(modifiedTag);
+
+        if(updateTag == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         return ResponseEntity.ok().body(updateTag);
+
     }
 
 

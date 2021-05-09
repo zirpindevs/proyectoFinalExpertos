@@ -47,16 +47,23 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag updateTag(Long id, Tag tag) {
+    public Tag updateTag(Tag updatetag) {
         log.info("REST request to update an tag");
 
-        Tag findTag = this.findOne(id);
+        Tag findTag = tagDAO.findById(updatetag.getId());
 
         if(findTag == null) {
             return null;
         }
 
-        return this.tagDAO.modifyTag(tag, findTag);
+        try{
+            updatetag.setLast_updated(Instant.now());
+            findTag = tagRepository.save(updatetag);
+        }catch(Exception e){
+            log.error("Cannot save tag: {} , error : {}", updatetag, e);
+        }
+        return updatetag;
+
     }
 
     @Override
