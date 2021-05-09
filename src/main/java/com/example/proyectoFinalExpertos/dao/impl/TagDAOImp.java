@@ -23,14 +23,6 @@ public class TagDAOImp implements TagDAO {
     @PersistenceContext
     private EntityManager manager;
 
-    @Autowired
-    private Session session;
-
-    @Override
-    public List<Tag> findAllFromSession() {
-        return session.createQuery("from Tag t").list();
-    }
-
     @Override
     public Tag createTag(String tagName) {
         Tag tag = new Tag();

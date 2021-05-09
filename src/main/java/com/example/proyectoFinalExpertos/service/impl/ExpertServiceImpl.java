@@ -4,30 +4,51 @@ import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.dao.TagDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.repository.ExpertRepository;
 import com.example.proyectoFinalExpertos.service.ExpertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
 public class ExpertServiceImpl implements ExpertService {
     private final Logger log = LoggerFactory.getLogger(ExpertServiceImpl.class);
 
+
     private final ExpertDAO expertDAO;
     private final TagDAO tagDAO;
+    private ExpertRepository expertRepository;
 
-    public ExpertServiceImpl(ExpertDAO expertDAO, TagDAO tagDAO) {
+
+    public ExpertServiceImpl(ExpertDAO expertDAO, TagDAO tagDAO, ExpertRepository expertRepository) {
         this.expertDAO = expertDAO;
         this.tagDAO = tagDAO;
+        this.expertRepository = expertRepository;
     }
 
     @Override
     public Expert createExpert(Expert expert) {
-        log.info("REST request to create an expert");
-        return this.expertDAO.createExpert(expert);
+        log.debug("Create expert: {}", expert);
+
+        Expert expertCreated = null;
+
+        if (expert.getId() == null) {
+            try{
+                expert.setCreatedDate(Instant.now());
+                expert.setLast_updated(Instant.now());
+                expertCreated = expertRepository.save(expert);
+            }catch(Exception e) {
+                log.error("Cannot save the expert: {} , error : {}", expert, e);
+            }
+        }else{
+            log.warn("Creating expert with id");
+        }
+        return expertCreated;
     }
+
 
 
     @Override

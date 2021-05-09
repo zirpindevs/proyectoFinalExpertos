@@ -13,8 +13,6 @@ public interface TagDAO {
     List<Tag> findAllByFilter(String nombre, String limite, String pagina);
     List<Tag> findByAllByName(String name);
 
-    List<Tag> findAllFromSession();
-
     Tag createTag(String tagName);
     Tag modifyTag(Tag tag, Tag findedTag);
 

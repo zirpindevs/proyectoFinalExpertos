@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface ExpertDAO {
 
-    List<Expert> findAllFromSession();
-
     List<Expert> findAll();
     Expert findById(Long id);
     void deleteExpert(Expert expertToDelete);

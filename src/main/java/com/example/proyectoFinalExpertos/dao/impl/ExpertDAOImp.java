@@ -23,18 +23,9 @@ public class ExpertDAOImp implements ExpertDAO {
     @PersistenceContext
     private EntityManager manager;
 
-    @Autowired
-    private Session session;
-
-    @Override
-    public List<Expert> findAllFromSession() {
-        return session.createQuery("from Expert e").list();
-    }
-
     @Override
     public Expert createExpert(Expert expertToCreate) {
 
-        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         System.out.println(expertToCreate);
         System.out.println(expertToCreate.getNombre());
 
@@ -230,12 +221,14 @@ public class ExpertDAOImp implements ExpertDAO {
 
     @Override
     public List<Expert> findAllByFilter(String nombre, String estado, String tamano, String pagina) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
 
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Expert> criteria = builder.createQuery(Expert.class);
+        Root<Expert> root = criteria.from(Expert.class);
 
         String hql = "FROM Expert WHERE nombre LIKE :nombre AND estado LIKE :estado";
         System.out.println(hql);
-        Query query = session.createQuery(hql);
+        Query query = manager.createQuery(hql);
 
         query.setParameter("nombre", "%"+nombre+"%");
         query.setParameter("estado", "%"+estado+"%");

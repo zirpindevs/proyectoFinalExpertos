@@ -22,15 +22,6 @@ public class UserDAOImp implements UserDAO {
     @PersistenceContext
     private EntityManager manager;
 
-    @Autowired
-    private Session session;
-
-    @Override
-    public List<User> findAllFromSession() {
-        return session.createQuery("from User e").list();
-    }
-
-
     @Override
     public User findById(Long id){
 

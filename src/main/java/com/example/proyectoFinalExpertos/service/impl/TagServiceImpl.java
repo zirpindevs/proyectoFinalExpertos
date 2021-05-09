@@ -47,7 +47,7 @@ public class TagServiceImpl implements TagService {
     public List<Tag> findAll() {
         log.info("REST request to find all tags");
 
-        return this.tagDAO.findAllFromSession();
+        return this.tagDAO.findAll();
     }
 
     @Override
