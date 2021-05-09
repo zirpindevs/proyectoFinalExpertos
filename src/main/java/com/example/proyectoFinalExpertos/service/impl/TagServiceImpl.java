@@ -29,22 +29,19 @@ public class TagServiceImpl implements TagService {
 
 
     @Override
-    public Tag createTag(String tagName) {
+    public Tag createTag(Tag tagToCreate) {
         log.info("REST request to create a tag");
-        System.out.println(tagName);
-        Tag tagCreate = null;
+        Tag tagCreated = null;
 
             try {
-                tagCreate.setName(tagName);
-                tagCreate.setCreatedDate(Instant.now());
-                tagCreate.setLast_updated(Instant.now());
-                System.out.println(tagCreate);
-                tagCreate = tagRepository.save(tagCreate);
+                tagToCreate.setCreatedDate(Instant.now());
+                tagToCreate.setLast_updated(Instant.now());
+                tagCreated = tagRepository.save(tagToCreate);
             } catch (Exception e) {
-                log.error("Cannot save the tag: {} , error : {}", tagCreate, e);
+                log.error("Cannot save the tag: {} , error : {}", tagToCreate, e);
             }
 
-    return tagCreate;
+    return tagCreated;
     }
 
     @Override

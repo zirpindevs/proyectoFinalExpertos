@@ -37,23 +37,23 @@ public class TagController {
 
     /**
      * CREATE A TAG
-     * @param tagName
+     * @param tagToCreate
      * @return ResponseEntity<Tag>
      * @throws URISyntaxException
      */
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/etiquetas")
-    public ResponseEntity<Tag> createTag(@RequestBody Tag tagName) throws URISyntaxException {
-        log.debug("REST request to create new a tag: {} ", tagName);
+    public ResponseEntity<Tag> createTag(@RequestBody Tag tagToCreate) throws URISyntaxException {
+        log.debug("REST request to create new a tag: {} ", tagToCreate);
 
 
-        if (tagName.getName() == null)
+        if (tagToCreate.getName() == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        Tag checkTag = this.tagService.findByName(tagName.getName());
+        Tag checkTag = this.tagService.findByName(tagToCreate.getName());
 
         if(checkTag == null) {
-            Tag createTag = this.tagService.createTag(tagName.getName());
+            Tag createTag = this.tagService.createTag(tagToCreate);
 
             return ResponseEntity
                     .created(new URI("/api/etiquetas/" + createTag.getName()))
