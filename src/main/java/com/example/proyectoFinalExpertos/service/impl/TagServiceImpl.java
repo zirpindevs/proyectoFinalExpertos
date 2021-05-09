@@ -92,7 +92,7 @@ public class TagServiceImpl implements TagService {
 
         if(name == "")
             return null;
-        return this.tagDAO.findByName(name);
+        return this.tagRepository.findByNombre(name);
     }
 
 
