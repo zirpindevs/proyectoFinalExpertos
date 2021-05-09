@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.controller;
 
 import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.repository.TagRepository;
 import com.example.proyectoFinalExpertos.service.TagService;
 import org.hibernate.Session;
 import org.slf4j.Logger;
@@ -26,10 +27,12 @@ public class TagController {
     private final Logger log = LoggerFactory.getLogger(TagController.class);
 
     private final TagService tagService;
+    private final TagRepository tagRepository;
 
-        public TagController(TagService tagService) {
+        public TagController(TagService tagService, TagRepository tagRepository) {
         this.tagService = tagService;
-    }
+            this.tagRepository = tagRepository;
+        }
 
 
     /**
@@ -97,7 +100,7 @@ public class TagController {
     public List<Tag> findTags(){
         log.debug("REST request to find all Tags");
 
-        return this.tagService.findAll();
+        return this.tagRepository.findAll();
     }
 
     /**
