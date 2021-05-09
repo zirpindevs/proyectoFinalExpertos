@@ -20,8 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "https://proyecto-final-expertos-front.vercel.app/expertos", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api")
 public class ExpertController {
 
