@@ -37,6 +37,7 @@ public class TagServiceImpl implements TagService {
             try {
                 tagCreate.setCreatedDate(Instant.now());
                 tagCreate.setLast_updated(Instant.now());
+                tagCreate.setName(tagName);
                 tagCreate = tagRepository.save(tagCreate);
             } catch (Exception e) {
                 log.error("Cannot save the expert: {} , error : {}", tagCreate, e);
