@@ -164,6 +164,7 @@ public class ExpertController {
      * @return ResponseEntity<Expert>
      * @throws URISyntaxException
      */
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/expertos/{id}")
     public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
         Expert findExpert = this.expertService.findOne(id);
