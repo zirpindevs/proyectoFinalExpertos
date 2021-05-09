@@ -66,6 +66,7 @@ public class ExpertController {
      * @param modifiedExpert
      * @return ResponseEntity<Expert>
      */
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/expertos")
     public ResponseEntity<Expert> updateExpert(@RequestBody Expert modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
