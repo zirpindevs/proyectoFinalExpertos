@@ -46,7 +46,6 @@ public class ExpertController {
      * @throws URISyntaxException
      */
     @PostMapping("/expertos")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Expert> createExpert(@RequestBody Expert expertToCreate) throws URISyntaxException {
         log.debug("REST request to create an expert: {} ", expertToCreate);
 
@@ -66,7 +65,6 @@ public class ExpertController {
      * @param modifiedExpert
      * @return ResponseEntity<Expert>
      */
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/expertos")
     public ResponseEntity<Expert> updateExpert(@RequestBody Expert modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
@@ -90,7 +88,6 @@ public class ExpertController {
      * FIND ALL EXPERTS
      * @return List<Expert>
      */
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/expertos")
     public ResponseEntity<Map<String, Object>>getAll(
             @RequestParam(required = false) String nombre,
@@ -165,7 +162,6 @@ public class ExpertController {
      * @return ResponseEntity<Expert>
      * @throws URISyntaxException
      */
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/expertos/{id}")
     public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
         Expert findExpert = this.expertService.findOne(id);
