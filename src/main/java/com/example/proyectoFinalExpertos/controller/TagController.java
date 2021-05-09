@@ -61,8 +61,7 @@ public class TagController {
         }
         else
         {
-            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-            System.out.println("im used");
+          log.warn("already in use");
 
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

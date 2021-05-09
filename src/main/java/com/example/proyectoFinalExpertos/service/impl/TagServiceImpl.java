@@ -4,11 +4,13 @@ import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.dao.TagDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.repository.TagRepository;
 import com.example.proyectoFinalExpertos.service.TagService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -17,17 +19,33 @@ public class TagServiceImpl implements TagService {
 
     private final ExpertDAO expertDAO;
     private final TagDAO tagDAO;
+    private final TagRepository tagRepository;
 
-    public TagServiceImpl(ExpertDAO expertDAO, TagDAO tagDAO) {
+    public TagServiceImpl(ExpertDAO expertDAO, TagDAO tagDAO, TagRepository tagRepository) {
         this.expertDAO = expertDAO;
         this.tagDAO = tagDAO;
+        this.tagRepository = tagRepository;
     }
 
 
     @Override
     public Tag createTag(String tagName) {
         log.info("REST request to create a tag");
-        return this.tagDAO.createTag(tagName);
+
+        Tag tagCreate = null;
+
+        if (tagName == null) {
+            try {
+                tagCreate.setCreatedDate(Instant.now());
+                tagCreate.setLast_updated(Instant.now());
+                tagCreate = tagRepository.save(tagCreate);
+            } catch (Exception e) {
+                log.error("Cannot save the expert: {} , error : {}", tagCreate, e);
+            }
+        } else {
+            log.warn("Creating expert with id");
+        }
+    return tagCreate;
     }
 
     @Override
