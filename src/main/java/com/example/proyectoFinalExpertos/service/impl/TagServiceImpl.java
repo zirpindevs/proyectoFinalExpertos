@@ -34,7 +34,6 @@ public class TagServiceImpl implements TagService {
 
         Tag tagCreate = null;
 
-        if (tagName == null) {
             try {
                 tagCreate.setCreatedDate(Instant.now());
                 tagCreate.setLast_updated(Instant.now());
@@ -42,9 +41,7 @@ public class TagServiceImpl implements TagService {
             } catch (Exception e) {
                 log.error("Cannot save the expert: {} , error : {}", tagCreate, e);
             }
-        } else {
-            log.warn("Creating expert with id");
-        }
+
     return tagCreate;
     }
 
