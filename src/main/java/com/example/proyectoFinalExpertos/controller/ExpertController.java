@@ -63,22 +63,23 @@ public class ExpertController {
     /**
      * UPDATE EXPERT
      *
-     * @param id
      * @param modifiedExpert
      * @return ResponseEntity<Expert>
      */
-    @PutMapping("/expertos/{id}")
-    public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
+    @PutMapping("/expertos")
+    public ResponseEntity<Expert> updateExpert(@RequestBody Expert modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
 
 
-        if (id == null) {
+        if (modifiedExpert.getId() == null) {
             log.warn("update expert without id");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        Expert updateExpert = this.expertService.updateExpert(id, modifiedExpert);
+        Expert updateExpert = this.expertService.updateExpert(modifiedExpert);
 
+        if(updateExpert == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         return ResponseEntity.ok().body(updateExpert);
 
@@ -165,29 +166,28 @@ public class ExpertController {
      */
     @GetMapping("/expertos/{id}")
     public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
-//        Expert findExpert = this.expertRepository.findOne(id);
-//
-//        if (findExpert == null)
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//
-//        return ResponseEntity.ok().body(findExpert);
-return null;
+        Expert findExpert = this.expertService.findOne(id);
+
+        if (findExpert == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return ResponseEntity.ok().body(findExpert);
+
     }
 
     @DeleteMapping("/expertos/{id}")
     public ResponseEntity<Void> deleteExpert(@PathVariable Long id){
         log.debug("REST request to delete a expert: {} ", id);
-//
-//        Expert expertToDelete = this.expertService.findOne(id);
-//
-//        if (expertToDelete.getId() == null) {
-//            log.warn("expert not exists");
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//
-//        this.expertService.deleteExpert(expertToDelete);
-//        return ResponseEntity.noContent().build();
-        return null;
+
+        Expert expertToDelete = this.expertService.findOne(id);
+
+        if (expertToDelete.getId() == null) {
+            log.warn("expert not exists");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        this.expertService.deleteExpert(expertToDelete);
+        return ResponseEntity.noContent().build();
     }
 
 }
