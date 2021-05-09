@@ -92,7 +92,7 @@ public class TagServiceImpl implements TagService {
 
         if(name == "")
             return null;
-        return this.tagRepository.findByNombre(name);
+        return this.tagRepository.findByName(name);
     }
 
 
@@ -100,11 +100,6 @@ public class TagServiceImpl implements TagService {
     public List<Tag> findAllByFilter(String nombre, String limite, String pagina) {
         log.info("REST request to find an expert by filter");
 
-/*        System.out.println("+++++++++++++++++++++++++++indAllByFilter service++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println(nombre);
-        System.out.println(limite);
-        System.out.println(pagina);
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");*/
         return this.tagDAO.findAllByFilter(nombre, limite, pagina);
     }
 
