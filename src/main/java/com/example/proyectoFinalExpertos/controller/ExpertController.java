@@ -71,9 +71,8 @@ public class ExpertController {
     public ResponseEntity<Expert> updateExpert(@PathVariable Long id, @RequestBody Expert modifiedExpert) {
         log.debug("REST request to update one expert: {} ", modifiedExpert);
 
-        Expert findUpdateExpert = this.expertService.findOne(id);
 
-        if (findUpdateExpert.getId() == null) {
+        if (id == null) {
             log.warn("update expert without id");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

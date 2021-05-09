@@ -78,7 +78,6 @@ public class TagController {
     public ResponseEntity<Tag> updateTag(@PathVariable Long id, @RequestBody Tag modifiedTag){
         log.debug("REST request to update one tag: {} ",modifiedTag);
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
         Tag updateTag = this.tagService.updateTag(id, modifiedTag);
 
         if(updateTag.getId() == null) {
