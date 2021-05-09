@@ -165,28 +165,29 @@ public class ExpertController {
      */
     @GetMapping("/expertos/{id}")
     public ResponseEntity<Expert> findExpertId(@PathVariable Long id) throws URISyntaxException {
-        Expert findExpert = this.expertService.findOne(id);
-
-        if (findExpert == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        return ResponseEntity.ok().body(findExpert);
-
+//        Expert findExpert = this.expertRepository.findOne(id);
+//
+//        if (findExpert == null)
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//
+//        return ResponseEntity.ok().body(findExpert);
+return null;
     }
 
     @DeleteMapping("/expertos/{id}")
     public ResponseEntity<Void> deleteExpert(@PathVariable Long id){
         log.debug("REST request to delete a expert: {} ", id);
-
-        Expert expertToDelete = this.expertService.findOne(id);
-
-        if (expertToDelete.getId() == null) {
-            log.warn("expert not exists");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        this.expertService.deleteExpert(expertToDelete);
-        return ResponseEntity.noContent().build();
+//
+//        Expert expertToDelete = this.expertService.findOne(id);
+//
+//        if (expertToDelete.getId() == null) {
+//            log.warn("expert not exists");
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//
+//        this.expertService.deleteExpert(expertToDelete);
+//        return ResponseEntity.noContent().build();
+        return null;
     }
 
 }
