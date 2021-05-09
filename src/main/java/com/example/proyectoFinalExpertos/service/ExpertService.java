@@ -11,7 +11,6 @@ public interface ExpertService {
     void deleteExpert(Expert expertToDelete);
 
     List<Expert> findAll();
-    Expert findOne(Long id);
     List<Expert> findAllByName(String name);
     List<Expert> findAllByFilter(String nombre, String estado, String tamano, String pagina);
 

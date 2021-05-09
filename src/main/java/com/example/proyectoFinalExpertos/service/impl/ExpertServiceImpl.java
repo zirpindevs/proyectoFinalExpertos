@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExpertServiceImpl implements ExpertService {
@@ -56,14 +57,17 @@ public class ExpertServiceImpl implements ExpertService {
     public Expert updateExpert(Long id, Expert modifiedExpert) {
         log.info("REST request to update an expert");
 
-        Expert result = null;
+        Optional<Expert> recoverExpert = expertRepository.findById(id);
 
-        if (expertRepository.existsById(id)) {
+        Expert updatedExpert = null;
+
+
+        if (expertRepository != null) {
             modifiedExpert.setLast_updated(Instant.now());
-            result = expertRepository.save(modifiedExpert);
+            updatedExpert = expertRepository.save(modifiedExpert);
         }
 
-        return result;
+        return updatedExpert;
     }
 
     @Override
@@ -71,15 +75,6 @@ public class ExpertServiceImpl implements ExpertService {
         log.info("REST request to find all expert");
 
         return this.expertDAO.findAll();
-    }
-
-    @Override
-    public Expert findOne(Long id) {
-        log.info("REST request to find one expert by id");
-
-        if(id == null)
-            return null;
-        return this.expertDAO.findById(id);
     }
 
     @Override
