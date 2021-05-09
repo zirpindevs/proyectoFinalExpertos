@@ -7,11 +7,10 @@ import java.util.List;
 public interface ExpertService {
 
     Expert createExpert(Expert expert);
-    Expert updateExpert(Long id, Expert modifiedExpert);
+    Expert updateExpert(Expert modifiedExpert);
     void deleteExpert(Expert expertToDelete);
 
+    Expert findOne(Long id);
     List<Expert> findAll();
-    List<Expert> findAllByName(String name);
-    List<Expert> findAllByFilter(String nombre, String estado, String tamano, String pagina);
 
     }

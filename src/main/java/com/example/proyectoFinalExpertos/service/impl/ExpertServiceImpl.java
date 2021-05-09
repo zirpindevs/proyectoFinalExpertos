@@ -5,15 +5,14 @@ import com.example.proyectoFinalExpertos.dao.TagDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.repository.ExpertRepository;
+import com.example.proyectoFinalExpertos.repository.TagRepository;
 import com.example.proyectoFinalExpertos.service.ExpertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ExpertServiceImpl implements ExpertService {
@@ -21,13 +20,13 @@ public class ExpertServiceImpl implements ExpertService {
 
 
     private final ExpertDAO expertDAO;
-    private final TagDAO tagDAO;
-    private ExpertRepository expertRepository;
+    private final TagRepository tagRepository;
+    private final ExpertRepository expertRepository;
 
 
-    public ExpertServiceImpl(ExpertDAO expertDAO, TagDAO tagDAO, ExpertRepository expertRepository) {
+    public ExpertServiceImpl(ExpertDAO expertDAO, TagRepository tagRepository, ExpertRepository expertRepository) {
         this.expertDAO = expertDAO;
-        this.tagDAO = tagDAO;
+        this.tagRepository = tagRepository;
         this.expertRepository = expertRepository;
     }
 
@@ -54,21 +53,31 @@ public class ExpertServiceImpl implements ExpertService {
 
 
     @Override
-    public Expert updateExpert(Long id, Expert modifiedExpert) {
-        log.info("REST request to update an expert");
+    public Expert updateExpert(Expert modifiedExpert) {
 
-        Optional<Expert> recoverExpert = expertRepository.findById(id);
+        log.debug("Update a expert: {}", modifiedExpert);
 
         Expert updatedExpert = null;
+        Expert findedExpert = expertDAO.findById(modifiedExpert.getId());
+        List<Tag> existingTags = null;
 
+        if (findedExpert != null) {
+            if(findedExpert.getTags() != null)
+              existingTags = findedExpert.getTags();
 
-        if (expertRepository != null) {
-            modifiedExpert.setLast_updated(Instant.now());
-            updatedExpert = expertRepository.save(modifiedExpert);
+                try{
+                    modifiedExpert.setLast_updated(Instant.now());
+                    modifiedExpert.setTags(existingTags);
+                    updatedExpert = expertRepository.save(modifiedExpert);
+                }catch(Exception e){
+                    log.error("Cannot save expert: {} , error : {}", modifiedExpert, e);
+                }
+        }else{
+            log.warn("Cannot save expert: {}, because it doesn´t exist", updatedExpert);
+            }
+            return updatedExpert;
         }
 
-        return updatedExpert;
-    }
 
     @Override
     public List<Expert> findAll() {
@@ -78,30 +87,19 @@ public class ExpertServiceImpl implements ExpertService {
     }
 
     @Override
-    public List<Expert> findAllByName(String name) {
-        log.info("REST request to find an expert by name");
+    public Expert findOne(Long id) {
+        log.info("REST request to find one expert by id");
 
-        if(name.isEmpty())
+        if(id == null)
             return null;
-        return this.expertDAO.findAllByName(name);
+        return this.expertDAO.findById(id);
     }
 
-    @Override
-    public List<Expert> findAllByFilter(String nombre, String estado, String tamano, String pagina) {
-        log.info("REST request to find an expert by filter");
-
-    /*    System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println(params.size());
-        params.forEach(param -> System.out.println(param.toString()));
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-*/
-        return this.expertDAO.findAllByFilter(nombre, estado, tamano, pagina);
-    }
 
     @Override
     public void deleteExpert(Expert expertToDelete){
         log.info("REST request to delete an expert by id");
-        this.expertDAO.deleteExpert(expertToDelete);
+        this.expertRepository.deleteById(expertToDelete.getId());
 
     }
 }

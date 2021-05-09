@@ -103,7 +103,8 @@ public class ExpertDAOImp implements ExpertDAO {
     }
 
     @Override
-    public  Expert updateExpert(Expert modifiedExpert, Expert findedExpert, Tag findedTag, List<Tag> existingTags){
+    public  Expert updateExpert(Expert modifiedExpert, Expert findedExpert){
+
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
@@ -141,10 +142,10 @@ public class ExpertDAOImp implements ExpertDAO {
 
         //comprobamos si hay etiquetas que añadir
 
-        if (findedTag.getName() != null) {
-            existingTags.add(findedTag);
-            findedExpert.setTags(existingTags);
-        }
+//        if (findedTag.getName() != null) {
+//            existingTags.add(findedTag);
+//            findedExpert.setTags(existingTags);
+//        }
 
         findedExpert.setLast_updated(Instant.now());
 
@@ -189,16 +190,20 @@ public class ExpertDAOImp implements ExpertDAO {
     @Override
     public Expert findById(Long id){
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Expert> criteria =  builder.createQuery(Expert.class);
+        Root<Expert> root = criteria.from(Expert.class);
+        Expert expert;
 
-        String hql = "FROM Expert e WHERE e.id = :id"; // named parameters
-        Query query = session.createQuery(hql);
-        query.setParameter("id", id);
-        Expert expert = (Expert) query.getSingleResult();
-
-        session.close();
-
+        criteria.select(root).where(builder.equal(root.get("id"), id));
+        try{
+            expert = manager.createQuery(criteria).getSingleResult();
+        }catch(Exception e){
+            expert = null;
+        }
         return expert;
+
+
     }
 
     @Override
