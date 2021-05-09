@@ -8,5 +8,5 @@ import java.util.List;
 public interface ExpertDAO {
 
     Expert findById(Long id);
-
+    void deleteTagExpert(Tag listTag, Expert expert);
 }

@@ -40,6 +40,31 @@ public class ExpertDAOImp implements ExpertDAO {
         }
         return expert;
 
+    }
+
+    @Override
+    public void deleteTagExpert(Tag listTag, Expert expert){
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+        System.out.println(expert);
+        expert = session.find(Expert.class, expert.getId());
+        System.out.println(expert);
+
+        for (int x = 0; x < expert.getTags().size(); x++) {
+            Tag t = expert.getTags().get(x);
+            if (t.getName().equals(listTag.getName())) {
+                expert.getTags().remove(t);
+                break;
+            }
+        }
+
+        session.save(expert);
+        session.getTransaction().commit();
+        session.close();
+        System.out.println(expert.getTags());
+
 
     }
 

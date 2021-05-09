@@ -19,12 +19,14 @@ public class TagServiceImpl implements TagService {
     private final Logger log = LoggerFactory.getLogger(TagServiceImpl.class);
 
     private final ExpertRepository expertRepository;
+    private final ExpertDAO expertDAO;
     private final TagDAO tagDAO;
     private final TagRepository tagRepository;
 
 
-    public TagServiceImpl(ExpertRepository expertRepository, TagDAO tagDAO, TagRepository tagRepository) {
+    public TagServiceImpl(ExpertRepository expertRepository, ExpertDAO expertDAO, TagDAO tagDAO, TagRepository tagRepository) {
         this.expertRepository = expertRepository;
+        this.expertDAO = expertDAO;
         this.tagDAO = tagDAO;
         this.tagRepository = tagRepository;
     }
@@ -120,7 +122,7 @@ public class TagServiceImpl implements TagService {
             for (Tag listTag : expertTags) {
                 if (listTag.getName().equals(tagToDelete.getName())) {
                     System.out.println("el experto " + expert.getNombre() + " tiene la etiqueta " + tagToDelete.getName());
-                    tagDAO.deleteRelationWithExperts(tagToDelete.getId());
+                    expertDAO.deleteTagExpert(tagToDelete, expert);
                 }
             }
         }

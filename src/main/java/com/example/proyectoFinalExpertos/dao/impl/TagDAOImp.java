@@ -173,22 +173,4 @@ public class TagDAOImp implements TagDAO {
         session.close();
     }
 
-
-    @Transactional
-    @Override
-    public Boolean deleteRelationWithExperts(Long id) {
-
-        Query queryNative = manager.createNativeQuery("delete from expert_tag where tag_id = "+ id);
-        if(id!=null) {
-            try {
-                queryNative.executeUpdate();
-            }catch (Exception e){
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-
 }
