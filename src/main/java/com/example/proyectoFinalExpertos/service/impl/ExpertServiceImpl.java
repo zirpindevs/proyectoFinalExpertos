@@ -58,7 +58,7 @@ public class ExpertServiceImpl implements ExpertService {
 
         Expert result = null;
 
-        if (expertRepository.existsById(modifiedExpert.getId())) {
+        if (expertRepository.existsById(id)) {
             modifiedExpert.setLast_updated(Instant.now());
             result = expertRepository.save(modifiedExpert);
         }
