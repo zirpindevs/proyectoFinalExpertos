@@ -15,6 +15,7 @@ public interface TagDAO {
 
     Tag createTag(String tagName);
     Tag modifyTag(Tag tag, Tag findedTag);
+    Boolean deleteRelationWithExperts(Long id);
 
 
 

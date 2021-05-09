@@ -1,5 +1,6 @@
 package com.example.proyectoFinalExpertos.controller;
 
+import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
 import com.example.proyectoFinalExpertos.repository.TagRepository;
 import com.example.proyectoFinalExpertos.service.TagService;
@@ -109,19 +110,14 @@ public class TagController {
      */
     @GetMapping("/etiquetas/{id}")
     public ResponseEntity<Tag> findTagId(@PathVariable Long id) throws URISyntaxException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Tag> criteria = builder.createQuery(Tag.class);
-        Root<Tag> root = criteria.from(Tag.class);
-
-        criteria.where(builder.equal(root.get("id"), id));
 
         Tag findTag = this.tagService.findOne(id);
 
-        session.close();
+        if (findTag == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         return ResponseEntity.ok().body(findTag);
+
     }
 
     @DeleteMapping("/etiquetas/{id}")

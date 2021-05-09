@@ -83,7 +83,7 @@ public class ExpertServiceImpl implements ExpertService {
     public List<Expert> findAll() {
         log.info("REST request to find all expert");
 
-        return this.expertDAO.findAll();
+        return this.expertRepository.findAll();
     }
 
     @Override

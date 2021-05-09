@@ -4,6 +4,7 @@ import com.example.proyectoFinalExpertos.dao.ExpertDAO;
 import com.example.proyectoFinalExpertos.dao.TagDAO;
 import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.Tag;
+import com.example.proyectoFinalExpertos.repository.ExpertRepository;
 import com.example.proyectoFinalExpertos.repository.TagRepository;
 import com.example.proyectoFinalExpertos.service.TagService;
 import org.slf4j.Logger;
@@ -17,12 +18,13 @@ import java.util.List;
 public class TagServiceImpl implements TagService {
     private final Logger log = LoggerFactory.getLogger(TagServiceImpl.class);
 
-    private final ExpertDAO expertDAO;
+    private final ExpertRepository expertRepository;
     private final TagDAO tagDAO;
     private final TagRepository tagRepository;
 
-    public TagServiceImpl(ExpertDAO expertDAO, TagDAO tagDAO, TagRepository tagRepository) {
-        this.expertDAO = expertDAO;
+
+    public TagServiceImpl(ExpertRepository expertRepository, TagDAO tagDAO, TagRepository tagRepository) {
+        this.expertRepository = expertRepository;
         this.tagDAO = tagDAO;
         this.tagRepository = tagRepository;
     }
@@ -104,14 +106,14 @@ public class TagServiceImpl implements TagService {
         log.info("REST request to delete a tag by id");
 
     //buscamos los expertos que tienen esa tag y se la desasociamos si es que hay
-    List<Expert> experts = expertDAO.findAll();
+    List<Expert> experts = expertRepository.findAll();
     if (!experts.isEmpty()){
         for (Expert expert : experts) {
             List<Tag> expertTags = expert.getTags();
             for (Tag listTag : expertTags) {
                 if (listTag.getName().equals(tagToDelete.getName())) {
                     System.out.println("el experto " + expert.getNombre() + " tiene la etiqueta " + tagToDelete.getName());
-                    expertDAO.deleteTagExpert(tagToDelete, expert);
+                    tagDAO.deleteRelationWithExperts(tagToDelete.getId());
                 }
             }
         }

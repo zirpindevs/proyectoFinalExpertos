@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.List;
 
@@ -77,20 +78,17 @@ public class TagDAOImp implements TagDAO {
     @Override
     public Tag findById(Long id){
 
-        System.out.println("*****************tag find by id***************************");
-        System.out.println(id);
-        System.out.println("*********************************************");
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Tag> criteria = builder.createQuery(Tag.class);
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Tag> criteria =  builder.createQuery(Tag.class);
         Root<Tag> root = criteria.from(Tag.class);
+        Tag tag;
 
-        criteria.where(builder.equal(root.get("id"), id));
-
-        Tag tag = session.createQuery(criteria).uniqueResult();
-
-        session.close();
+        criteria.select(root).where(builder.equal(root.get("id"), id));
+        try{
+            tag = manager.createQuery(criteria).getSingleResult();
+        }catch(Exception e){
+            tag = null;
+        }
 
         return tag;
     }
@@ -174,4 +172,23 @@ public class TagDAOImp implements TagDAO {
         session.getTransaction().commit();
         session.close();
     }
+
+
+    @Transactional
+    @Override
+    public Boolean deleteRelationWithExperts(Long id) {
+
+        Query queryNative = manager.createNativeQuery("delete from expert_tag where tag_id = "+ id);
+        if(id!=null) {
+            try {
+                queryNative.executeUpdate();
+            }catch (Exception e){
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+
 }
