@@ -9,11 +9,14 @@ import org.springframework.stereotype.Repository;
 import util.HibernateUtil;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -23,63 +26,33 @@ public class UserDAOImp implements UserDAO {
     private EntityManager manager;
 
     @Override
-    public User findById(Long id){
+    public User findUser(User user){
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> criteria = builder.createQuery(User.class);
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<User> criteria =  builder.createQuery(User.class);
         Root<User> root = criteria.from(User.class);
 
-        criteria.where(builder.equal(root.get("id"), id));
 
-        User user = session.createQuery(criteria).uniqueResult();
+        System.out.println(user.getEmail() + " " + user.getPassword() + "**********************");
 
-        session.close();
+        List<Predicate> predicates = new ArrayList<>();
+        User findUser;
 
-        return user;
+        if(user.getEmail()!=null)
+            predicates.add(builder.equal(root.get("email"), user.getEmail()));
+
+        if(user.getPassword()!=null)
+            predicates.add(builder.equal(root.get("password"), user.getPassword()));
+
+        criteria.distinct(true).select(root).where(builder.and(predicates.toArray(new Predicate[0])));
+        try {
+            findUser = manager.createQuery(criteria).getSingleResult();
+
+        }catch (NoResultException nre) {
+            findUser = null;
+        }
+
+         return findUser;
     }
 
-    @Override
-    public User findByEmail(String email){
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> criteria = builder.createQuery(User.class);
-        Root<User> root = criteria.from(User.class);
-
-        criteria.where(builder.equal(root.get("email"), email));
-
-        User user = session.createQuery(criteria).uniqueResult();
-
-        session.close();
-
-        return user;
-    }
-
-
-    @Override
-    public User createUser(User userToCreate)
-    {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        session.beginTransaction();
-
-        User newUser = new User();
-
-        newUser.setEmail(userToCreate.getEmail());
-        newUser.setPassword(userToCreate.getPassword());
-
-
-        newUser.setCreatedDate(Instant.now());
-
-        session.save(newUser);
-
-        session.getTransaction().commit();
-
-        session.close();
-
-        return newUser;
-    }
 }

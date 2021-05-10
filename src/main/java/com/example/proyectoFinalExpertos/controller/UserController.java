@@ -30,25 +30,27 @@ public class UserController {
     }
 
     /**
-         * FIND USER BY EMAIL
-         * @return String
-         */
+     * FIND CHECK USER
+     * @param user
+     * @return ResponseEntity<User>
+     */
     @PostMapping("/users")
-    public ResponseEntity<User> findUserName(@RequestBody User user) throws URISyntaxException {
-        log.debug("REST request to find an user by mail: {} ", user);
+    public ResponseEntity<User> checkUserName(@RequestBody User user) throws URISyntaxException {
+        log.debug("REST request to check an user: {} ", user);
 
         System.out.println(user);
-        User checkUser = new User();
+        User checkUser = userService.findOne(user);
 
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            checkUser = userRepository.findByEmail((user.getEmail()));
-            if (checkUser.getEmail().equals(user.getEmail()))
+        if(user.getEmail() == null || user.getPassword() == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        if (userService.findOne(user) != null) {
                 return ResponseEntity.ok().body(checkUser);
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
 
+    }
 
 
     /**
@@ -63,8 +65,8 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User userToCreate) throws URISyntaxException {
         log.debug("REST request to create an user: {} ", userToCreate);
 
-        if (userToCreate.getEmail() != null || userToCreate.getPassword() != null)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (userRepository.findByEmail(userToCreate.getEmail()) != null)
+            return new ResponseEntity<>(HttpStatus.IM_USED);
 
 
         User createdUser = this.userService.createUser(userToCreate);

@@ -6,8 +6,7 @@ import com.example.proyectoFinalExpertos.model.User;
 import java.util.List;
 
 public interface UserService {
-    User findOne(Long id);
-    User findByEmail(String email);
+    User findOne(User user);
     User createUser(User user);
 
 }

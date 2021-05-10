@@ -1,47 +1,44 @@
 package com.example.proyectoFinalExpertos.service.impl;
 
 import com.example.proyectoFinalExpertos.dao.UserDAO;
-import com.example.proyectoFinalExpertos.model.Expert;
 import com.example.proyectoFinalExpertos.model.User;
+import com.example.proyectoFinalExpertos.repository.UserRepository;
 import com.example.proyectoFinalExpertos.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserDAO userDAO;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(UserDAO userDAO) {
+    public UserServiceImpl(UserDAO userDAO, UserRepository userRepository) {
         this.userDAO = userDAO;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public User findOne(Long id) {
+    public User findOne(User user) {
         log.info("REST request to find one user by id");
-
-        if(id == null)
-            return null;
-        return this.userDAO.findById(id);
-    }
-
-    @Override
-    public User findByEmail(String email){
-        log.info("REST request to find an username by email");
-
-        if(email == null)
-            return null;
-        return this.userDAO.findByEmail(email);
+        return this.userDAO.findUser(user);
     }
 
     @Override
     public User createUser(User user) {
-        log.info("REST request to create an iser");
-        return this.userDAO.createUser(user);
+        log.info("REST request to create an User");
+
+        User userCreated = null;
+
+        try{
+                userCreated = userRepository.save(user);
+            }catch(Exception e) {
+                log.error("Cannot create the user: {} , error : {}", user, e);
+            }
+
+        return userCreated;
     }
 
 }
