@@ -1,6 +1,7 @@
 package com.example.proyectoFinalExpertos.controller;
 
-import com.example.proyectoFinalExpertos.model.Expert;
+import com.example.proyectoFinalExpertos.model.response.Response;
+import com.example.proyectoFinalExpertos.model.response.ResponseLoggin;
 import com.example.proyectoFinalExpertos.model.User;
 import com.example.proyectoFinalExpertos.repository.UserRepository;
 import com.example.proyectoFinalExpertos.service.impl.UserServiceImpl;
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 @RequestMapping("/api")
 public class UserController {
 
@@ -35,21 +37,24 @@ public class UserController {
      * @return ResponseEntity<User>
      */
     @PostMapping("/users")
-    public ResponseEntity<User> checkUserName(@RequestBody User user) throws URISyntaxException {
-        log.debug("REST request to check an user: {} ", user);
+    public ResponseLoggin checkUserName(@RequestBody User user) throws URISyntaxException {
+        log.info("REST request to check an user: {} ", user);
 
-        System.out.println(user);
         User checkUser = userService.findOne(user);
+        ResponseLoggin response = new ResponseLoggin();
 
-        if(user.getEmail() == null || user.getPassword() == null)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
+        if(user.getEmail() == null || user.getPassword() == null) {
+            response.setResponse(new Response("Error con el usuario",
+                    new ResponseEntity(HttpStatus.BAD_REQUEST).getStatusCode()));
+        }
         if (userService.findOne(user) != null) {
-                return ResponseEntity.ok().body(checkUser);
+            response.setEmailUser(checkUser.getEmail());
+            response.setResponse(new Response("usuario encontrado",
+                    new ResponseEntity(HttpStatus.OK).getStatusCode()));
         }
 
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+        return response;
     }
 
 
