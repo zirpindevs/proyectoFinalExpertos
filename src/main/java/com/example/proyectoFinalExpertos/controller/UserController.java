@@ -61,7 +61,6 @@ public class UserController {
     @PostMapping("/users")
 //    public ResponseLoggin checkUserName(@RequestBody User user) throws URISyntaxException {
     public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginRequest loginRequest){
-
             log.info("REST loginRequest to check: {} ", loginRequest);
 //
 //        User checkUser = userService.findOne(user);
@@ -81,7 +80,7 @@ public class UserController {
 //        return response;
 
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtTokenUtil.generateJwtToken(authentication);
