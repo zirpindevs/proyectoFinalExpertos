@@ -16,7 +16,6 @@ import java.net.URISyntaxException;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-
 @RequestMapping("/api")
 public class UserController {
 
@@ -36,6 +35,7 @@ public class UserController {
      * @param user
      * @return ResponseEntity<User>
      */
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/users")
     public ResponseLoggin checkUserName(@RequestBody User user) throws URISyntaxException {
         log.info("REST request to check an user: {} ", user);
