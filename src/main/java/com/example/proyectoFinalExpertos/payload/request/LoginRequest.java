@@ -2,18 +2,18 @@ package com.example.proyectoFinalExpertos.payload.request;
 
 public class LoginRequest {
 
-    private String username;
+    private String email;
     private String password;
 
     public LoginRequest() {
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.email = username;
     }
 
     public String getPassword() {
